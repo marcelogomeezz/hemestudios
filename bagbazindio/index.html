@@ -1,0 +1,424 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Posada Bagbazindio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: arches everywhere — hero reel inside an arch, an arch that opens to the sea on scroll, cream + mustard + cocoa from their reception wall */
+:root{
+  --cream:#F7F0E4; --cream-2:#EFE3CF; --cocoa:#6E3E30; --ink:#2A1C16; --ink-2:#715E52;
+  --mustard:#E3B547; --sea:#1FA3B5; --line:rgba(42,28,22,.13); --card:#FCF8F1; --on-cocoa:#FFF8EC;
+  --display:"Marcellus","Trajan Pro",Georgia,serif;
+  --body:"Figtree","Avenir Next",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --cream:#17110D; --cream-2:#221913; --cocoa:#D99A79; --ink:#F4EADB; --ink-2:#B9A594; --mustard:#E9C15C; --sea:#4CC3D2;
+  --line:rgba(244,234,219,.13); --card:#1E1611; --on-cocoa:#1D120D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --cream:#17110D; --cream-2:#221913; --cocoa:#D99A79; --ink:#F4EADB; --ink-2:#B9A594; --mustard:#E9C15C; --sea:#4CC3D2;
+  --line:rgba(244,234,219,.13); --card:#1E1611; --on-cocoa:#1D120D; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:400;font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+h2{font-size:clamp(34px,5.2vw,64px);text-transform:uppercase;letter-spacing:.06em}
+.kick{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cocoa)}
+p{margin:0}
+.lede{color:var(--ink-2);max-width:50ch;margin-top:16px}
+img,video{display:block;width:100%;height:100%;object-fit:cover}
+figure{margin:0;overflow:hidden;background:var(--cream-2)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+section{padding-block:100px}
+@media (max-width:700px){section{padding-block:70px}}
+.arch{border-radius:999px 999px 6px 6px}
+.rv{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.pre{transform:translateY(28px)}
+.ld{display:block}.lk{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lk{display:block}:root:not([data-theme="light"]) .ld{display:none}}
+:root[data-theme="dark"] .lk{display:block}:root[data-theme="dark"] .ld{display:none}
+
+/* top */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--cream)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:12px}
+.top .mk{display:flex;align-items:center;gap:10px;font-family:var(--display);letter-spacing:.2em;font-size:14px}
+.top .mk img{width:30px;height:auto}
+.top button{border:0;background:var(--cocoa);color:var(--on-cocoa);border-radius:99px;padding:9px 18px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+
+/* hero */
+.hero{padding-block:40px 90px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero .wordmark{width:min(420px,80%);height:auto;animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both}
+.hero .claim{font-family:var(--display);font-size:clamp(26px,3vw,38px);line-height:1.2;margin-top:34px;animation:rise 1.4s .25s both}
+.hero .sub{color:var(--ink-2);margin-top:14px;animation:rise 1.4s .4s both}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;animation:rise 1.4s .55s both}
+.pill{border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:13.5px;background:var(--card)}
+.hero .vid{position:relative;aspect-ratio:838/1250;max-height:78svh;justify-self:center;width:100%;max-width:480px;background:var(--cocoa);box-shadow:0 40px 70px -35px rgba(60,30,15,.6);animation:grow 1.6s .2s cubic-bezier(.2,.8,.2,1) both}
+.hero .vid video{object-position:50% 60%}
+.hero .vid .tag{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(255,248,236,.92);color:#2A1C16;border-radius:99px;padding:6px 14px;font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+@keyframes rise{from{transform:translateY(22px);opacity:0}}
+@keyframes grow{from{transform:scale(.92);opacity:0}}
+@media (max-width:820px){.hero{padding-top:28px}.hero .wrap{grid-template-columns:1fr;gap:34px}.hero .vid{max-height:none;max-width:420px}.hero .claim{margin-top:22px}}
+
+/* intro */
+.intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.intro figure{aspect-ratio:4/5}
+.intro .big{font-family:var(--display);font-size:clamp(24px,2.8vw,34px);line-height:1.3;margin-top:16px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line)}
+.trio div{padding:16px 12px 0 0}
+.trio b{display:block;font-family:var(--display);font-weight:400;font-size:20px;text-transform:uppercase;letter-spacing:.06em}
+.trio span{font-size:14px;color:var(--ink-2)}
+@media (max-width:820px){.intro{grid-template-columns:1fr;gap:36px}.intro figure{max-width:420px}.trio{grid-template-columns:1fr}.trio div{padding:14px 0;border-bottom:1px solid var(--line)}}
+
+/* spaces */
+.spaces{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:44px}
+.spaces figure{border-radius:6px}
+.s1{grid-column:span 4;aspect-ratio:4/3}.s2{grid-column:span 2;aspect-ratio:3/4.1}
+.s3{grid-column:span 2;aspect-ratio:3/4}.s4{grid-column:span 2;aspect-ratio:3/4}.s5{grid-column:span 2;aspect-ratio:3/4}
+.spaces .arch{border-radius:999px 999px 6px 6px}
+@media (max-width:760px){.spaces{grid-template-columns:1fr 1fr}.s1{grid-column:1/-1}.s2,.s3,.s4,.s5{grid-column:span 1}}
+
+/* arch wow */
+.opening{position:relative;height:280vh;padding:0;background:var(--cocoa)}
+.opening .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.portal{position:relative;overflow:hidden;will-change:width,height}
+.portal img{position:absolute;inset:0}
+.opening .lines{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding-block:calc(96px + env(safe-area-inset-top,0px)) calc(110px + env(safe-area-inset-bottom,0px));pointer-events:none;color:var(--on-cocoa);text-align:center}
+.opening .lines span{font-family:var(--display);font-size:clamp(22px,3.4vw,40px);letter-spacing:.14em;text-transform:uppercase;transition:opacity .6s}
+.opening .final{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#FFF8EC;opacity:0;transition:opacity .8s;background:linear-gradient(0deg,rgba(20,10,4,.55),rgba(20,10,4,.05) 60%);padding:22px}
+.opening .final.on{opacity:1}
+.opening .final h2{color:#FFF8EC;font-size:clamp(34px,6vw,76px)}
+.opening .final p{margin-top:12px;font-size:17px}
+
+/* rooms */
+.rooms{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;margin-top:44px;align-items:stretch}
+.rooms .big{aspect-ratio:auto;min-height:520px;border-radius:6px}
+.rooms .side{display:grid;gap:20px}
+.rooms .side figure{aspect-ratio:16/11;border-radius:6px}
+.rooms .copy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+.rooms .copy h3{font-size:19px;text-transform:uppercase;letter-spacing:.08em}
+.rooms .copy p{color:var(--ink-2);font-size:15px;margin-top:6px}
+@media (max-width:820px){.rooms{grid-template-columns:1fr}.rooms .big{min-height:0;aspect-ratio:4/5}.rooms .copy{grid-template-columns:1fr}}
+
+/* food */
+.food{background:var(--mustard);color:#2A1C16}
+.food .kick{color:#5A2E22}
+.food .lede{color:#4A3328}
+.plates{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.plate figure{aspect-ratio:3/4;border-radius:999px 999px 6px 6px;background:#d9a83a}
+.plate figure img{transition:transform 1.2s}
+.plate:hover figure img{transform:scale(1.05)}
+.plate h3{font-size:20px;text-transform:uppercase;letter-spacing:.08em;margin-top:16px}
+.plate p{font-size:15px;color:#4A3328;margin-top:4px}
+@media (max-width:820px){.plates{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:74%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc(-1*max(20px,env(safe-area-inset-right,0px)))}.plate{scroll-snap-align:start}.plates::-webkit-scrollbar{display:none}}
+
+/* area */
+.area{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.area figure{aspect-ratio:4/5}
+.list{list-style:none;padding:0;margin:28px 0 0;border-top:1px solid var(--line)}
+.list li{padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:4px 16px}
+.list b{font-family:var(--display);font-weight:400;font-size:21px;text-transform:uppercase;letter-spacing:.06em}
+.list span{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);align-self:center}
+.list p{grid-column:1/-1;color:var(--ink-2);font-size:15px}
+@media (max-width:820px){.area{grid-template-columns:1fr;gap:34px}.area figure{max-width:420px;order:2}}
+
+/* book */
+.book{text-align:center;background:var(--cream-2)}
+.book img.em{width:74px;margin:0 auto 18px}
+.book .lede{margin:14px auto 0}
+.bigcta{margin-top:28px;background:var(--cocoa);color:var(--on-cocoa);border:0;border-radius:99px;padding:18px 34px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:transform .25s}
+.bigcta:hover{transform:translateY(-2px)}
+footer{padding-block:36px calc(120px + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* floating */
+.fab{position:fixed;z-index:30;left:max(18px,env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.8,.2,1);background:var(--cocoa);color:var(--on-cocoa);border:0;border-radius:99px;padding:15px 24px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;box-shadow:0 14px 30px -12px rgba(60,30,15,.55)}
+.fab.show{transform:none}
+.chatbtn{position:fixed;z-index:31;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:7px 16px 7px 7px;box-shadow:0 14px 30px -14px rgba(60,30,15,.5);font-size:14px;font-weight:500}
+.av{width:38px;height:38px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;position:relative;flex:none}
+.av img{width:24px;height:auto}
+.chatbtn .av::after{content:"";position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;border-radius:50%;background:#3FB27F;border:2px solid var(--card)}
+@media (max-width:420px){.chatbtn .lbl{display:none}.chatbtn{padding:7px}}
+.chat{position:fixed;z-index:45;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 28px));height:min(560px,72svh);background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 60px -20px rgba(60,30,15,.5);display:flex;flex-direction:column;overflow:hidden;transform:translateY(16px) scale(.98);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.chat.on{transform:none;opacity:1;pointer-events:auto}
+.chat header{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.chat header b{font-weight:600;display:block;font-size:14.5px}
+.chat header small{font-size:12px;color:#3FB27F}
+.x{margin-left:auto;border:0;background:var(--cream-2);width:34px;height:34px;border-radius:50%;font-size:18px}
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:10px 14px;border-radius:16px;font-size:14.5px;line-height:1.5;animation:pop .3s ease-out}
+.m.bot{background:var(--cream-2);border-bottom-left-radius:4px}
+.m.me{background:var(--cocoa);color:var(--on-cocoa);align-self:flex-end;border-bottom-right-radius:4px}
+.m button{margin-top:8px;background:var(--cocoa);color:var(--on-cocoa);border:0;border-radius:99px;padding:7px 14px;font-size:12.5px;font-weight:600}
+.typing{display:flex;gap:4px;padding:12px 14px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-2);animation:bl 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}@keyframes pop{from{transform:translateY(6px);opacity:0}}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none}
+.chips button{flex:none;border:1px solid var(--line);background:none;border-radius:99px;padding:7px 12px;font-size:12.5px}
+.chat form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.chat input{flex:1;min-width:0;border:1px solid var(--line);background:var(--cream);color:var(--ink);border-radius:99px;padding:10px 14px;font:inherit;font-size:14.5px}
+.chat form button{border:0;background:var(--cocoa);color:var(--on-cocoa);border-radius:50%;width:40px;height:40px;font-size:16px}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(20,10,4,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;z-index:50;width:min(540px,100%);max-height:92svh;transform:translate(-50%,105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);background:var(--cream);border-radius:24px 24px 0 0;display:flex;flex-direction:column}
+.sheet.on{transform:translate(-50%,0)}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:10px auto 0}
+.sh-head{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 6px}
+.steps{display:flex;gap:6px}.steps i{width:26px;height:3px;border-radius:3px;background:var(--line);transition:background .3s}.steps i.on{background:var(--cocoa)}
+.sh-head .x{margin-left:0}
+.sh-body{overflow-y:auto;padding:6px 20px 18px;flex:1}
+.sh-body h3{font-size:24px;text-transform:uppercase;letter-spacing:.06em;margin:6px 0 18px}
+.sh-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.sh-foot .info{font-size:13.5px;color:var(--ink-2);min-width:0}
+.next{background:var(--cocoa);color:var(--on-cocoa);border:0;border-radius:99px;padding:14px 22px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.next:disabled{opacity:.4;cursor:not-allowed}
+.back{background:none;border:0;color:var(--ink-2);font-size:14px}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-nav b{font-family:var(--display);font-weight:400;font-size:19px;text-transform:capitalize}
+.cal-nav button{border:1px solid var(--line);background:none;width:34px;height:34px;border-radius:50%}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-variant-numeric:tabular-nums}
+.cal .dow{font-size:11px;color:var(--ink-2);text-align:center;padding:6px 0;font-weight:600}
+.cal button{aspect-ratio:1;border:0;background:none;border-radius:12px;font-size:14.5px}
+.cal button:disabled{opacity:.25;cursor:default}
+.cal button.in{background:var(--cream-2);border-radius:0}
+.cal button.edge{background:var(--cocoa);color:var(--on-cocoa);border-radius:12px}
+.hint{font-size:13.5px;color:var(--ink-2);margin-top:12px}
+.field{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.field small{display:block;color:var(--ink-2);font-size:13px}
+.stepper{display:flex;align-items:center;gap:14px;font-variant-numeric:tabular-nums}
+.stepper button{width:34px;height:34px;border-radius:50%;border:1px solid var(--ink-2);background:none;font-size:18px}
+.stepper button:disabled{opacity:.3}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px}
+.opt[aria-checked="true"]{border-color:var(--cocoa);box-shadow:0 0 0 1px var(--cocoa)}
+.opt .m2{flex:1;min-width:0}.opt .m2 b{display:block;font-weight:600;font-size:15px}.opt .m2 span{font-size:13px;color:var(--ink-2)}
+.dot2{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ink-2);flex:none;display:grid;place-items:center}
+.opt[aria-checked="true"] .dot2{border-color:var(--cocoa)}
+.opt[aria-checked="true"] .dot2::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--cocoa)}
+.input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:13px 14px;font:inherit;color:var(--ink);margin-bottom:10px}
+.sum{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14.5px}
+.sum div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.done{text-align:center;padding:12px 0 6px}
+.done img{width:70px;margin:0 auto;animation:grow 1s cubic-bezier(.2,.8,.2,1) both}
+.done p{color:var(--ink-2);margin-top:12px}
+.demo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);text-align:center;margin-top:16px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv.pre{transform:none}}
+</style>
+
+<header class="top"><div class="wrap">
+  <span class="mk"><img class="ld" src="img/emblem-c.png" alt=""><img class="lk" src="img/emblem-w.png" alt="">BAGBAZINDIO</span>
+  <button data-open>Reservar</button>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <img class="wordmark ld" src="img/logo-c.png" alt="Posada Bagbazindio">
+    <img class="wordmark lk" src="img/logo-w.png" alt="Posada Bagbazindio">
+    <p class="claim">Tu día perfecto empieza aquí.</p>
+    <p class="sub">Hotel de playa en Todasana, La Guaira. Exclusividad, descanso y vista al mar.</p>
+    <div class="row"><span class="pill">Vista al mar</span><span class="pill">Alta gastronomía</span><span class="pill">Atención personalizada</span></div>
+  </div>
+  <div class="vid arch"><video src="vid/reel.mp4" poster="img/reel-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de Bagbazindio en 15 segundos"></video><span class="tag">Bagbazindio en 15 segundos</span></div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap intro">
+  <figure class="arch rv"><img src="img/recepcion.jpg" alt="Recepción con el nombre de la posada, lámparas tejidas y mostrador amarillo con el emblema"></figure>
+  <div class="rv">
+    <div class="kick">Bienvenidos</div>
+    <p class="big">Exclusividad, descanso y vista al mar en la costa de Todasana.</p>
+    <p class="lede">Arcos blancos, piedra de río, madera y tejidos hechos a mano. Una posada pensada para desconectar, comer bien y dejar que el mar marque el ritmo.</p>
+    <div class="trio">
+      <div><b>Vista al mar</b><span>Desde la piscina y los balcones</span></div>
+      <div><b>Alta gastronomía</b><span>Cocina con producto del mar</span></div>
+      <div><b>Atención</b><span>Personalizada, de principio a fin</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="rv"><div class="kick">Espacios</div><h2 style="margin-top:12px">La posada</h2></div>
+  <div class="spaces">
+    <figure class="s1 rv"><img src="img/salon.jpg" alt="Salón con sofás de madera, columna forrada en cuerda y ventanales"></figure>
+    <figure class="s2 rv arch"><img src="img/arco-noche.jpg" alt="Arco iluminado con una palmera en maceta tejida"></figure>
+    <figure class="s3 rv"><img src="img/piscina.jpg" alt="Piscina larga frente al edificio blanco de la posada"></figure>
+    <figure class="s4 rv arch"><img src="img/arco-mascara.jpg" alt="Arco con una máscara indígena pintada y lanzas"></figure>
+    <figure class="s5 rv"><img src="img/macrame.jpg" alt="Columpio de cuerda frente a un tapiz de macramé"></figure>
+  </div>
+</div></section>
+
+<!-- signature: the arch opens to the sea -->
+<section class="opening" id="opening" aria-label="Vista al mar">
+  <div class="stick">
+    <div class="portal arch" id="portal"><img src="img/costa.jpg" alt="La costa de Todasana: montaña verde, playa y mar abierto"></div>
+    <div class="lines"><span id="l1">Exclusividad</span><span id="l2">Descanso</span></div>
+    <div class="final" id="final"><div><h2>Vista al mar</h2><p>Así se ve la costa de Todasana.</p></div></div>
+  </div>
+</section>
+
+<section><div class="wrap">
+  <div class="rv"><div class="kick">Habitaciones</div><h2 style="margin-top:12px">Despertar frente al mar</h2>
+  <p class="lede">Camas con dosel de madera, puertas de madera maciza y balcones que dan a la playa.</p></div>
+  <div class="rooms">
+    <figure class="big rv"><img src="img/habitacion.jpg" alt="Habitación con cama de dosel de madera y luz natural"></figure>
+    <div class="side">
+      <figure class="rv"><img src="img/balcon.jpg" alt="Vista desde el balcón: playa, olas y cielo azul" style="object-position:50% 55%"></figure>
+      <figure class="rv"><img src="img/pasillo.jpg" alt="Pasillo con techo de caña, troncos y puertas de madera numeradas" style="object-position:50% 45%"></figure>
+    </div>
+  </div>
+  <div class="rooms copy rv" style="display:grid">
+    <div><h3>Dosel de madera</h3><p>Camas amplias con ropa blanca y tonos tierra.</p></div>
+    <div><h3>Balcón al mar</h3><p>La playa y el sonido de las olas a la vista.</p></div>
+    <div><h3>Madera y caña</h3><p>Pasillos abiertos con techo de caña y troncos.</p></div>
+  </div>
+</div></section>
+
+<section class="food"><div class="wrap">
+  <div class="rv"><div class="kick">Restaurante</div><h2 style="margin-top:12px">Alta gastronomía</h2>
+  <p class="lede">Cocina con sabor a costa, servida frente a la piscina y el mar.</p></div>
+  <div class="plates">
+    <article class="plate rv"><figure><img src="img/arroz.jpg" alt="Arroz con camarón, pulpo y calamar"></figure><h3>Arroz marinero</h3><p>Camarón, pulpo y calamar.</p></article>
+    <article class="plate rv"><figure><img src="img/pescado.jpg" alt="Pescado entero frito con tostones, ensalada y queso rallado" style="object-position:50% 70%"></figure><h3>Pescado entero</h3><p>Con tostones y limón.</p></article>
+    <article class="plate rv"><figure><img src="img/ceviche.jpg" alt="Ceviche con cebolla morada, ají y brotes"></figure><h3>Ceviche</h3><p>Fresco, con ají y cebolla morada.</p></article>
+  </div>
+</div></section>
+
+<section><div class="wrap area">
+  <div class="rv">
+    <div class="kick">Todasana, La Guaira</div><h2 style="margin-top:12px">Qué hacer</h2>
+    <ul class="list">
+      <li><b>Piscina con vista</b><span>En la posada</span><p>Tumbonas al sol frente a la piscina y el mar.</p></li>
+      <li><b>Playa de Todasana</b><span>En la zona</span><p>Arena, olas y montaña verde que cae al mar.</p></li>
+      <li><b>Río Todasana</b><span>En la zona</span><p>Agua dulce que baja de la montaña hasta la costa.</p></li>
+      <li><b>Pueblos de la costa</b><span>En la zona</span><p>Chuspa y la costa este de La Guaira, a poca distancia.</p></li>
+    </ul>
+  </div>
+  <figure class="arch rv"><img src="img/tumbonas.jpg" alt="Tumbonas blancas junto a la piscina con el edificio de la posada"></figure>
+</div></section>
+
+<section class="book" id="reserva"><div class="wrap rv">
+  <img class="em ld" src="img/emblem-c.png" alt=""><img class="em lk" src="img/emblem-w.png" alt="">
+  <div class="kick">Reservas</div>
+  <h2 style="margin-top:12px">Reserva tu experiencia</h2>
+  <p class="lede">Elige tus fechas y cuéntanos quiénes vienen. Te confirmamos disponibilidad por WhatsApp.</p>
+  <button class="bigcta" data-open>Elegir fechas</button>
+</div></section>
+
+<footer><div class="wrap"><span>Posada Bagbazindio · Todasana, La Guaira · @posadabagbazindio</span><span>Demo de Heme Studios</span></div></footer>
+
+<button class="fab" id="fab" data-open>Reservar</button>
+<button class="chatbtn" id="chatbtn" aria-label="Abrir asistente"><span class="av"><img class="ld" src="img/emblem-c.png" alt=""><img class="lk" src="img/emblem-w.png" alt=""></span><span class="lbl">Pregúntanos</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Asistente de Bagbazindio">
+  <header><span class="av"><img class="ld" src="img/emblem-c.png" alt=""><img class="lk" src="img/emblem-w.png" alt=""></span><div><b>Posada Bagbazindio</b><small>Responde al instante</small></div><button class="x" id="chatx" aria-label="Cerrar">×</button></header>
+  <div class="msgs" id="msgs"></div>
+  <div class="chips" id="chips"></div>
+  <form id="chatform"><input id="chatin" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu pregunta"><button aria-label="Enviar">↑</button></form>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shT">
+  <div class="grab"></div>
+  <div class="sh-head"><div class="steps" id="steps"><i></i><i></i><i></i><i></i></div><button class="x" id="close" aria-label="Cerrar">×</button></div>
+  <div class="sh-body" id="body"></div>
+  <div class="sh-foot"><span class="info" id="info"></span><div style="display:flex;gap:6px;align-items:center"><button class="back" id="back">Atrás</button><button class="next" id="next">Continuar</button></div></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)}});
+
+/* arch opening */
+const op=$('#opening'),portal=$('#portal');let sheetOpen=false,chatOpen=false;
+function onScroll(){
+  const r=op.getBoundingClientRect(),tot=r.height-innerHeight,p=Math.min(1,Math.max(0,-r.top/tot));
+  const e=Math.min(1,p/.75),k=e*e*(3-2*e);
+  const W=innerWidth,H=innerHeight;
+  const w0=Math.min(W*.56,300),h0=Math.min(H*.5,w0*1.45);
+  const w=w0+(W+4-w0)*k,h=h0+(H+4-h0)*k;
+  portal.style.width=w+'px';portal.style.height=h+'px';
+  const rad=Math.max(0,(w/2)*(1-k));portal.style.borderRadius=`${rad}px ${rad}px ${6*(1-k)}px ${6*(1-k)}px`;
+  $('#l1').style.opacity=$('#l2').style.opacity=1-k*1.6;
+  $('#final').classList.toggle('on',p>.8);
+  $('#fab').classList.toggle('show',scrollY>innerHeight*.8&&!sheetOpen);
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+
+/* booking */
+const TRIPS=[{id:'pareja',n:'En pareja',d:'Una escapada para dos'},{id:'familia',n:'En familia',d:'Con niños o toda la familia'},{id:'amigos',n:'Con amigos',d:'Un plan en grupo'},{id:'celebracion',n:'Una celebración',d:'Aniversario, cumpleaños o algo especial'}];
+const S={in:null,out:null,adults:2,kids:0,trip:'pareja',name:'',phone:'',step:1};
+const today=new Date();today.setHours(0,0,0,0);let month=new Date(today.getFullYear(),today.getMonth(),1);
+const nights=()=>S.in&&S.out?Math.round((S.out-S.in)/864e5):0;
+const ds=d=>d.toLocaleDateString('es-VE',{day:'numeric',month:'short'});
+function open(){if(S.step===5)S.step=1;sheetOpen=true;closeChat();render();$('#scrim').classList.add('on');$('#sheet').classList.add('on');$('#fab').classList.remove('show')}
+function close(){sheetOpen=false;$('#scrim').classList.remove('on');$('#sheet').classList.remove('on');onScroll()}
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=open);
+$('#scrim').onclick=()=>{close();closeChat()};$('#close').onclick=close;
+addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeChat()}});
+$('#back').onclick=()=>{S.step--;render()};
+$('#next').onclick=()=>{if(S.step===5){close();S.step=1;return}S.step++;render()};
+function render(){
+ const b=$('#body');document.querySelectorAll('#steps i').forEach((i,k)=>i.classList.toggle('on',k<Math.min(S.step,4)));
+ $('#back').hidden=S.step===1||S.step===5;$('#next').disabled=false;
+ if(S.step===1){
+  const y=month.getFullYear(),m=month.getMonth(),first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate();
+  let h=`<h3 id="shT">¿Cuándo vienes?</h3><div class="cal-nav"><button id="pm" aria-label="Mes anterior">‹</button><b>${month.toLocaleDateString('es-VE',{month:'long',year:'numeric'})}</b><button id="nm" aria-label="Mes siguiente">›</button></div><div class="cal">`;
+  ['L','M','M','J','V','S','D'].forEach(d=>h+=`<div class="dow">${d}</div>`);for(let i=0;i<first;i++)h+='<span></span>';
+  for(let d=1;d<=days;d++){const dt=new Date(y,m,d);let c='';if(S.in&&+dt===+S.in||S.out&&+dt===+S.out)c='edge';else if(S.in&&S.out&&dt>S.in&&dt<S.out)c='in';h+=`<button class="${c}" ${dt<today?'disabled':''} data-d="${+dt}">${d}</button>`}
+  b.innerHTML=h+`</div><p class="hint">${S.in&&S.out?`${nights()} noche${nights()>1?'s':''} · ${ds(S.in)} — ${ds(S.out)}`:S.in?'Ahora elige la salida':'Elige el día de llegada'}</p>`;
+  $('#pm').disabled=+month<=+new Date(today.getFullYear(),today.getMonth(),1);
+  $('#pm').onclick=()=>{month=new Date(y,m-1,1);render()};$('#nm').onclick=()=>{month=new Date(y,m+1,1);render()};
+  b.querySelectorAll('[data-d]').forEach(x=>x.onclick=()=>{const d=new Date(+x.dataset.d);if(!S.in||S.out||d<=S.in){S.in=d;S.out=null}else S.out=d;render()});
+  $('#next').disabled=!(S.in&&S.out);$('#next').textContent='Continuar';
+ }
+ if(S.step===2){
+  b.innerHTML=`<h3 id="shT">¿Quiénes vienen?</h3>`+[['adults','Adultos','13 años o más'],['kids','Niños','2 a 12 años']].map(([k,l,s])=>`<div class="field"><div><b style="font-weight:600">${l}</b><small>${s}</small></div><div class="stepper"><button data-k="${k}" data-v="-1" aria-label="Menos ${l}">−</button><b>${S[k]}</b><button data-k="${k}" data-v="1" aria-label="Más ${l}">+</button></div></div>`).join('');
+  b.querySelectorAll('[data-k]').forEach(x=>{const k=x.dataset.k,nv=S[k]+ +x.dataset.v;x.disabled=nv<(k==='adults'?1:0)||nv>30;x.onclick=()=>{S[k]=nv;render()}});
+  $('#next').textContent='Continuar';
+ }
+ if(S.step===3){
+  b.innerHTML=`<h3 id="shT">¿Qué tipo de viaje?</h3>`+TRIPS.map(t=>`<button class="opt" role="radio" aria-checked="${S.trip===t.id}" data-t="${t.id}"><span class="m2"><b>${t.n}</b><span>${t.d}</span></span><span class="dot2"></span></button>`).join('')+`<p class="hint">Así preparamos tu estadía a tu medida.</p>`;
+  b.querySelectorAll('[data-t]').forEach(x=>x.onclick=()=>{S.trip=x.dataset.t;render()});
+  $('#next').textContent='Continuar';
+ }
+ if(S.step===4){
+  const t=TRIPS.find(t=>t.id===S.trip),g=S.adults+S.kids;
+  b.innerHTML=`<h3 id="shT">Tus datos</h3><div class="sum"><div><span>Fechas</span><span>${ds(S.in)} — ${ds(S.out)}</span></div><div><span>Huéspedes</span><span>${g}</span></div><div><span>Viaje</span><span>${t.n}</span></div></div>
+  <input class="input" id="nmi" placeholder="Nombre y apellido" value="${S.name}" autocomplete="name"><input class="input" id="phi" placeholder="WhatsApp (+58…)" value="${S.phone}" inputmode="tel" autocomplete="tel">
+  <p class="hint">Te confirmamos disponibilidad y forma de pago por WhatsApp.</p>`;
+  const v=()=>{$('#next').disabled=!(S.name.trim().length>2&&S.phone.replace(/\D/g,'').length>=10)};
+  $('#nmi').oninput=e=>{S.name=e.target.value;v()};$('#phi').oninput=e=>{S.phone=e.target.value;v()};v();$('#next').textContent='Enviar solicitud';
+ }
+ if(S.step===5){
+  b.innerHTML=`<div class="done"><img class="ld" src="img/emblem-c.png" alt=""><img class="lk" src="img/emblem-w.png" alt=""><h3 id="shT" style="margin-top:18px">Solicitud enviada</h3><p>${(S.name.trim().split(' ')[0]||'Hola')}, recibimos tu solicitud del ${ds(S.in)} al ${ds(S.out)}. Te escribimos por WhatsApp para confirmar disponibilidad y forma de pago.</p></div><p class="demo">Demo · no se envió ningún mensaje</p>`;
+  $('#next').textContent='Listo';
+ }
+ $('#info').textContent=S.step<5&&nights()?`${nights()} noche${nights()>1?'s':''} · ${S.adults+S.kids} huésped${S.adults+S.kids>1?'es':''}`:'';
+}
+
+/* assistant */
+const KB=[
+ {k:['donde','dónde','ubic','queda','llegar','todasana','guaira','direcc'],a:'Estamos en Todasana, en la costa de La Guaira, frente al mar. Al confirmar tu reserva te enviamos la ubicación exacta por WhatsApp.'},
+ {k:['habitac','cuarto','cama','vista','balc'],a:'Nuestras habitaciones tienen camas con dosel de madera y balcones con vista a la playa. Cuéntame cuántas personas vienen y te ayudamos a elegir.',cta:true},
+ {k:['comida','restaur','comer','gastronom','menu','menú','desayuno','almuerzo','cena','plato'],a:'Tenemos restaurante con alta gastronomía y cocina con sabor a costa: arroz marinero, pescado entero con tostones, ceviche y más, frente a la piscina.'},
+ {k:['piscina','playa','hacer','actividad','rio','río','plan'],a:'Puedes disfrutar de la piscina con vista al mar, la playa de Todasana, el río que baja de la montaña y los pueblos de la costa como Chuspa.'},
+ {k:['precio','cuesta','cuanto','cuánto','tarifa','costo','pago','pagar','zelle','dolar','dólar','pago movil'],a:'Las tarifas y formas de pago dependen de tus fechas y de cuántos vienen. Envíanos tu solicitud y te las confirmamos por WhatsApp enseguida.',cta:true},
+ {k:['reserv','disponib','fecha','quiero ir','agendar'],a:'¡Con gusto! Elige tus fechas aquí mismo y te confirmamos disponibilidad por WhatsApp.',cta:true},
+];
+const CHIPS=['¿Dónde están?','¿Cómo son las habitaciones?','¿Qué hay de comer?','¿Qué puedo hacer?','Quiero reservar'];
+let greeted=false;
+function addMsg(t,who,cta){const m=document.createElement('div');m.className='m '+who;m.textContent=t;if(cta){const bt=document.createElement('button');bt.textContent='Elegir fechas';bt.onclick=open;m.appendChild(document.createElement('br'));m.appendChild(bt)}$('#msgs').appendChild(m);$('#msgs').scrollTop=1e6}
+function reply(q){addMsg(q,'me');const t=document.createElement('div');t.className='m bot typing';t.innerHTML='<i></i><i></i><i></i>';$('#msgs').appendChild(t);$('#msgs').scrollTop=1e6;
+ const s=q.toLowerCase(),hit=KB.find(e=>e.k.some(k=>s.includes(k)));
+ setTimeout(()=>{t.remove();if(hit)addMsg(hit.a,'bot',hit.cta);else addMsg('Eso te lo confirma nuestro equipo por WhatsApp. Mientras, puedo contarte sobre la ubicación, las habitaciones, el restaurante o qué hacer en Todasana.','bot',true)},700)}
+function openChat(){chatOpen=true;$('#chat').classList.add('on');if(!greeted){greeted=true;setTimeout(()=>addMsg('¡Hola! Bienvenido a Posada Bagbazindio 🌊 ¿En qué te ayudo?','bot'),250)}
+ $('#chips').innerHTML=CHIPS.map(c=>`<button>${c}</button>`).join('');$('#chips').querySelectorAll('button').forEach(b=>b.onclick=()=>reply(b.textContent))}
+function closeChat(){chatOpen=false;$('#chat').classList.remove('on')}
+$('#chatbtn').onclick=()=>chatOpen?closeChat():openChat();$('#chatx').onclick=closeChat;
+$('#chatform').onsubmit=e=>{e.preventDefault();const v=$('#chatin').value.trim();if(!v)return;$('#chatin').value='';reply(v)};
+onScroll();
+</script>
+
+</body></html>

@@ -1,0 +1,464 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Chelonia Casa de Mar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: white Casa de Mar — logo draws on load, aerial dives through the "O" into the beach, words reveal, day turns to night, room switcher, all-inclusive list, booking that ends as the WhatsApp reservas receives */
+:root{
+  --bg:#FFFFFF; --soft:#F3F7F7; --ink:#14191B; --ink-2:#647174; --teal:#06B1C2; --teal-d:#058A97; --line:rgba(20,25,27,.1); --on-teal:#FFFFFF;
+  --disp:"Urbanist","Avenir Next",system-ui,sans-serif; --it:"Newsreader",Georgia,serif; --body:"Figtree",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1112;--soft:#141B1D;--ink:#EEF4F4;--ink-2:#9AA9AC;--teal:#22C7D7;--teal-d:#5ED8E4;--line:rgba(238,244,244,.12);--on-teal:#04262A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1112;--soft:#141B1D;--ink:#EEF4F4;--ink-2:#9AA9AC;--teal:#22C7D7;--teal-d:#5ED8E4;--line:rgba(238,244,244,.12);--on-teal:#04262A;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--disp);font-weight:300;margin:0;line-height:.98;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:clamp(40px,6.4vw,92px)}
+h2 i,.it{font-family:var(--it);font-style:italic;font-weight:300;letter-spacing:-.01em}
+p{margin:0}
+img{display:block;width:100%;height:100%;object-fit:cover}
+figure{margin:0;overflow:hidden;background:var(--soft)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.k{font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-d)}
+section{padding-block:120px}
+@media (max-width:700px){section{padding-block:80px}}
+.rv{transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.rv.pre{transform:translateY(40px)}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:99px;background:var(--teal);color:var(--on-teal);padding:16px 26px;font-weight:600;font-size:15px;transition:transform .25s,background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+
+/* loader */
+.intro{position:fixed;inset:0;z-index:100;background:#fff;display:grid;place-items:center;animation:lift .9s 2.1s cubic-bezier(.7,0,.2,1) forwards}
+.intro svg{width:120px;height:120px}
+.intro .ring{fill:none;stroke:#06B1C2;stroke-width:44;stroke-dasharray:3110;stroke-dashoffset:3110;animation:draw 1.3s .1s cubic-bezier(.6,0,.2,1) forwards}
+.intro .lw,.intro .o{fill:none;stroke:#06B1C2;stroke-width:60;stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 1s .5s cubic-bezier(.6,0,.2,1) forwards}
+.intro .o{animation-delay:.8s}
+.intro p{position:absolute;bottom:calc(14vh + env(safe-area-inset-bottom,0px));font-family:var(--disp);font-size:13px;letter-spacing:.5em;color:#14191B;opacity:0;animation:fade .6s 1.2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+@keyframes lift{to{transform:translateY(-100%);visibility:hidden}}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto;z-index:40;padding-top:calc(14px + env(safe-area-inset-top,0px));transition:background .4s,box-shadow .4s}
+.hdr .wrap{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px}
+.hdr .logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--disp);font-weight:500;letter-spacing:.28em;font-size:14px;transition:color .4s}
+.hdr .logo span.m{width:34px;height:34px;border-radius:50%;background:var(--teal);display:grid;place-items:center}
+.hdr .logo img{width:30px;height:30px}
+.hdr .btn{padding:11px 20px;font-size:14px}
+.hdr.solid{background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.hdr.solid .logo{color:var(--ink)}
+
+/* dive */
+.dive{position:relative;height:280vh;padding:0;background:#0b1a1d}
+.dive .st{position:sticky;top:0;height:100svh;overflow:hidden}
+.dive .l{position:absolute;inset:0;will-change:transform,clip-path}
+.dive .l1 img{transform-origin:50% 60%}
+.dive .l2{clip-path:circle(0% at 50% 55%)}
+.dive .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 35%,rgba(0,0,0,0) 60%,rgba(0,0,0,.5));pointer-events:none}
+.dive .t{position:absolute;left:0;right:0;bottom:max(46px,env(safe-area-inset-bottom,0px));color:#fff;transition:opacity .4s}
+.dive h1{font-size:clamp(56px,10.5vw,150px);font-weight:200;letter-spacing:-.04em}
+.dive h1 i{font-family:var(--it);font-weight:300}
+.dive .sub{margin-top:14px;font-size:16px;letter-spacing:.2em;text-transform:uppercase;opacity:.9}
+.dive .t2{opacity:0}
+.cue{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:max(46px,env(safe-area-inset-bottom,0px));color:#fff;font-size:11px;letter-spacing:.3em;writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+.cue i{width:1px;height:50px;background:#fff;animation:cue 2s infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* words */
+.words{font-family:var(--disp);font-weight:300;font-size:clamp(34px,5.4vw,78px);line-height:1.08;letter-spacing:-.025em;max-width:16ch}
+.words span{opacity:.14;transition:opacity .3s}
+.words span.on{opacity:1}
+.words em{font-family:var(--it);font-style:italic;color:var(--teal-d)}
+.wordsec .row{display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:end}
+.wordsec figure{aspect-ratio:3/4;border-radius:200px 200px 8px 8px}
+.wordsec .src{color:var(--ink-2);font-size:14px;margin-top:22px}
+@media (max-width:860px){.wordsec .row{grid-template-columns:1fr}.wordsec figure{max-width:320px}}
+
+/* day night */
+.dn{position:relative;height:240vh;padding:0;background:#0b1a1d}
+.dn .st{position:sticky;top:0;height:100svh;overflow:hidden}
+.dn img{position:absolute;inset:0;object-position:58% 60%}
+@media (max-width:700px){.dn .cap{flex-direction:column;align-items:flex-start;bottom:calc(96px + env(safe-area-inset-bottom,0px))}.dn img{object-position:50% 70%}}
+.dn .night{opacity:0}
+.dn .cap{position:absolute;left:0;right:0;bottom:max(40px,env(safe-area-inset-bottom,0px));color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.dn .cap h2{font-size:clamp(44px,7vw,110px);text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.dn .clock{font-family:var(--disp);font-size:13px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.dn .bar{width:120px;height:2px;background:rgba(255,255,255,.35);position:relative}
+.dn .bar i{position:absolute;inset:0 auto 0 0;width:0;background:#fff}
+.dn::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(0deg,rgba(0,0,0,.45),transparent);pointer-events:none;position:sticky}
+
+/* rooms */
+.rooms .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.rooms .quote{max-width:38ch;color:var(--ink-2)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;margin-top:44px;border-bottom:1px solid var(--line)}
+.tabs button{flex:none;background:none;border:0;padding:12px 4px 16px;margin-right:22px;font-family:var(--disp);font-size:clamp(17px,1.7vw,21px);color:var(--ink-2);position:relative}
+.tabs button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button[aria-selected="true"]::after{transform:scaleX(1)}
+.room{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;margin-top:40px;align-items:start}
+.gal{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:clamp(380px,46vw,600px)}
+.gal figure{border-radius:6px;position:relative}
+.gal figure:first-child{grid-row:span 2}
+.gal figure img{transition:opacity .5s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.gal.swap img{opacity:0;transform:scale(1.04)}
+.room h3{font-size:clamp(36px,4vw,56px)}
+.cap2{display:flex;align-items:baseline;gap:10px;margin-top:14px;color:var(--ink-2)}
+.cap2 b{font-family:var(--disp);font-weight:300;font-size:56px;color:var(--ink);line-height:1}
+.amen{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.amen li{display:flex;align-items:center;gap:10px;font-size:15px;opacity:0;transform:translateY(8px);animation:am .5s forwards}
+.amen svg{flex:none;width:22px;height:22px;stroke:var(--teal-d);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+@keyframes am{to{opacity:1;transform:none}}
+.room .btn{margin-top:30px}
+@media (max-width:860px){.room{grid-template-columns:1fr;gap:28px}.gal{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto}.gal figure:first-child{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3}.gal figure{aspect-ratio:1}}
+
+/* included */
+.inc{background:var(--soft)}
+.inc .grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;align-items:start}
+.inc ol{list-style:none;padding:0;margin:0;counter-reset:n}
+.inc li{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-family:var(--disp);font-size:clamp(22px,2.6vw,34px);font-weight:300}
+.inc li:first-child{border-top:1px solid var(--line)}
+.inc li svg{width:44px;height:44px;stroke:var(--teal-d);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.marq{overflow:hidden;margin-top:70px;border-block:1px solid var(--line);padding-block:22px;white-space:nowrap}
+.marq div{display:inline-flex;gap:40px;animation:mq 26s linear infinite;font-family:var(--disp);font-size:clamp(28px,4vw,54px);font-weight:200}
+.marq span::after{content:"◦";margin-left:40px;color:var(--teal)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (max-width:860px){.inc .grid{grid-template-columns:1fr;gap:30px}}
+
+/* food */
+.food .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:50px;align-items:start}
+.food figure{border-radius:6px;will-change:transform}
+.f1{grid-column:1/6;aspect-ratio:3/4.3}
+.f2{grid-column:6/10;aspect-ratio:3/4;margin-top:120px}
+.f3{grid-column:10/13;aspect-ratio:3/4.4;margin-top:40px}
+.food .line{grid-column:6/13;margin-top:20px;font-family:var(--it);font-style:italic;font-weight:300;font-size:clamp(26px,3vw,40px);line-height:1.2}
+@media (max-width:760px){.food .grid{grid-template-columns:1fr 1fr}.f1{grid-column:1/-1;aspect-ratio:4/5}.f2,.f3{grid-column:auto;margin-top:0}.food .line{grid-column:1/-1}}
+
+/* details */
+.det .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
+.det .col{display:grid;gap:16px;will-change:transform}
+.det figure{border-radius:6px;position:relative}
+.det figcaption{position:absolute;left:14px;bottom:12px;color:#fff;font-size:13px;letter-spacing:.06em;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.det .a{aspect-ratio:3/4}.det .b{aspect-ratio:1}
+.eco{margin-top:60px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;border-top:1px solid var(--line);padding-top:30px}
+.eco svg{width:46px;height:46px;stroke:var(--teal-d);fill:none;stroke-width:1.4}
+.eco p{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-weight:300;max-width:40ch}
+@media (max-width:760px){.det .cols{grid-template-columns:1fr 1fr}.det .col:nth-child(3){display:none}}
+
+/* booking */
+.book{background:var(--soft)}
+.bk{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+.form{background:var(--bg);border-radius:20px;padding:clamp(22px,3vw,36px);box-shadow:0 30px 70px -45px rgba(6,60,66,.45)}
+.fld{display:grid;gap:6px;margin-bottom:16px}
+.fld label,.lbl{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.bk>*,.fld{min-width:0}
+.in{min-width:0}
+.in{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--bg);color:var(--ink);font:inherit}
+.in:focus{outline:none;border-color:var(--teal)}
+.stp{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:8px 10px 8px 14px}
+.stp div{display:flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums;font-weight:600}
+.stp button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:none;font-size:17px}
+.stp button:disabled{opacity:.3}
+.rt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rt button{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px;text-align:left;transition:border-color .2s,box-shadow .2s}
+.rt button b{display:block;font-family:var(--disp);font-weight:500;font-size:16px}
+.rt button span{font-size:13px;color:var(--ink-2)}
+.rt button[aria-checked="true"]{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.rt button:disabled{opacity:.35;cursor:not-allowed}
+.ex{display:flex;flex-wrap:wrap;gap:8px}
+.ex button{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:8px 14px;font-size:14px}
+.ex button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal)}
+.msg{font-size:14px;color:var(--ink-2);margin-top:12px;min-height:1.4em}
+.wa{max-width:400px;background:#ECE5DD;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.4);color:#111;margin:0 auto}
+.wa header{background:#075E54;color:#fff;display:flex;gap:12px;align-items:center;padding:12px 16px}
+.wa header span{width:36px;height:36px;border-radius:50%;background:#06B1C2;display:grid;place-items:center}
+.wa header img{width:28px;height:28px}
+.wa header b{display:block;font-size:15px}.wa header small{font-size:12px;opacity:.8}
+.wa .body{padding:18px 14px 22px;display:grid;gap:8px}
+.bub{max-width:90%;background:#fff;border-radius:10px;padding:9px 12px 20px;font-size:14px;line-height:1.45;position:relative;white-space:pre-wrap;animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+.bub.me{justify-self:end;background:#DCF8C6}
+.bub time{position:absolute;right:8px;bottom:4px;font-size:10.5px;color:#777}
+@keyframes pop{from{transform:translateY(10px) scale(.96);opacity:0}}
+@media (max-width:860px){.bk{grid-template-columns:1fr;gap:34px}}
+@media (max-width:420px){.rt{grid-template-columns:1fr}}
+
+/* contact */
+.ct{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;border-top:1px solid var(--line);padding-top:30px;margin-top:40px}
+.ct dt{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.ct dd{margin:6px 0 0;font-family:var(--disp);font-size:clamp(18px,1.8vw,22px);user-select:all;overflow-wrap:anywhere}
+@media (max-width:760px){.ct{grid-template-columns:1fr}}
+footer{padding-block:30px calc(110px + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:13.5px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* floating */
+.fab{position:fixed;z-index:30;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateY(170%);transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 14px 30px -10px rgba(6,177,194,.6)}
+.fab.show{transform:none}
+.askb{position:fixed;z-index:31;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 16px 6px 6px;box-shadow:0 14px 30px -14px rgba(0,0,0,.35);font-weight:600;font-size:14px}
+.askb span.m{width:38px;height:38px;border-radius:50%;background:#06B1C2;display:grid;place-items:center;position:relative}
+.askb span.m img{width:30px}
+.askb span.m::after{content:"";position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;border-radius:50%;background:#2DBE7F;border:2px solid var(--bg)}
+@media (max-width:420px){.askb .t{display:none}.askb{padding:6px}}
+.chat{position:fixed;z-index:45;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 24px));height:min(540px,70svh);background:var(--bg);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 60px -20px rgba(0,0,0,.35);display:flex;flex-direction:column;overflow:hidden;transform:translateY(16px) scale(.98);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.chat.on{transform:none;opacity:1;pointer-events:auto}
+.chat header{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.chat header span.m{width:36px;height:36px;border-radius:50%;background:#06B1C2;display:grid;place-items:center}
+.chat header span.m img{width:28px}
+.chat header b{display:block;font-family:var(--disp);font-weight:500;font-size:16px}
+.chat header small{font-size:12px;color:#2DBE7F;font-weight:600}
+.x{margin-left:auto;border:0;background:var(--soft);width:34px;height:34px;border-radius:50%;font-size:18px}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m2{max-width:86%;padding:10px 14px;border-radius:16px;font-size:14.5px;line-height:1.5;animation:pop .3s ease-out}
+.m2.bot{background:var(--soft);border-bottom-left-radius:4px}
+.m2.me{background:var(--teal);color:var(--on-teal);align-self:flex-end;border-bottom-right-radius:4px}
+.m2 button{display:block;margin-top:8px;background:var(--teal);color:var(--on-teal);border:0;border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600}
+.typing{display:flex;gap:4px;padding:12px 14px}.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-2);animation:bl 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+.chips button{flex:none;border:1px solid var(--line);background:none;border-radius:99px;padding:7px 12px;font-size:13px}
+.chat form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.chat input{flex:1;min-width:0;border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:99px;padding:10px 14px;font:inherit;font-size:15px}
+.chat form button{border:0;background:var(--teal);color:var(--on-teal);border-radius:50%;width:40px;height:40px}
+@media (max-width:700px){.dn .st .cap{flex-direction:column;align-items:flex-start;bottom:calc(100px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv.pre{transform:none}.intro{display:none}.words span{opacity:1}}
+</style>
+
+<div class="intro" aria-hidden="true">
+  <svg viewBox="0 0 1080 1080"><circle class="ring" cx="540" cy="540" r="495" transform="rotate(-90 540 540)"/><path class="lw" d="M315 400 V630 H365 C415 630 440 655 465 695 C500 750 550 770 605 770 C665 770 715 735 742 690"/><circle class="o" cx="600" cy="460" r="127"/></svg>
+  <p>CHELONIA · CASA DE MAR</p>
+</div>
+
+<header class="hdr" id="hdr"><div class="wrap">
+  <span class="logo"><span class="m"><img src="img/mark-w.png" alt=""></span>CHELONIA</span>
+  <button class="btn" data-book type="button">Reservar</button>
+</div></header>
+
+<section class="dive" id="dive" aria-label="Llegada a Chelonia">
+  <div class="st">
+    <div class="l l1"><img src="img/aerea.jpg" alt="Vista aérea del Gran Roque, sus muelles y el mar turquesa"></div>
+    <div class="l l2" id="l2"><img src="img/playa.jpg" alt="Terraza de Chelonia frente a la playa, con cortinas blancas y lanchas en el agua"></div>
+    <div class="shade"></div>
+    <div class="t wrap" id="t1"><h1>Casa <i>de</i> Mar</h1><p class="sub">Archipiélago Los Roques · Venezuela</p></div>
+    <div class="t t2 wrap" id="t2"><h1>El mar <i>te espera</i></h1><p class="sub">Frente a la playa, en Chelonia</p></div>
+    <div class="cue" id="cue">DESLIZA<i></i></div>
+  </div>
+</section>
+
+<section class="wordsec"><div class="wrap row">
+  <div>
+    <div class="k">Chelonia Casa de Mar</div>
+    <p class="words" id="words" style="margin-top:22px">El paraíso sí existe y debes disfrutarlo. Vive la mejor experiencia de <em>Los Roques</em>.</p>
+    <p class="src">— @chelonialosroques</p>
+  </div>
+  <figure class="rv"><img src="img/terraza.jpg" alt="Terraza con techo de caña, sofá de ratán y espejos de madera"></figure>
+</div></section>
+
+<section class="dn" id="dn" aria-label="De día y de noche">
+  <div class="st">
+    <img src="img/dia.jpg" alt="Chelonia de día, con palmeras y puffs sobre la arena">
+    <img class="night" id="night" src="img/noche.jpg" alt="Chelonia de noche, iluminada bajo las estrellas">
+    <div class="cap wrap"><h2 id="dnT">De día</h2><div class="clock"><span>Día</span><span class="bar"><i id="dnBar"></i></span><span>Noche</span></div></div>
+  </div>
+</section>
+
+<section class="rooms" id="habitaciones"><div class="wrap">
+  <div class="head rv">
+    <div><div class="k">Habitaciones</div><h2 style="margin-top:14px">Tierra <i>y</i> mar</h2></div>
+    <p class="quote">«La armonía perfecta entre la tierra y el mar la encuentras en las habitaciones de Chelonia Casa de Mar.»</p>
+  </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="room" id="room"></div>
+</div></section>
+
+<section class="inc"><div class="wrap">
+  <div class="grid">
+    <div class="rv"><div class="k">Tu estadía incluye</div><h2 style="margin-top:14px">Solo <i>disfruta</i></h2><p style="color:var(--ink-2);margin-top:20px;max-width:34ch">Del muelle a la mesa, todo está resuelto para que tu única tarea sea el mar.</p></div>
+    <ol class="rv">
+      <li><svg viewBox="0 0 44 44"><path d="M4 28h36l-6 8H10zM10 28v-8h16l6 8M14 20v-6"/><path d="M4 40c4-2 8-2 12 0s8 2 12 0 8-2 12 0"/></svg>Traslados marítimos</li>
+      <li><svg viewBox="0 0 44 44"><path d="M8 14h20l-2 24H10zM28 18h4a4 4 0 010 8h-5M14 6l2 8"/></svg>Lunch, cena y desayuno</li>
+      <li><svg viewBox="0 0 44 44"><path d="M16 6h12l-2 6H18zM15 12h14v26H15zM15 22h14"/></svg>Bebidas no alcohólicas</li>
+      <li><svg viewBox="0 0 44 44"><path d="M6 20a16 10 0 0132 0zM22 20v18M14 38h16"/></svg>Toldo pulpo o sombrilla y sillas</li>
+      <li><svg viewBox="0 0 44 44"><rect x="8" y="8" width="28" height="30" rx="3"/><path d="M14 16h16M14 22h16M14 28h10"/></svg>Impuestos de entrada y salida</li>
+      <li><svg viewBox="0 0 44 44"><circle cx="22" cy="14" r="6"/><path d="M10 38c0-7 5-12 12-12s12 5 12 12"/></svg>Asistencia personalizada</li>
+    </ol>
+  </div>
+  <div class="k" style="margin-top:80px">Servicios extra</div>
+  <div class="marq" style="margin-top:14px" aria-label="Servicios extra: Seabob, Kayak, Snorkel, Charters, Altavoz, Servicio de spa"><div aria-hidden="true"><span>Seabob</span><span>Kayak</span><span>Snorkel</span><span>Charters</span><span>Altavoz</span><span>Servicio de spa</span><span>Seabob</span><span>Kayak</span><span>Snorkel</span><span>Charters</span><span>Altavoz</span><span>Servicio de spa</span></div></div>
+</div></section>
+
+<section class="food"><div class="wrap">
+  <div class="rv"><div class="k">Gastronomía</div><h2 style="margin-top:14px">El sabor <i>al</i> Caribe</h2></div>
+  <div class="grid">
+    <figure class="f1 par" data-s="-.06"><img src="img/restaurante.jpg" alt="Restaurante con techo de troncos, lámparas y cuadro de pez"></figure>
+    <figure class="f2 par" data-s=".08"><img src="img/sushi.jpg" alt="Plato de la casa sobre pizarra: el sabor al Caribe forma parte de su estadía"></figure>
+    <figure class="f3 par" data-s="-.12"><img src="img/placemat.jpg" alt="Mesa con individuales tejidos, cubiertos y posavasos de Chelonia"></figure>
+    <p class="line rv">«El sabor al Caribe forma parte de su estadía.»</p>
+  </div>
+</div></section>
+
+<section class="det" style="padding-top:20px"><div class="wrap">
+  <div class="rv"><div class="k">Los detalles</div><h2 style="margin-top:14px">Pensado <i>para ti</i></h2></div>
+  <div class="cols">
+    <div class="col par" data-s=".05"><figure class="a"><img src="img/lounge.jpg" alt="Salón con estantería azul, cerámicas y sofá blanco"><figcaption>El salón</figcaption></figure><figure class="b"><img src="img/batas.jpg" alt="Batas blancas bordadas con el logo de Chelonia"><figcaption>Batas Chelonia</figcaption></figure></div>
+    <div class="col par" data-s="-.08"><figure class="b"><img src="img/puerta.jpg" alt="Cartel de madera: ¡Gracias por no interrumpir!" style="object-position:50% 70%"><figcaption>¡Gracias por no interrumpir!</figcaption></figure><figure class="a"><img src="img/orquidea.jpg" alt="Habitación con orquídea, sillón de ratán y revista Chelonia"><figcaption>Tu habitación</figcaption></figure></div>
+    <div class="col par" data-s=".1"><figure class="a"><img src="img/bar.jpg" alt="Bar de madera con taburetes y vista al mar"><figcaption>El bar</figcaption></figure><figure class="b"><img src="img/eco.jpg" alt="Caballito de mar blanco junto a un cartel de reciclaje"><figcaption>Ayúdenos a hacer la diferencia</figcaption></figure></div>
+  </div>
+  <div class="eco rv"><svg viewBox="0 0 46 46"><path d="M23 40V20M23 20c0-9 7-14 16-14 0 10-6 15-16 14zM23 26c0-7-5-11-13-11 0 8 5 12 13 11"/></svg><p>Ayúdenos a hacer la diferencia: si desea cambio de toallas, déjelas en el piso del baño.</p></div>
+</div></section>
+
+<section class="book" id="reservar"><div class="wrap bk">
+  <div class="rv"><div class="k">Reservas</div><h2 style="margin-top:14px">Tu Casa <i>de</i> Mar</h2><p style="color:var(--ink-2);margin-top:20px;max-width:36ch">Elige tus fechas, tu habitación y lo que te gustaría vivir. El equipo de reservas te responde por WhatsApp.</p></div>
+  <div id="bookwrap">
+    <form class="form" id="form" novalidate>
+      <div class="two">
+        <div class="fld"><label for="din">Llegada</label><input class="in" type="date" id="din"></div>
+        <div class="fld"><label for="dout">Salida</label><input class="in" type="date" id="dout"></div>
+      </div>
+      <div class="two">
+        <div class="fld"><span class="lbl">Adultos</span><div class="stp"><span id="adV">2</span><div><button type="button" data-k="ad" data-v="-1" aria-label="Menos adultos">−</button><button type="button" data-k="ad" data-v="1" aria-label="Más adultos">+</button></div></div></div>
+        <div class="fld"><span class="lbl">Niños</span><div class="stp"><span id="niV">0</span><div><button type="button" data-k="ni" data-v="-1" aria-label="Menos niños">−</button><button type="button" data-k="ni" data-v="1" aria-label="Más niños">+</button></div></div></div>
+      </div>
+      <div class="fld"><span class="lbl">Habitación</span><div class="rt" id="rt" role="radiogroup"></div></div>
+      <div class="fld"><span class="lbl">Servicios extra</span><div class="ex" id="ex"></div></div>
+      <div class="two">
+        <div class="fld"><label for="nm">Nombre</label><input class="in" id="nm" autocomplete="name"></div>
+        <div class="fld"><label for="ph">WhatsApp</label><input class="in" id="ph" inputmode="tel" autocomplete="tel" placeholder="+58…"></div>
+      </div>
+      <button class="btn" id="send" type="submit" style="width:100%;justify-content:center;margin-top:6px">Enviar solicitud</button>
+      <p class="msg" id="msg">Sin pagos todavía. Te confirmamos disponibilidad por WhatsApp.</p>
+    </form>
+  </div>
+</div></section>
+
+<section style="padding-top:80px"><div class="wrap">
+  <div class="k">Contacto</div>
+  <dl class="ct">
+    <div><dt>Reservas</dt><dd>reservas@chelonialosroques.com.ve</dd></div>
+    <div><dt>Información</dt><dd>info@chelonialosroques.com.ve</dd></div>
+    <div><dt>Instagram</dt><dd>@chelonialosroques</dd></div>
+  </dl>
+</div></section>
+
+<footer><div class="wrap"><span>Chelonia Casa de Mar · Archipiélago Los Roques, Venezuela</span><span>Demo de Heme Studios</span></div></footer>
+
+<button class="btn fab" id="fab" data-book type="button">Reservar</button>
+<button class="askb" id="askb" type="button" aria-label="Abrir asistente"><span class="m"><img src="img/mark-w.png" alt=""></span><span class="t">Pregúntanos</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Asistente de Chelonia">
+  <header><span class="m"><img src="img/mark-w.png" alt=""></span><div><b>Chelonia</b><small>En línea · responde al instante</small></div><button class="x" id="chatx" type="button" aria-label="Cerrar">×</button></header>
+  <div class="msgs" id="msgs"></div><div class="chips" id="chips"></div>
+  <form id="cf"><input id="ci" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu pregunta"><button aria-label="Enviar">↑</button></form>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)}});
+
+/* words */
+const W=$('#words');W.innerHTML=W.innerHTML.replace(/(<em>.*?<\/em>)|([^\s<]+)/g,(m,em,w)=>em?`<span>${em}</span>`:`<span>${w}</span>`);
+const ws=[...W.querySelectorAll(':scope>span')];
+
+const prog=el=>{const r=el.getBoundingClientRect(),t=r.height-innerHeight;return Math.min(1,Math.max(0,-r.top/t))};
+const ease=t=>t*t*(3-2*t);
+const pars=[...document.querySelectorAll('.par')];
+function frame(){
+  /* dive */
+  const p=prog($('#dive')),a=ease(Math.min(1,p/.8));
+  $('.l1 img').style.transform=`scale(${1+a*.9})`;
+  $('#l2').style.clipPath=`circle(${a*95}% at 50% 55%)`;
+  $('#l2 img').style.transform=`scale(${1.3-a*.3})`;
+  $('#t1').style.opacity=1-Math.min(1,p*3);$('#t2').style.opacity=Math.max(0,(a-.6)/.4);$('#cue').style.opacity=1-Math.min(1,p*4);
+  /* header */
+  $('#hdr').classList.toggle('solid',$('#dive').getBoundingClientRect().bottom<80);
+  /* words */
+  const wr=W.getBoundingClientRect(),wp=Math.min(1,Math.max(0,(innerHeight*.85-wr.top)/(wr.height+innerHeight*.35)));
+  const n=Math.round(wp*ws.length);ws.forEach((s,i)=>s.classList.toggle('on',i<n));
+  /* day night */
+  const d=prog($('#dn')),dd=ease(Math.min(1,Math.max(0,(d-.15)/.7)));
+  $('#night').style.opacity=dd;$('#dnBar').style.width=dd*100+'%';$('#dnT').textContent=dd>.5?'De noche':'De día';
+  /* parallax */
+  if(innerWidth>760)pars.forEach(el=>{const r=el.getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;const c=(r.top+r.height/2-innerHeight/2);el.style.transform=`translateY(${c*+el.dataset.s}px)`});
+  /* fab */
+  const b=$('#reservar').getBoundingClientRect();$('#fab').classList.toggle('show',$('#dive').getBoundingClientRect().bottom<0&&!(b.top<innerHeight&&b.bottom>0));
+}
+if(RM){ws.forEach(s=>s.classList.add('on'));$('#l2').style.clipPath='circle(0% at 50% 55%)'}
+else{let q=false;addEventListener('scroll',()=>{if(!q){q=true;requestAnimationFrame(()=>{frame();q=false})}},{passive:true});addEventListener('resize',frame);frame()}
+
+/* rooms (from Chelonia's room sheets) */
+const I={cama:'<path d="M3 17V9h18v8M3 13h18M6 9V6h5v3"/>',aire:'<path d="M3 8h12a3 3 0 10-3-3M3 12h16a3 3 0 11-3 3M3 16h8"/>',tv:'<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/>',amen:'<path d="M8 3h3v4H8zM7 7h5v14H7zM15 9h3v12h-3z"/>',bano:'<path d="M4 12h16v3a5 5 0 01-5 5H9a5 5 0 01-5-5zM6 12V6a2 2 0 014 0"/>',cafe:'<path d="M4 9h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5zM16 11h2a2 2 0 010 4h-2M8 3v3M12 3v3"/>',wifi:'<path d="M2 9a15 15 0 0120 0M5 12a10 10 0 0114 0M8.5 15.5a5 5 0 017 0"/><circle cx="12" cy="19" r="1"/>',terr:'<path d="M3 21h18M5 21V11h14v10M3 11l9-7 9 7"/>',asis:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>',lit:'<path d="M5 3v18M19 3v18M5 9h14M5 15h14"/>'};
+const BASE=[['cama','Cama size dúplex'],['aire','Aire acondicionado'],['tv','Televisor Smart TV'],['amen','Amenities'],['bano','Baño doble ambiente'],['cafe','Cafetera Nespresso'],['wifi','Internet satelital'],['asis','Asistencia personalizada']];
+const ROOMS=[
+ {id:'estandar',n:'Estándar',cap:2,img:['std1','std2','prem2'],extra:[]},
+ {id:'premium',n:'Premium',cap:2,img:['prem3','prem1','prem2'],extra:[['terr','Terraza privada']]},
+ {id:'familiar',n:'Estándar Familiar',cap:4,img:['fam3','fam2','fam1'],extra:[['terr','Terraza privada'],['lit','Litera']]},
+ {id:'suite',n:'Suite Casa de Mar',cap:6,img:['suite2','suite1','fam2'],extra:[['terr','Terraza privada'],['lit','Literas x2']]}
+];
+let cur=0;
+$('#tabs').innerHTML=ROOMS.map((r,i)=>`<button role="tab" type="button" aria-selected="${i===0}" data-i="${i}">${r.n}</button>`).join('');
+function drawRoom(swap){
+  const r=ROOMS[cur],A=[...BASE,...r.extra];
+  const html=`<div class="gal${swap?' swap':''}" id="gal">${r.img.map(s=>`<figure><img src="img/${s}.jpg" alt="Habitación ${r.n}"></figure>`).join('')}</div>
+  <div><div class="k">Habitación</div><h3 style="margin-top:12px">${r.n}</h3><div class="cap2"><b>0${r.cap}</b>personas</div>
+  <ul class="amen">${A.map((a,i)=>`<li style="animation-delay:${.05*i}s"><svg viewBox="0 0 24 24">${I[a[0]]}</svg>${a[1]}</li>`).join('')}</ul>
+  <button class="btn" type="button" id="pick">Reservar ${r.n} →</button></div>`;
+  $('#room').innerHTML=html;if(swap)requestAnimationFrame(()=>requestAnimationFrame(()=>$('#gal').classList.remove('swap')));
+  $('#pick').onclick=()=>{setRoom(r.id);toBook()};
+}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));drawRoom(true)});
+drawRoom(false);
+
+/* booking */
+const S={ad:2,ni:0,room:'estandar',ex:new Set()};
+const EX=['Seabob','Kayak','Snorkel','Charters','Altavoz','Servicio de spa'];
+function drawRT(){const g=S.ad+S.ni;$('#rt').innerHTML=ROOMS.map(r=>`<button type="button" role="radio" aria-checked="${S.room===r.id}" data-r="${r.id}" ${g>r.cap?'disabled':''}><b>${r.n}</b><span>Hasta ${r.cap} personas</span></button>`).join('');
+  $('#rt').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{S.room=b.dataset.r;drawRT()})}
+function fit(){const g=S.ad+S.ni,r=ROOMS.find(x=>x.id===S.room);if(g>r.cap){const f=ROOMS.find(x=>x.cap>=g);if(f)S.room=f.id}}
+function setRoom(id){S.room=id;const r=ROOMS.find(x=>x.id===id);if(S.ad+S.ni>r.cap){S.ad=Math.min(S.ad,r.cap);S.ni=Math.max(0,Math.min(S.ni,r.cap-S.ad))}drawSt();drawRT()}
+function drawSt(){$('#adV').textContent=S.ad;$('#niV').textContent=S.ni;document.querySelectorAll('[data-k]').forEach(b=>{const k=b.dataset.k,v=+b.dataset.v,nv=S[k]+v;b.disabled=(k==='ad'&&nv<1)||nv<0||(v>0&&S.ad+S.ni>=6)})}
+document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S[b.dataset.k]+= +b.dataset.v;fit();drawSt();drawRT()});
+$('#ex').innerHTML=EX.map(e=>`<button type="button" aria-pressed="false">${e}</button>`).join('');
+$('#ex').querySelectorAll('button').forEach(b=>b.onclick=()=>{const e=b.textContent;S.ex.has(e)?S.ex.delete(e):S.ex.add(e);b.setAttribute('aria-pressed',S.ex.has(e))});
+drawSt();drawRT();
+const iso=d=>d.toISOString().slice(0,10),t0=new Date();t0.setHours(12,0,0,0);
+$('#din').min=iso(t0);$('#dout').min=iso(new Date(+t0+864e5));
+$('#din').onchange=()=>{const v=$('#din').value;if(v){const n=new Date(v+'T12:00');n.setDate(n.getDate()+1);$('#dout').min=iso(n);if($('#dout').value&&$('#dout').value<=v)$('#dout').value=''}};
+$('#form').onsubmit=e=>{e.preventDefault();const din=$('#din').value,dout=$('#dout').value,nm=$('#nm').value.trim(),ph=$('#ph').value.trim();
+  if(!din||!dout)return $('#msg').textContent='Elige la fecha de llegada y de salida.';
+  if(dout<=din)return $('#msg').textContent='La salida tiene que ser después de la llegada.';
+  if(nm.length<2)return $('#msg').textContent='Escribe tu nombre.';
+  if(ph.replace(/\D/g,'').length<10)return $('#msg').textContent='Escribe tu WhatsApp completo.';
+  const f=v=>new Date(v+'T12:00').toLocaleDateString('es-VE',{day:'numeric',month:'long'}),n=Math.round((new Date(dout)-new Date(din))/864e5);
+  const r=ROOMS.find(x=>x.id===S.room),now=new Date().toLocaleTimeString('es-VE',{hour:'2-digit',minute:'2-digit'});
+  const m=`Nueva solicitud desde la web 🐢\n\n${nm}\n${f(din)} → ${f(dout)} (${n} noche${n>1?'s':''})\n${S.ad} adultos · ${S.ni} niños\nHabitación: ${r.n}${S.ex.size?'\nExtras: '+[...S.ex].join(', '):''}\nWhatsApp: ${ph}`;
+  $('#bookwrap').innerHTML=`<div class="k" style="text-align:center;margin-bottom:16px">Así le llega a reservas</div><div class="wa"><header><span><img src="img/mark-w.png" alt=""></span><div><b>Chelonia · Reservas</b><small>WhatsApp Business</small></div></header><div class="body"><div class="bub" id="b1"></div><div class="bub me" style="animation-delay:1s">¡Hola ${nm.split(' ')[0]}! Gracias por escribir a Chelonia Casa de Mar 🌊 Estamos revisando disponibilidad para tus fechas.<time>${now}</time></div></div></div><p class="msg" style="text-align:center">Demo · no se envió ningún mensaje</p><div style="text-align:center"><button class="btn" type="button" onclick="location.reload()">Hacer otra solicitud</button></div>`;
+  $('#b1').textContent=m;const tm=document.createElement('time');tm.textContent=now;$('#b1').appendChild(tm);
+};
+function toBook(){$('#reservar').scrollIntoView({behavior:RM?'auto':'smooth'})}
+document.querySelectorAll('[data-book]').forEach(b=>b.onclick=toBook);
+
+/* assistant: only Chelonia's published facts */
+const KB=[
+ {k:['habitac','cuarto','suite','premium','estandar','estándar','familiar','capacidad','cuantas personas','cuántas personas'],a:'Tenemos cuatro tipos: Estándar (2 personas), Premium (2, con terraza privada), Estándar Familiar (4, con litera) y Suite Casa de Mar (6, con dos literas). Todas tienen cama size dúplex, aire acondicionado, Smart TV, Nespresso, internet satelital y baño doble ambiente.',cta:true},
+ {k:['incluye','incluido','comida','desayuno','almuerzo','lunch','cena','bebida','traslado','impuesto'],a:'Tu estadía incluye traslados marítimos, lunch, cena y desayuno, bebidas no alcohólicas, toldo pulpo o sombrilla y sillas, impuestos de entrada y salida, y asistencia personalizada.'},
+ {k:['seabob','kayak','snorkel','charter','spa','altavoz','extra','hacer','actividad'],a:'Como servicios extra ofrecemos Seabob, kayak, snorkel, charters, altavoz y servicio de spa. Márcalos al reservar y te los cotizamos.',cta:true},
+ {k:['donde','dónde','ubic','queda','llegar'],a:'Estamos en el Archipiélago Los Roques, Venezuela, frente al mar. Al confirmar te enviamos todos los detalles de llegada.'},
+ {k:['precio','cuesta','cuanto','cuánto','tarifa','costo','pago','pagar'],a:'Las tarifas dependen de tus fechas y la habitación. Envíanos tu solicitud y reservas te responde por WhatsApp.',cta:true},
+ {k:['contact','correo','email','reserva@','mail'],a:'Escríbenos a reservas@chelonialosroques.com.ve o info@chelonialosroques.com.ve, o deja tu solicitud aquí.',cta:true},
+ {k:['reserv','disponib','fecha','quiero'],a:'¡Con gusto! Completa el formulario de reservas y te confirmamos disponibilidad por WhatsApp.',cta:true},
+];
+const CH=['¿Qué incluye?','¿Qué habitaciones tienen?','¿Qué extras hay?','Quiero reservar'];
+let gr=false,op=false;
+function add(t,w,c){const m=document.createElement('div');m.className='m2 '+w;m.textContent=t;if(c){const b=document.createElement('button');b.type='button';b.textContent='Ir a reservar';b.onclick=()=>{close();toBook()};m.appendChild(b)}$('#msgs').appendChild(m);$('#msgs').scrollTop=1e6}
+function reply(q){add(q,'me');const t=document.createElement('div');t.className='m2 bot typing';t.innerHTML='<i></i><i></i><i></i>';$('#msgs').appendChild(t);const s=q.toLowerCase(),h=KB.find(e=>e.k.some(k=>s.includes(k)));setTimeout(()=>{t.remove();h?add(h.a,'bot',h.cta):add('Eso te lo confirma nuestro equipo de reservas por WhatsApp. Puedo contarte de las habitaciones, lo que incluye tu estadía o los servicios extra.','bot',true)},700)}
+function show(){op=true;$('#chat').classList.add('on');if(!gr){gr=true;setTimeout(()=>add('¡Hola! Bienvenido a Chelonia Casa de Mar 🐢 ¿En qué te ayudo?','bot'),200);$('#chips').innerHTML=CH.map(c=>`<button type="button">${c}</button>`).join('');$('#chips').querySelectorAll('button').forEach(b=>b.onclick=()=>reply(b.textContent))}}
+function close(){op=false;$('#chat').classList.remove('on')}
+$('#askb').onclick=()=>op?close():show();$('#chatx').onclick=close;addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(!v)return;$('#ci').value='';reply(v)};
+</script>
+
+</body></html>
