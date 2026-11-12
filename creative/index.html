@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heme Studios Creative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: un estudio de fotos de noche. Fondo casi negro que se funde con el ojo de pez del hero; el naranja de la taza es el único acento. Tipografía expandida enorme, datos de cámara en mono. */
+  --ink:#0c0b0a;
+  --ink-2:#161412;
+  --line:#2a2622;
+  --paper:#f3efe9;
+  --muted:#9a928a;
+  --orange:#ff5a1f;
+  --display:"Archivo","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --gut:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.wrap{padding-inline:var(--gut);max-width:1440px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;text-wrap:balance;line-height:.92;letter-spacing:-.01em}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gut);background:color-mix(in srgb,var(--ink) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--orange);display:inline-block}
+.brand span{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.1em}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{font-size:14px;color:var(--muted);transition:color .2s}
+.nav ul a:hover{color:var(--paper)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-o{background:var(--orange);color:#140803}
+.btn-g{border:1px solid var(--line);color:var(--paper)}
+.btn-g:hover{border-color:var(--paper)}
+.btn .ar{width:26px;height:26px;border-radius:50%;background:#140803;color:var(--orange);display:grid;place-items:center;font-size:14px}
+
+/* HERO */
+.hero{position:relative;padding-top:clamp(28px,5vw,64px);padding-bottom:clamp(40px,6vw,80px)}
+.hero-meta{display:flex;justify-content:space-between;gap:16px;color:var(--muted);margin-bottom:clamp(18px,3vw,36px);flex-wrap:wrap}
+.hero h1{font-size:clamp(46px,10.4vw,168px);font-weight:900;text-transform:uppercase}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l>span{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .l:nth-child(2)>span{animation-delay:.08s}
+.hero h1 .l:nth-child(3)>span{animation-delay:.16s}
+.hero h1 .thin{font-weight:300;font-stretch:100%;font-style:italic}
+.hero h1 .or{color:var(--orange)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,64px);align-items:center;margin-top:clamp(20px,3vw,40px)}
+.portrait{position:relative;aspect-ratio:1/1.06;max-width:620px;justify-self:end;width:100%}
+.portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%;animation:spinIn 1.2s cubic-bezier(.2,.8,.2,1) both;will-change:transform}
+.portrait .tag{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink-2);border:1px solid var(--line);padding:8px 12px;border-radius:999px;white-space:nowrap}
+.portrait .t1{top:8%;left:-4%}
+.portrait .t2{bottom:12%;right:-2%}
+.portrait .t2 b{color:var(--orange);font-weight:500}
+.lead{font-size:clamp(18px,1.6vw,22px);max-width:34ch;color:#d9d3cb}
+.lead strong{color:var(--paper);font-weight:600}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);gap:28px;margin-top:40px;justify-content:start}
+.facts div{border-left:1px solid var(--line);padding-left:14px}
+.facts b{display:block;font-family:var(--display);font-stretch:125%;font-size:28px;font-weight:800;line-height:1}
+.facts span{font-size:13px;color:var(--muted)}
+
+/* MARQUEE */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;background:var(--ink-2)}
+.marquee .track{display:flex;gap:44px;width:max-content;animation:slide 28s linear infinite}
+.marquee span{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(22px,3vw,40px);text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:44px}
+.marquee span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--orange)}
+
+/* SECTION HEAD */
+section{padding-block:clamp(64px,9vw,128px)}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(28px,4vw,52px);flex-wrap:wrap}
+.sh h2{font-size:clamp(36px,6vw,88px);font-weight:900;text-transform:uppercase}
+.sh h2 em{font-style:normal;color:var(--orange)}
+.sh p{max-width:42ch;color:var(--muted)}
+.eyebrow{color:var(--orange);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.eyebrow::before{content:"→";font-family:var(--body);font-size:16px}
+
+/* REVEAL */
+.reveal{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,4vw,60px);align-items:center}
+.vf{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:9/14;background:#000;max-width:460px}
+.vf video{width:100%;height:100%;object-fit:cover}
+.vf .c{position:absolute;width:34px;height:34px;border:3px solid rgba(255,255,255,.85)}
+.vf .c1{top:18px;left:18px;border-right:0;border-bottom:0}
+.vf .c2{top:18px;right:18px;border-left:0;border-bottom:0}
+.vf .c3{bottom:18px;left:18px;border-right:0;border-top:0}
+.vf .c4{bottom:18px;right:18px;border-left:0;border-top:0}
+.vf .rec{position:absolute;top:26px;left:64px;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em}
+.vf .rec i{width:10px;height:10px;border-radius:50%;background:#ff2b2b;animation:blink 1.2s steps(2) infinite}
+.vf .exp{position:absolute;bottom:28px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:rgba(255,255,255,.85)}
+.reveal h2{font-size:clamp(40px,6.6vw,104px);font-weight:900;text-transform:uppercase}
+.reveal h2 s{text-decoration-color:var(--orange);text-decoration-thickness:.08em}
+.reveal .stack{display:grid;gap:22px}
+.nolist{display:grid;gap:10px;margin-top:6px}
+.nolist div{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-stretch:125%;font-weight:700;font-size:clamp(18px,2vw,26px);text-transform:uppercase}
+.nolist div span{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--orange)}
+.mini{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;margin-top:8px}
+.mini video{border-radius:14px;aspect-ratio:9/12;object-fit:cover}
+.mini p{color:var(--muted);font-size:15px}
+
+/* SHOTS */
+.shots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end}
+.shot{position:relative;border-radius:20px;overflow:hidden;background:var(--ink-2);animation:flash .8s ease-out both}
+.shot:nth-child(2){animation-delay:.12s}.shot:nth-child(3){animation-delay:.24s}
+.s-run,.s-ugc,.s-ten{aspect-ratio:9/16}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.shot:hover img,.shot:hover video{transform:scale(1.05)}
+.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.75));pointer-events:none}
+.shot figcaption{position:absolute;left:16px;right:16px;bottom:14px;z-index:1;display:flex;flex-direction:column;gap:3px}
+.shot figcaption .mono{color:var(--orange);font-size:11px}
+.shot figcaption b{font-family:var(--display);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:clamp(16px,1.6vw,22px);line-height:1}
+@keyframes flash{0%{filter:brightness(3) contrast(.6)}100%{filter:none}}
+
+/* WORK CARDS */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{position:relative;border-radius:22px;overflow:hidden;background:var(--ink-2);border:1px solid var(--line);aspect-ratio:9/15;isolation:isolate}
+.card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.card:hover video{transform:scale(1.05)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 28%,transparent 55%,rgba(0,0,0,.82) 100%);z-index:-1}
+.card .top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;gap:8px}
+.pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(12,11,10,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
+.pill.o{background:var(--orange);color:#140803;border-color:var(--orange)}
+.card .bot{position:absolute;left:18px;right:18px;bottom:18px}
+.card h3{font-size:clamp(20px,1.8vw,26px);font-weight:800;text-transform:uppercase;line-height:1}
+.card p{font-size:14px;color:#cfc8c0;margin-top:8px}
+.card.wide{grid-column:span 2;aspect-ratio:auto}
+.card.text{display:flex;flex-direction:column;justify-content:space-between;padding:22px;background:var(--orange);color:#140803;border-color:var(--orange)}
+.card.text::after{display:none}
+.card.text h3{font-size:clamp(26px,2.6vw,40px);font-weight:900}
+.card.text p{color:#2b1206;font-size:15px}
+.card.text ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.card.text li{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;border:1px solid #140803;border-radius:999px;padding:6px 10px}
+
+/* SERVICES */
+.svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+.svc article{padding:32px clamp(0px,2vw,28px) 32px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:56px 1fr;gap:18px}
+.svc article:nth-child(odd){border-right:1px solid var(--line)}
+.svc article:nth-child(even){padding-left:clamp(16px,2.4vw,32px)}
+.svc .n{font-family:var(--mono);color:var(--orange);font-size:13px;padding-top:6px}
+.svc h3{font-size:clamp(22px,2.4vw,34px);font-weight:800;text-transform:uppercase}
+.svc p{color:var(--muted);margin-top:10px;max-width:44ch}
+.svc .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.svc .chips span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+
+/* COMPARE */
+.cmp{border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.cmp .row{display:grid;grid-template-columns:1fr 1.1fr 1.1fr;border-bottom:1px solid var(--line)}
+.cmp .row:last-child{border-bottom:0}
+.cmp .row>div{padding:20px 22px}
+.cmp .hd{background:var(--ink-2)}
+.cmp .hd div{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cmp .hd div:last-child{color:var(--orange)}
+.cmp .k{color:var(--muted);font-size:15px}
+.cmp .old{color:#bdb5ac;text-decoration:line-through;text-decoration-color:rgba(189,181,172,.4)}
+.cmp .new{font-weight:600;background:color-mix(in srgb,var(--orange) 9%,transparent)}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{border-top:2px solid var(--line);padding-top:20px;position:relative}
+.step:first-child{border-top-color:var(--orange)}
+.step .n{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:56px;line-height:1;color:var(--ink-2);-webkit-text-stroke:1px var(--muted)}
+.step:first-child .n{-webkit-text-stroke-color:var(--orange)}
+.step h3{font-size:20px;font-weight:800;text-transform:uppercase;margin-top:14px;line-height:1.05}
+.step p{color:var(--muted);font-size:15px;margin-top:8px}
+.step .when{margin-top:12px;color:var(--orange)}
+
+/* FINAL CTA */
+.final{border-radius:32px;background:var(--orange);color:#140803;padding:clamp(36px,6vw,88px);display:grid;grid-template-columns:1.4fr .6fr;gap:32px;align-items:end;overflow:hidden;position:relative}
+.final h2{font-size:clamp(40px,7.4vw,124px);font-weight:900;text-transform:uppercase}
+.final p{font-size:18px;max-width:38ch;margin-top:20px}
+.final .contacts{display:grid;gap:10px;justify-items:start}
+.final .btn-o{background:#140803;color:var(--paper)}
+.final .btn-o .ar{background:var(--orange);color:#140803}
+.final .line{font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+
+footer{padding-block:40px 56px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:clamp(48px,7vw,96px)}
+footer .disc{max-width:62ch}
+
+
+/* ===== CREATIVE LAYER ===== */
+body::before{content:"";position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--orange);transform-origin:0 50%;transform:scaleX(0);z-index:70}
+#cur{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--orange);z-index:80;pointer-events:none;display:none;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#140803;transition:width .25s,height .25s,margin .25s}
+#cur.big{width:84px;height:84px;margin:-42px 0 0 -42px}
+#cur span{opacity:0;transition:opacity .2s}#cur.big span{opacity:1}
+@media (pointer:fine){#cur{display:grid}}
+.hero{overflow:hidden}
+.ghost{position:absolute;right:-2vw;bottom:-4vw;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(140px,28vw,460px);line-height:.8;color:transparent;-webkit-text-stroke:1px #2a2622;z-index:-1;pointer-events:none;user-select:none;white-space:nowrap}
+.hero h1 .l{will-change:transform}
+
+/* manifesto: lista legible sin JS; con JS se vuelve escena fija */
+.mani{padding-block:clamp(64px,9vw,128px)}
+.mani-stage{padding-inline:var(--gut);max-width:1440px;margin-inline:auto}
+.mani-k{color:var(--orange);margin-bottom:24px}
+.mw{font-size:clamp(48px,11vw,190px);font-weight:900;text-transform:uppercase;line-height:.9;margin-bottom:.15em}
+.mw b{color:var(--orange);font-weight:900}
+.mw small{display:block;font-family:var(--body);font-stretch:100%;font-weight:400;text-transform:none;font-size:clamp(16px,1.5vw,20px);color:var(--muted);letter-spacing:0;line-height:1.4;margin-top:14px;max-width:46ch}
+.mani.pin{height:420vh;padding:0}
+.mani.pin .mani-stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.mani.pin .mani-words{position:relative;height:clamp(220px,34vw,460px)}
+.mani.pin .mw{position:absolute;inset:0;opacity:0;transform:translateY(60px) scale(.96);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1);margin:0}
+.mani.pin .mw.on{opacity:1;transform:none}
+.mani.pin .mw.past{opacity:0;transform:translateY(-60px) scale(1.02)}
+.mani-bar{display:none;gap:8px;margin-top:28px}
+.mani.pin .mani-bar{display:flex}
+.mani-bar i{height:3px;flex:1;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.mani-bar i::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(var(--f,0));transform-origin:0 50%}
+
+/* shots: mesa de fotos que se abre con el scroll */
+.shots-pin.table{height:240vh}
+.shots-pin.table .shots{position:sticky;top:70px;height:calc(100vh - 90px);display:block}
+.shots-pin.table .shot{position:absolute;left:50%;top:50%;width:min(23vw,330px);margin:0;animation:none;box-shadow:0 30px 80px rgba(0,0,0,.55);will-change:transform}
+.s-st{aspect-ratio:2/3}
+
+/* trabajo: carrusel horizontal fijado */
+.hpin.on{position:relative}
+.hpin.on .hstage{position:sticky;top:70px;height:calc(100vh - 70px);display:flex;align-items:center;overflow:hidden}
+.hpin.on .cards{display:flex;gap:16px;width:max-content;will-change:transform}
+.hpin.on .card{height:min(68vh,580px);width:auto;flex:none;aspect-ratio:9/15}
+.hpin.on .card.wide{aspect-ratio:16/15}
+
+@supports (animation-timeline: view()){
+  .sh h2,.reveal h2,.final h2{animation:rise2 linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+  .svc article,.step,.cmp .row{animation:rise3 linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+  .vf{animation:zoomin linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+}
+@keyframes rise2{from{transform:translateY(36px) skewY(2deg);opacity:.25}to{transform:none;opacity:1}}
+@keyframes rise3{from{transform:translateY(40px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes zoomin{from{transform:scale(.82) rotate(-3deg);border-radius:60px}to{transform:none}}
+
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes spinIn{from{transform:rotate(-14deg) scale(.86)}to{transform:none}}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes blink{50%{opacity:0}}
+
+@media (max-width:1000px){
+  .hero-grid,.reveal,.final{grid-template-columns:1fr}
+  .portrait{justify-self:center;max-width:520px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .shots{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .nav ul{display:none}
+  .vf{max-width:none}
+}
+@media (max-width:640px){
+  .svc{grid-template-columns:1fr}
+  .svc article:nth-child(odd){border-right:0}
+  .svc article:nth-child(even){padding-left:0}
+  .cmp .row{grid-template-columns:1fr 1fr}
+  .cmp .row>div:first-child{grid-column:1/-1;padding-bottom:4px}
+  .cmp .hd>div:first-child{display:none}
+  .facts{grid-template-columns:repeat(2,auto)}
+  .steps{grid-template-columns:1fr}
+  .card.wide{grid-column:span 2}
+  .nav .btn{padding:10px 14px;font-size:13px}
+  .nav .btn .ar{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  body::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<div id="cur"><span>VER</span></div>
+<nav class="nav" aria-label="Principal">
+  <a href="#top" class="brand"><i></i>HEME STUDIOS <span>CREATIVE</span></a>
+  <ul>
+    <li><a href="#shots">Shots</a></li>
+    <li><a href="#trabajo">Trabajo</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#por-que">Por qué IA</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+  </ul>
+  <a class="btn btn-o" href="#contacto">Inicia tu campaña <span class="ar">→</span></a>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="ghost" aria-hidden="true">HEME</div>
+  <div class="hero-meta mono"><span>Agencia creativa de IA · Madrid / Caracas</span><span>Campañas · Modelos virtuales · Vídeo</span></div>
+  <h1>
+    <span class="l"><span>Campañas</span></span>
+    <span class="l"><span><span class="thin">con</span> <span class="or">IA</span> para</span></span>
+    <span class="l"><span>marcas.</span></span>
+  </h1>
+  <div class="hero-grid">
+    <div>
+      <p class="lead">Creamos fotos y vídeos <strong>hiperrealistas</strong> para tu marca de fitwear, trajes de baño o producto. <strong>Sin set, sin cámaras, sin equipo de producción.</strong> Con modelos virtuales que no existen y contenido que sí vende.</p>
+      <div class="cta-row">
+        <a class="btn btn-o" href="#contacto">Quiero mi campaña <span class="ar">→</span></a>
+        <a class="btn btn-g" href="#trabajo">Ver el trabajo</a>
+      </div>
+      <div class="facts">
+        <div><b>48–72 h</b><span>de brief a entrega</span></div>
+        <div><b>0</b><span>cámaras en el set</span></div>
+        <div><b>∞</b><span>variantes por producto</span></div>
+      </div>
+    </div>
+    <figure class="portrait" id="portrait">
+      <img src="media/hero.jpg" alt="Retrato con lente ojo de pez de un hombre con gafas y gorro bebiendo de una taza naranja">
+      <span class="tag t1">Lente 8 mm · ISO 200</span>
+      <span class="tag t2">Generado con <b>IA</b></span>
+    </figure>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Fitwear</span><span>Trajes de baño</span><span>Get ready with me</span><span>Producto</span><span>Streetwear</span><span>Backstage</span><span>UGC</span><span>Lifestyle</span>
+    <span>Fitwear</span><span>Trajes de baño</span><span>Get ready with me</span><span>Producto</span><span>Streetwear</span><span>Backstage</span><span>UGC</span><span>Lifestyle</span>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="reveal">
+    <div class="vf">
+      <video src="media/backstage.mp4" poster="media/backstage.jpg" autoplay muted loop playsinline></video>
+      <span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+      <span class="rec"><i></i>REC</span>
+      <span class="exp">ISO 400 · 1/250 · f/2.8</span>
+    </div>
+    <div class="stack">
+      <div class="eyebrow mono">Concepto 001 · Backstage</div>
+      <h2>Esto no es un <s>shooting</s> real.</h2>
+      <div class="nolist">
+        <div>Ni el set <span>IA</span></div>
+        <div>Ni la cámara <span>IA</span></div>
+        <div>Ni los modelos <span>IA</span></div>
+      </div>
+      <div class="mini">
+        <video src="media/closeup.mp4" poster="media/closeup.jpg" autoplay muted loop playsinline></video>
+        <p>Luz de estudio, piel con poros, grano de película. Producimos el shooting completo con inteligencia artificial y tú solo eliges las tomas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap shots-sec" id="shots">
+  <div class="sh">
+    <div>
+      <div class="eyebrow mono">Un estudio · infinitos sets</div>
+      <h2>Shot. Shot. <em>Shot.</em></h2>
+    </div>
+    <p>Pista de atletismo, pista de tenis, o el baño de casa. Cada escena, un tipo de contenido para tu marca. Ninguna se rodó.</p>
+  </div>
+  <div class="shots-pin" id="shots-pin"><div class="shots">
+    <figure data-cur class="shot s-run"><video src="media/running.mp4" poster="media/running.jpg" autoplay muted loop playsinline></video><figcaption><span class="mono">Shot 01 · Vídeo</span><b>Running</b></figcaption></figure>
+    <figure data-cur class="shot s-ten"><video src="media/tenis.mp4" poster="media/tenis.jpg" autoplay muted loop playsinline aria-label="Tenista con lente ojo de pez y una pelota con el texto Heme Studios volando hacia la cámara"></video><figcaption><span class="mono">Shot 02 · Vídeo</span><b>Sport campaign</b></figcaption></figure>
+    <figure data-cur class="shot s-ugc"><video src="media/ugc.mp4" poster="media/ugc.jpg" autoplay muted loop playsinline aria-label="Chica maquillándose frente al espejo estilo get ready with me"></video><figcaption><span class="mono">Shot 03 · Vídeo</span><b>GRWM / UGC</b></figcaption></figure>
+  </div></div>
+</section>
+
+<section class="mani" id="mani" aria-label="Por qué hacerlo con IA">
+  <div class="mani-stage">
+    <div class="mani-k mono">→ Por qué con IA</div>
+    <div class="mani-words">
+      <h2 class="mw"><b>10×</b> más rápido<small>De la foto de tu producto a la campaña lista en 48–72 horas.</small></h2>
+      <h2 class="mw"><b>10×</b> más contenido<small>Escenarios, modelos y variantes para probar anuncios cada semana.</small></h2>
+      <h2 class="mw"><b>0</b> equipo<small>Sin fotógrafo, sin modelos, sin set, sin viajes. Solo tu producto.</small></h2>
+      <h2 class="mw">Mucho <b>más barato</b><small>Una fracción de lo que cuesta un día de rodaje tradicional.</small></h2>
+    </div>
+    <div class="mani-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="wrap" id="trabajo">
+  <div class="sh">
+    <div>
+      <div class="eyebrow mono">Trabajo</div>
+      <h2>Lo que <em>podemos</em> crear</h2>
+    </div>
+    <p>Cada pieza es un concepto propio de Heme Studios, hecho con nuestros modelos virtuales. Para tu marca usamos tus prendas y tu producto reales.</p>
+  </div>
+  <div class="hpin" id="hpin"><div class="hstage"><div class="cards">
+    <article data-cur class="card">
+      <video src="media/moda.mp4" poster="media/moda.jpg" autoplay muted loop playsinline></video>
+      <div class="top"><span class="pill">Moda</span><span class="pill">AI concept</span></div>
+      <div class="bot"><h3>Editorial de moda</h3><p>Look, actitud y estudio sin pisar un plató.</p></div>
+    </article>
+    <article data-cur class="card">
+      <video src="media/producto.mp4" poster="media/producto.jpg" autoplay muted loop playsinline></video>
+      <div class="top"><span class="pill o">Producto</span><span class="pill">AI concept</span></div>
+      <div class="bot"><h3>Producto en uso</h3><p>Tu producto en manos de una modelo, en el parque o en casa.</p></div>
+    </article>
+    <article data-cur class="card">
+      <video src="media/ascensor.mp4" poster="media/ascensor.jpg" autoplay muted loop playsinline></video>
+      <div class="top"><span class="pill">UGC</span><span class="pill">AI concept</span></div>
+      <div class="bot"><h3>Contenido viral</h3><p>Formatos de reel y TikTok listos para publicar.</p></div>
+    </article>
+    <article data-cur class="card">
+      <video src="media/closeup.mp4" poster="media/closeup.jpg" autoplay muted loop playsinline></video>
+      <div class="top"><span class="pill">Campaña</span><span class="pill">AI concept</span></div>
+      <div class="bot"><h3>Primer plano</h3><p>Flash duro, mirada a cámara, nivel de revista.</p></div>
+    </article>
+    <article class="card text wide">
+      <div>
+        <div class="mono" style="margin-bottom:14px">Para tu marca</div>
+        <h3>Fitwear, trajes de baño y producto.</h3>
+        <p style="margin-top:12px;max-width:44ch">Gimnasio, playa, calle o baño de casa. Elegimos el escenario, el modelo y la luz para cada lanzamiento.</p>
+      </div>
+      <ul><li>Ropa deportiva</li><li>Trajes de baño</li><li>GRWM</li><li>Cosmética</li><li>Accesorios</li><li>Calzado</li></ul>
+    </article>
+    <article data-cur class="card wide">
+      <video src="media/backstage.mp4" poster="media/backstage.jpg" autoplay muted loop playsinline></video>
+      <div class="top"><span class="pill">Backstage</span><span class="pill">AI concept</span></div>
+      <div class="bot"><h3>Detrás de cámaras</h3><p>El making-of también es contenido. Lo generamos para que tu marca parezca un estudio grande.</p></div>
+    </article>
+  </div></div></div>
+</section>
+
+<section class="wrap" id="servicios">
+  <div class="sh">
+    <div>
+      <div class="eyebrow mono">Servicios</div>
+      <h2>Qué <em>hacemos</em></h2>
+    </div>
+    <p>Todo con modelos de IA y producción con IA. Tú pones la marca, nosotros todo lo demás.</p>
+  </div>
+  <div class="svc">
+    <article><span class="n">01</span><div><h3>Campañas de moda con IA</h3><p>Tus prendas reales vestidas por modelos virtuales en sets que no existen. Fotos de catálogo, campaña y redes.</p><div class="chips"><span>Fitwear</span><span>Trajes de baño</span><span>Streetwear</span></div></div></article>
+    <article><span class="n">02</span><div><h3>Campañas de producto</h3><p>Vídeos y fotos de tu producto con la luz, el movimiento y el escenario que tu marca necesita.</p><div class="chips"><span>Cosmética</span><span>Bebidas</span><span>Accesorios</span></div></div></article>
+    <article><span class="n">03</span><div><h3>UGC y Get ready with me</h3><p>Contenido estilo creador: rutinas, reseñas y GRWM con modelos virtuales, sin contratar influencers.</p><div class="chips"><span>Reels</span><span>TikTok</span><span>Anuncios</span></div></div></article>
+    <article><span class="n">04</span><div><h3>Modelos propios de tu marca</h3><p>Creamos caras exclusivas para tu marca, siempre consistentes, para que cada campaña tenga la misma imagen.</p><div class="chips"><span>Identidad fija</span><span>Uso ilimitado</span></div></div></article>
+  </div>
+</section>
+
+<section class="wrap" id="por-que">
+  <div class="sh">
+    <div>
+      <div class="eyebrow mono">Por qué IA</div>
+      <h2>Más contenido, <em>menos</em> producción</h2>
+    </div>
+    <p>Una sesión tradicional te da unas pocas fotos al mes. Con IA puedes probar ideas, escenarios y anuncios nuevos cada semana.</p>
+  </div>
+  <div class="cmp" role="table" aria-label="Comparación entre un shooting tradicional y Heme Studios">
+    <div class="row hd" role="row"><div role="columnheader"></div><div role="columnheader">Shooting tradicional</div><div role="columnheader">Heme Studios</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">Plazo</div><div class="old" role="cell">2 a 4 semanas</div><div class="new" role="cell">48 a 72 horas</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">Equipo</div><div class="old" role="cell">Fotógrafo, modelos, set, estilismo</div><div class="new" role="cell">Ninguno. Solo tu producto</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">Escenarios</div><div class="old" role="cell">Uno por día de rodaje</div><div class="new" role="cell">Gimnasio, playa, calle o estudio</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">Variantes para anuncios</div><div class="old" role="cell">Las que salgan ese día</div><div class="new" role="cell">Tantas como necesites probar</div></div>
+    <div class="row" role="row"><div class="k" role="rowheader">Coste</div><div class="old" role="cell">Producción completa</div><div class="new" role="cell">Una fracción, sin desplazamientos</div></div>
+  </div>
+</section>
+
+<section class="wrap" id="proceso">
+  <div class="sh">
+    <div>
+      <div class="eyebrow mono">Proceso</div>
+      <h2>De tu producto a <em>campaña</em></h2>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>Nos envías el producto</h3><p>Fotos de tus prendas o productos desde varios ángulos y lo que quieres lograr.</p><div class="when mono">Día 0</div></div>
+    <div class="step"><div class="n">02</div><h3>Concepto y modelos</h3><p>Proponemos escenarios, estilo y modelos virtuales. Tú apruebas antes de producir.</p><div class="when mono">Día 1</div></div>
+    <div class="step"><div class="n">03</div><h3>Producción con IA</h3><p>Generamos fotos y vídeos, editamos y cuidamos que tu producto se vea fiel.</p><div class="when mono">Día 2</div></div>
+    <div class="step"><div class="n">04</div><h3>Entrega y ajustes</h3><p>Recibes las piezas en vertical y horizontal, listas para redes y anuncios.</p><div class="when mono">Día 3</div></div>
+  </div>
+</section>
+
+<section class="wrap" id="contacto">
+  <div class="final">
+    <div>
+      <div class="mono">Heme Studios · Creative</div>
+      <h2>Tu próxima campaña empieza aquí.</h2>
+      <p>Cuéntanos tu marca y tu producto. Te enviamos una idea de campaña hecha para ti.</p>
+    </div>
+    <div class="contacts">
+      <a class="btn btn-o" href="https://instagram.com/hemestudios.ai">Escríbenos en Instagram <span class="ar">→</span></a>
+      <span class="line">@hemestudios.ai</span>
+      <span class="line">hemestudios.com</span>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span><b style="color:var(--paper)">HEME STUDIOS</b> · Agencia creativa de IA</span>
+  <span class="disc">Todas las piezas de esta página son conceptos creados con IA por Heme Studios con modelos virtuales. No representan campañas reales de otras marcas.</span>
+</footer>
+
+<script>
+(() => {
+  // Si falta algún archivo de los shots, se quita esa pieza; si faltan todas, la sección.
+  const sec = document.getElementById('shots');
+  const drop = (f) => { f.remove(); if (!sec.querySelector('.shot')) sec.remove(); };
+  sec.querySelectorAll('.shot').forEach(f => {
+    const m = f.querySelector('img,video');
+    const bad = () => drop(f);
+    if (m.tagName === 'IMG') { if (m.complete && !m.naturalWidth) bad(); else m.addEventListener('error', bad, { once: true }); m.loading = 'eager'; }
+    else { m.addEventListener('error', bad, { once: true }); const src = m.querySelector('source'); if (m.error) bad(); }
+  });
+})();
+</script>
+<script>
+(() => {
+
+  const p = document.getElementById('portrait');
+  const img = p && p.querySelector('img');
+  if (!img || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ticking = false;
+  const update = () => {
+    const r = p.getBoundingClientRect();
+    const k = Math.max(-1, Math.min(1, r.top / window.innerHeight));
+    img.style.transform = `rotate(${k * -10}deg) scale(${1 + Math.abs(k) * 0.04})`;
+    ticking = false;
+  };
+  img.addEventListener('animationend', () => {
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }, { once: true });
+})();
+
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wide = () => innerWidth > 1000;
+  const prog = document.getElementById('prog');
+  const lines = [...document.querySelectorAll('.hero h1 .l')];
+  const ghost = document.querySelector('.ghost');
+  const track = document.querySelector('.marquee .track');
+
+  // cursor
+  const cur = document.getElementById('cur');
+  if (matchMedia('(pointer:fine)').matches && !reduce) {
+    let x = innerWidth/2, y = innerHeight/2, cx = x, cy = y;
+    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; }, { passive: true });
+    document.querySelectorAll('[data-cur],a,.btn').forEach(el => {
+      el.addEventListener('pointerenter', () => el.hasAttribute('data-cur') && cur.classList.add('big'));
+      el.addEventListener('pointerleave', () => cur.classList.remove('big'));
+    });
+    (function f(){ cx += (x-cx)*.2; cy += (y-cy)*.2; cur.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(f); })();
+  } else if (cur) cur.remove();
+
+  // manifesto
+  const mani = document.getElementById('mani');
+  const words = [...mani.querySelectorAll('.mw')];
+  const bars = [...mani.querySelectorAll('.mani-bar i')];
+
+  // shots table
+  const pin = document.getElementById('shots-pin') || document.createElement('div');
+  const shots = [...pin.querySelectorAll('.shot')];
+  const spread = [[-1.1,-6,.03],[0,3,-.03],[1.1,-4,.04]];
+  const start  = [[0,-14],[0,9],[0,-4]];
+
+  // horizontal work
+  const hpin = document.getElementById('hpin');
+  const cards = hpin.querySelector('.cards');
+
+  let mode = null;
+  const setup = () => {
+    const on = wide() && !reduce;
+    if (on === mode) return; mode = on;
+    mani.classList.toggle('pin', !reduce);
+    pin.classList.toggle('table', on);
+    hpin.classList.toggle('on', on);
+    if (!on) { shots.forEach(s => s.style.transform = ''); cards.style.transform = ''; hpin.style.height = ''; }
+    measure();
+  };
+  const measure = () => {
+    if (mode) hpin.style.height = (innerHeight + cards.scrollWidth - innerWidth + 140) + 'px';
+  };
+  const prog01 = (el) => { const r = el.getBoundingClientRect(); const d = r.height - innerHeight; return d > 0 ? Math.min(1, Math.max(0, -r.top / d)) : 0; };
+  const ease = t => 1 - Math.pow(1 - t, 3);
+
+  let vel = 0, last = scrollY, mx = 0;
+  const frame = () => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+    vel = vel * .9 + (y - last) * .1; last = y;
+    if (!reduce) {
+      if (y < innerHeight * 1.2) {
+        lines.forEach((l, i) => l.style.transform = `translateX(${(i - 1) * -y * .35}px)`);
+        if (ghost) ghost.style.transform = `translateY(${y * .25}px)`;
+      }
+      if (track) { mx -= 1 + Math.abs(vel) * .35; const w = track.scrollWidth / 2; if (-mx > w) mx += w; track.style.animation = 'none'; track.style.transform = `translateX(${mx}px) skewX(${Math.max(-12, Math.min(12, -vel * .4))}deg)`; }
+      // manifesto
+      if (mani.classList.contains('pin')) {
+        const p = prog01(mani), n = words.length, idx = Math.min(n - 1, Math.floor(p * n));
+        words.forEach((w, i) => { w.classList.toggle('on', i === idx); w.classList.toggle('past', i < idx); });
+        bars.forEach((b, i) => b.style.setProperty('--f', Math.min(1, Math.max(0, p * n - i))));
+      }
+      if (mode) {
+        const p = ease(Math.min(1, prog01(pin) * 1.25)), gap = Math.min(innerWidth * .235, 360);
+        shots.forEach((s, i) => {
+          const [fx, fr, fy] = spread[i], [sx, sr] = start[i];
+          const tx = (sx + (fx - sx) * p) * gap, rot = sr + (fr - sr) * p, ty = fy * p * innerHeight;
+          s.style.transform = `translate(-50%,-50%) translate(${tx}px,${ty}px) rotate(${rot}deg) scale(${.92 + .08 * p})`;
+          s.style.zIndex = i + 1;
+        });
+        const hp = prog01(hpin), dist = cards.scrollWidth - innerWidth + 2 * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gut') || 0);
+        cards.style.transform = `translateX(${-hp * Math.max(0, cards.scrollWidth - hpin.clientWidth)}px)`;
+      }
+    }
+    requestAnimationFrame(frame);
+  };
+  setup();
+  addEventListener('resize', () => { setup(); measure(); });
+  addEventListener('load', measure);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
