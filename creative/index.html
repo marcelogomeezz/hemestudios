@@ -113,7 +113,7 @@ section{padding-block:clamp(64px,9vw,128px)}
 .shots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end}
 .shot{position:relative;border-radius:20px;overflow:hidden;background:var(--ink-2);animation:flash .8s ease-out both}
 .shot:nth-child(2){animation-delay:.12s}.shot:nth-child(3){animation-delay:.24s}
-.s-run,.s-ugc,.s-ten{aspect-ratio:9/16}
+.s-run,.s-ugc{aspect-ratio:9/16}.s-ten{aspect-ratio:3/4}
 .shot img,.shot video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .shot:hover img,.shot:hover video{transform:scale(1.05)}
 .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.75));pointer-events:none}
@@ -360,7 +360,7 @@ body::before{content:"";position:fixed;inset:-50%;z-index:60;pointer-events:none
   </div>
   <div class="shots-pin" id="shots-pin"><div class="shots">
     <figure data-cur class="shot s-run"><video src="media/running.mp4" poster="media/running.jpg" autoplay muted loop playsinline></video><figcaption><span class="mono">Shot 01 · Vídeo</span><b>Running</b></figcaption></figure>
-    <figure data-cur class="shot s-ten"><video src="media/tenis.mp4" poster="media/tenis.jpg" autoplay muted loop playsinline aria-label="Tenista con lente ojo de pez y una pelota con el texto Heme Studios volando hacia la cámara"></video><figcaption><span class="mono">Shot 02 · Vídeo</span><b>Sport campaign</b></figcaption></figure>
+    <figure data-cur class="shot s-ten"><img src="media/tenis-foto.jpg" alt="Tenista sacando con lente ojo de pez y una pelota con el texto Heme Studios en primer plano"><figcaption><span class="mono">Shot 02 · Foto</span><b>Sport campaign</b></figcaption></figure>
     <figure data-cur class="shot s-ugc"><video src="media/ugc.mp4" poster="media/ugc.jpg" autoplay muted loop playsinline aria-label="Chica maquillándose frente al espejo estilo get ready with me"></video><figcaption><span class="mono">Shot 03 · Vídeo</span><b>GRWM / UGC</b></figcaption></figure>
   </div></div>
 </section>
