@@ -273,28 +273,239 @@ html[data-theme="dark"] .emailreply{max-height:218px;overflow:auto}
 .quote-owner .quote-owner-add{border:1px solid #55626f;background:#283039;color:white;border-radius:8px;padding:8px 10px;margin:6px 0}
 @media(max-width:520px){.quote-owner-row{grid-template-columns:minmax(0,1fr) 90px}.quote-owner{padding:10px}}
 
+
+/* Rediseño UX: bandeja > conversación > próximas acciones. */
+:root{--s-lime:#d7f57c;--s-bg:#0b0d10;--s-pane:#17191d;--s-muted:#a3a9b3;--s-line:#33363c;--s-text:#f6f7f8}
+html,body{min-height:100%}
+body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:-.018em}
+.s-top{height:76px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 clamp(20px,2.4vw,38px);position:relative;z-index:4}
+.s-logo{display:flex;align-items:center;gap:12px}.s-mark{height:42px;width:42px;display:grid;place-items:center;border-radius:13px;font-size:22px;font-weight:900;letter-spacing:-2px;background:#e2fa95;color:#121417}.s-mark span{color:#7a8e34}.s-logo strong{display:block;font-weight:850;letter-spacing:.55px;font-size:13px}.s-logo small{display:block;font-size:11px;color:#b3b9bf;margin-top:2px}
+.s-top-right{display:flex;align-items:center;gap:13px}.s-demo-pill{font-size:11px;border-radius:30px;padding:9px 13px;display:flex;align-items:center;gap:9px}.s-live-dot{width:7px;height:7px;border-radius:50%;background:#d8ff8a;box-shadow:0 0 0 4px #c9f77d18}.s-reset{font-size:11px;font-weight:700;border-radius:11px;padding:10px 14px;white-space:nowrap}.s-theme-switch{padding:4px;border-radius:11px;display:flex;gap:2px}.s-theme-switch button{border:0;border-radius:8px;font-size:11px;font-weight:750;padding:7px 9px;white-space:nowrap}.s-theme-switch button.s-theme-active{box-shadow:0 2px 9px #0003}
+.s-shell{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:calc(100vh - 76px)}
+.s-rail{padding:30px 15px 18px;display:flex;flex-direction:column;min-width:0}
+.s-rail-intro{padding:0 11px}.s-rail-intro h2{font-size:21px;letter-spacing:-.8px;margin:8px 0 6px;font-weight:780}.s-rail-intro p{color:#a2abb5;font-size:11.5px;line-height:1.6;margin:0 0 25px}
+.s-over{font-size:10px;font-weight:800;letter-spacing:1.4px}.s-rail-label{padding:0 12px;margin-bottom:9px;font-size:10px;font-weight:800;letter-spacing:1.1px;display:flex;justify-content:space-between}.s-conv-label{margin-top:25px}
+.s-rail .channels{display:grid;grid-template-columns:1fr;gap:5px;padding:0;border:0;background:transparent}
+.s-rail .channels button{text-align:left;padding:12px 13px;display:block;font-size:12px;font-weight:700;border-radius:10px}
+.s-rail .cases{display:flex;flex-direction:column;gap:8px;background:transparent;padding:0;border:0}
+.s-rail .casebtn{text-align:left;min-width:0;width:100%;padding:15px;border-radius:14px;position:relative;overflow:hidden}
+.s-rail .casebtn b{font-size:12.5px;font-weight:780;display:block;line-height:1.4}.s-rail .casebtn span{font-size:11px;line-height:1.5;margin-top:5px}
+.s-rail .casebtn.s-active-case:before{content:"";position:absolute;left:0;top:15px;bottom:15px;width:3px;border-radius:4px;background:#cafa6b}
+.s-rail-foot{margin-top:auto;padding:18px 12px 4px;display:flex;gap:12px}.s-rail-foot-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;flex-shrink:0;background:#252c24;color:#d9fa9a;font-size:20px}.s-rail-foot strong{font-size:11px}.s-rail-foot p{color:#9ba5af;font-size:10.5px;line-height:1.65;margin:4px 0}
+.s-main{min-width:0;padding:29px clamp(20px,2.3vw,38px) 24px}.s-welcome{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:0 0 22px}.s-welcome h1{margin:7px 0 5px;font-size:clamp(27px,2.45vw,35px);letter-spacing:-1.4px;font-weight:850;line-height:1.16}.s-welcome p{font-size:12px;line-height:1.6;margin:0;color:#aeb5be}.s-example-label{font-size:10px;font-weight:800;letter-spacing:1px;border-radius:30px;padding:9px 12px;white-space:nowrap}
+.s-main .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:0 0 20px}
+.s-main .metric{padding:16px 17px;border-radius:15px;min-height:110px;box-shadow:none}
+.s-main .metric .label{font-size:11px;font-weight:600}.s-main .metric .num,.s-main .metric .num.fresh{font-size:30px;line-height:1.1;font-weight:790;letter-spacing:-1.2px;color:#fff!important;margin-top:9px}.s-main .metric .hint{font-size:10px;margin-top:9px}
+.s-workspace{display:grid;grid-template-columns:minmax(420px,1.32fr) minmax(345px,.95fr);align-items:stretch;gap:16px}
+.s-conversation,.s-overview{min-width:0;border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.s-panel-top{padding:19px 20px;display:flex;align-items:center;gap:11px;min-height:84px}.s-panel-icon{border-radius:12px;height:38px;width:38px;display:grid;place-items:center;flex-shrink:0;font-size:20px;font-weight:700}.s-panel-title{min-width:0;flex:1}.s-panel-title h2{font-size:15px;margin:0 0 3px;font-weight:800;letter-spacing:-.4px}.s-panel-title p{font-size:10.5px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.s-panel-badge{font-size:10px;font-weight:700;padding:7px 10px;border-radius:30px;white-space:nowrap}
+.s-conversation .screenwrap{padding:17px;min-height:490px;flex:1}
+.s-conversation .device{max-width:none;width:100%;margin:auto;border-radius:13px;min-height:520px;box-shadow:none;overflow:hidden;display:flex;flex-direction:column}
+.s-conversation .chat{height:520px;overflow:auto;flex:1;padding:17px 16px}
+.s-conversation .emailbody{height:440px;max-height:none;overflow:auto;flex:1}
+.s-conversation .emailreply{flex-shrink:0;max-height:220px;overflow:auto}
+.s-conversation .formfields{flex:1}
+.s-chat-note{padding:13px 18px;display:flex;align-items:center;gap:9px;font-size:10.5px;line-height:1.5}.s-dot{height:6px;width:6px;border-radius:50%;background:#d6f49b;flex-shrink:0}
+.s-overview .s-journey{padding:15px 18px 10px}.s-journey .s-over{font-size:9.5px}.s-overview .pipe{display:flex;flex-wrap:wrap;gap:6px;padding:11px 0 3px;border:0;background:transparent}.s-overview .pipe .step{font-size:10px;padding:7px 9px;border-radius:8px}
+.s-overview .tabs{padding:12px 15px 0;background:transparent;border:0;display:flex;gap:5px;overflow-x:auto;flex-wrap:nowrap}.s-overview .tabs button{font-size:10.5px;white-space:nowrap;padding:9px 8px;flex:1 0 auto;border-radius:9px}
+.s-overview .detail{padding:17px;min-height:180px;max-height:510px;overflow:auto;flex:1}
+.s-overview .actions{border-top:0;padding:6px 17px 18px;min-height:70px;gap:7px}
+.s-overview .actions .primary{padding:12px 15px;min-height:43px;border-radius:11px;font-weight:800}.s-overview .actions .secondary{padding:11px;border-radius:10px}
+.s-extra{border-top:1px solid;padding:0 17px}.s-extra summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-size:11px;font-weight:800;padding:16px 0}.s-extra summary::-webkit-details-marker{display:none}.s-extra summary:after{content:"⌄";font-size:18px;font-weight:400;margin-left:auto}.s-extra[open] summary:after{content:"⌃"}.s-extra-hint{font-size:10px;font-weight:500;opacity:.72;margin-left:auto}.s-extra .agents{padding:2px 0 15px;border:0;grid-template-columns:1fr;gap:7px}.s-extra .agent{display:grid;grid-template-columns:28px 1fr;gap:2px 8px;align-items:center;padding:11px}.s-extra .agent .ico{grid-column:1;grid-row:1 / span 2;margin:0;height:26px;width:26px}.s-extra .agent strong{grid-column:2;grid-row:1}.s-extra .agent small{grid-column:2;grid-row:2;margin:0}.s-extra .tariff{border:0;padding:0 0 16px}.s-extra .tariffhead{display:flex;gap:6px;flex-wrap:wrap}.s-extra .tariffgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.s-overview .box h3{font-size:12.5px}.s-overview .labelrow{gap:9px}.s-overview .labelrow span:first-child{max-width:44%;flex-shrink:0}.s-overview .labelrow strong{word-break:break-word}
+.s-overview .quote-owner{margin:0 0 12px}.s-overview .quote-owner-row{grid-template-columns:minmax(0,1fr) 94px}.s-overview .quote-owner .quote-owner-total{display:flex;flex-wrap:wrap;gap:5px;padding:9px}.s-overview .quote-owner-total strong{font-size:16px}
+.s-overview .calendar-panel{border-radius:13px}.s-overview .appointment-card{border-radius:13px}
+.s-legal{font-size:10.5px;line-height:1.8;margin:24px 2px 0;max-width:1100px;opacity:.7}
+@media(max-width:1290px){.s-shell{grid-template-columns:235px minmax(0,1fr)}.s-workspace{grid-template-columns:minmax(360px,1fr) minmax(330px,.92fr);gap:12px}.s-main{padding:24px 16px}.s-conversation .screenwrap{padding:12px}.s-overview .detail{padding:12px}}
+@media(max-width:1060px){.s-shell{grid-template-columns:224px minmax(0,1fr)}.s-workspace{grid-template-columns:minmax(0,1fr)}.s-conversation .device{max-width:720px}.s-conversation .chat{height:430px}.s-conversation .screenwrap{min-height:0}.s-main .metric{padding:12px}.s-main .metrics{gap:7px}}
+@media(max-width:730px){.s-top{height:auto;min-height:67px;flex-wrap:wrap;padding:10px 15px}.s-logo .s-mark{width:35px;height:35px}.s-logo strong{font-size:12px}.s-top-right{gap:6px}.s-demo-pill{display:none}.s-theme-switch button{padding:6px}.s-reset{padding:8px}.s-shell{display:block}.s-rail{padding:20px 14px 12px}.s-rail-intro h2{font-size:16px}.s-rail-intro p{margin-bottom:12px}.s-rail .channels{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.s-rail .channels button{text-align:center;padding:10px 3px;font-size:11px}.s-rail-label{margin:0 0 7px}.s-conv-label{margin-top:16px}.s-rail .cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.s-rail .casebtn{padding:11px;min-height:80px}.s-rail-foot{display:none}.s-main{padding:21px 13px}.s-welcome{align-items:start;margin-bottom:13px}.s-welcome h1{font-size:24px}.s-welcome p{font-size:11px}.s-example-label{display:none}.s-main .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:13px}.s-main .metric{min-height:93px}.s-main .metric .num{font-size:25px}.s-workspace{gap:12px}.s-conversation .device{min-height:400px}.s-conversation .chat{height:440px}.s-panel-top{min-height:65px;padding:12px}.s-chat-note{font-size:10px}}
+
+
+/* Dark por defecto, acento suave para destacar una sola acción */
+html[data-theme="dark"] .s-top{background:#0b0d10;border-bottom:1px solid #272a30;color:#f8f9fb}
+html[data-theme="dark"] .s-demo-pill{background:#191c20;color:#d3d8df;border:1px solid #31353c}
+html[data-theme="dark"] .s-theme-switch{background:#1a1c20;border:1px solid #363941}
+html[data-theme="dark"] .s-theme-switch button{background:transparent;color:#aab0ba}
+html[data-theme="dark"] .s-theme-switch .s-theme-active{background:#f6f7f8;color:#16191c}
+html[data-theme="dark"] .s-reset{background:#202328;color:white;border:1px solid #3a3f46}
+html[data-theme="dark"] .s-shell{background:#0e1012}
+html[data-theme="dark"] .s-rail{background:#090a0c;border-right:1px solid #292c30;color:#f7f8f9}
+html[data-theme="dark"] .s-rail-label,html[data-theme="dark"] .s-over{color:#a6aeba}
+html[data-theme="dark"] .s-rail .channels button{background:transparent;color:#aeb5bd}
+html[data-theme="dark"] .s-rail .channels button.active{background:#e5f7b2;color:#111714}
+html[data-theme="dark"] .s-rail .casebtn{background:#191b1e;border:1px solid #303239;color:#f7f8fa}
+html[data-theme="dark"] .s-rail .casebtn span{color:#aab1ba}
+html[data-theme="dark"] .s-rail .casebtn.s-active-case{border-color:#a8d06c;background:#242b22}
+html[data-theme="dark"] .s-main{background:#101214;color:#f5f6f8}
+html[data-theme="dark"] .s-welcome h1{color:white}
+html[data-theme="dark"] .s-example-label{color:#acb7c3;background:#1e2226;border:1px solid #343940}
+html[data-theme="dark"] .s-main .metric{background:#202327;border:1px solid #34383d;color:#fff}
+html[data-theme="dark"] .s-main .metric .label{color:#c9d0d6}
+html[data-theme="dark"] .s-main .metric .hint{color:#929ca6}
+html[data-theme="dark"] .s-conversation,html[data-theme="dark"] .s-overview{background:#191b1e;border:1px solid #36393e;color:#f7f8fa}
+html[data-theme="dark"] .s-panel-top{border-bottom:1px solid #34383e}
+html[data-theme="dark"] .s-panel-icon{background:#2a3031;color:#dff29f}
+html[data-theme="dark"] .s-panel-icon-alt{background:#2d3138;color:#dae4f9}
+html[data-theme="dark"] .s-panel-title p{color:#a8b1bb}
+html[data-theme="dark"] .s-panel-badge{color:#ccd4de;background:#24282e;border:1px solid #3c4249}
+html[data-theme="dark"] .s-conversation .screenwrap{background:#131619}
+html[data-theme="dark"] .s-conversation .device{background:#20252b;border-color:#43484d}
+html[data-theme="dark"] .s-chat-note{border-top:1px solid #33383e;color:#aab4bf}
+html[data-theme="dark"] .s-overview .s-journey{border-bottom:1px solid #34383e}
+html[data-theme="dark"] .s-overview .tabs{background:#191b1e}
+html[data-theme="dark"] .s-overview .tabs button{background:#26292d;color:#cbd1d6}
+html[data-theme="dark"] .s-overview .tabs button.active{background:#e5f7b2;color:#111715}
+html[data-theme="dark"] .s-overview .detail{background:#191b1e}
+html[data-theme="dark"] .s-overview .actions{background:#191b1e}
+html[data-theme="dark"] .s-overview .actions .primary{background:#d9f08d;color:#141a14}
+html[data-theme="dark"] .s-overview .actions .primary:hover{background:#e6ffa0}
+html[data-theme="dark"] .s-extra{border-color:#30343a}
+html[data-theme="dark"] .s-extra summary{color:#e6ebee}
+html[data-theme="dark"] .s-extra-hint{color:#9fa9b5}
+html[data-theme="dark"] .s-legal{color:#a1adb8}
+
+
+/* Claro: fondo marfil, navegación negra, tarjetas blancas. */
+html[data-theme="light"]{color-scheme:light;--bg:#f4f3f0;--ink:#202325;--mut:#677077;--line:#e2e4e4;--teal:#304b55;--blue:#587ba8}
+html[data-theme="light"] body{background:#f4f3f0!important;color:#202325}
+html[data-theme="light"] .s-top{background:#fff;border-bottom:1px solid #e1e3e3;color:#1c2124}
+html[data-theme="light"] .s-logo small{color:#687177}
+html[data-theme="light"] .s-demo-pill{background:#eff2ec;color:#3b5341;border:1px solid #d4e0d2}
+html[data-theme="light"] .s-live-dot{background:#82ad46}
+html[data-theme="light"] .s-theme-switch{background:#f0f1ef;border:1px solid #dfe2df}
+html[data-theme="light"] .s-theme-switch button{background:transparent;color:#757f83}
+html[data-theme="light"] .s-theme-switch .s-theme-active{background:#fff;color:#172024;box-shadow:0 2px 5px #0001}
+html[data-theme="light"] .s-reset{background:white;color:#31383b;border:1px solid #dfe2e2}
+html[data-theme="light"] .s-rail{background:#101113;border-right:1px solid #26282c;color:#fff}
+html[data-theme="light"] .s-rail-label,html[data-theme="light"] .s-rail .s-over{color:#aab3bd}
+html[data-theme="light"] .s-rail .channels button{background:transparent;color:#afb7bf}
+html[data-theme="light"] .s-rail .channels button.active{background:#e0f795;color:#171b18}
+html[data-theme="light"] .s-rail .casebtn{background:#222428;border:1px solid #383c40;color:#fff}
+html[data-theme="light"] .s-rail .casebtn span{color:#c1c5cb}
+html[data-theme="light"] .s-rail .casebtn.s-active-case{background:#2d3229;border-color:#c6e58e}
+html[data-theme="light"] .s-main{background:#f4f3f0;color:#212426}
+html[data-theme="light"] .s-welcome h1{color:#181b1d}
+html[data-theme="light"] .s-welcome p{color:#647077}
+html[data-theme="light"] .s-example-label{background:#fff;color:#6c737b;border:1px solid #e0e2e3}
+html[data-theme="light"] .s-main .metric{background:#202226;border:1px solid #202226;color:white}
+html[data-theme="light"] .s-main .metric .label{color:#cbd1d5}
+html[data-theme="light"] .s-main .metric .hint{color:#9ea7b0}
+html[data-theme="light"] .s-conversation,html[data-theme="light"] .s-overview{background:#fff;border:1px solid #e4e5e5;color:#1e2326;box-shadow:0 10px 25px #18221c09}
+html[data-theme="light"] .s-panel-top{border-bottom:1px solid #eceeed}
+html[data-theme="light"] .s-panel-icon{background:#eef2e8;color:#4c623b}
+html[data-theme="light"] .s-panel-icon-alt{background:#eef1fb;color:#6179a6}
+html[data-theme="light"] .s-panel-title p{color:#788187}
+html[data-theme="light"] .s-panel-badge{background:#f2f3f2;border:1px solid #e3e5e3;color:#5e686e}
+html[data-theme="light"] .s-conversation .screenwrap{background:#f4f5f3}
+html[data-theme="light"] .s-conversation .device{border-color:#dedfdf}
+html[data-theme="light"] .s-chat-note{border-top:1px solid #e8ebea;color:#7b868e}
+html[data-theme="light"] .s-overview .s-journey{border-bottom:1px solid #eceeed}
+html[data-theme="light"] .s-overview .tabs{background:#fff}
+html[data-theme="light"] .s-overview .tabs button{background:#f2f3f3;color:#69737a}
+html[data-theme="light"] .s-overview .tabs button.active{background:#202327;color:white}
+html[data-theme="light"] .s-overview .detail,html[data-theme="light"] .s-overview .actions{background:#fff}
+html[data-theme="light"] .s-overview .actions .primary{background:#272d31;color:#fff}
+html[data-theme="light"] .s-overview .actions .primary:hover{background:#141819}
+html[data-theme="light"] .s-overview .box{background:#f7f7f6;border:1px solid #e5e5e2;color:#263036}
+html[data-theme="light"] .s-overview .box .labelrow span:first-child{color:#6e777c}
+html[data-theme="light"] .s-overview .box .labelrow strong{color:#283036}
+html[data-theme="light"] .s-overview .badge{background:#e9efea;color:#45674d}
+html[data-theme="light"] .s-overview .badge.neu{background:#edf0f4;color:#43586d}
+html[data-theme="light"] .s-overview .badge.warn{background:#f6edda;color:#866d3b}
+html[data-theme="light"] .s-overview .step{background:#e9edef;color:#77838c}
+html[data-theme="light"] .s-overview .step.active{background:#212b2c;color:white}
+html[data-theme="light"] .s-overview .step.past{background:#e3ead7;color:#445c3e}
+html[data-theme="light"] .s-extra{border-color:#e7e8e6}
+html[data-theme="light"] .s-extra summary{color:#374147}
+html[data-theme="light"] .s-extra-hint{color:#778087}
+html[data-theme="light"] .s-extra .agent{background:#f7f8f6;border-color:#e1e4e2}
+html[data-theme="light"] .s-extra .agent strong{color:#313c41}
+html[data-theme="light"] .s-extra .agent small{color:#69747a}
+html[data-theme="light"] .s-extra .agent .ico{color:#566e74;background:#e9edef}
+html[data-theme="light"] .s-extra .tariff{background:#fff}
+html[data-theme="light"] .s-extra .tariffcell{background:#f8f9f8;border:1px solid #e4e7e5}
+html[data-theme="light"] .s-extra .tariffcell label{color:#717d82}
+html[data-theme="light"] .s-extra .tariffcell input{color:#2a3438}
+html[data-theme="light"] .s-legal{color:#7c858a}
+html[data-theme="light"] .s-overview .quote-owner{background:#f6f7f6;border-color:#dfe2df;color:#222}
+html[data-theme="light"] .s-overview .quote-owner h3{color:#222}
+html[data-theme="light"] .s-overview .quote-owner p{color:#6b7478}
+html[data-theme="light"] .s-overview .quote-owner-tip{background:#eaeeec;color:#424a4d}
+html[data-theme="light"] .s-overview .quote-owner input:not([type="checkbox"]),html[data-theme="light"] .s-overview .quote-owner textarea{background:#fff;color:#222;border-color:#d5dada}
+html[data-theme="light"] .s-overview .quote-owner label{color:#526166}
+html[data-theme="light"] .s-overview .quote-owner-total{background:#e5eae6;color:#262e2c}
+html[data-theme="light"] .s-overview .quote-owner-total strong{color:#222}
+html[data-theme="light"] .s-overview .quote-owner-check{color:#303c3d}
+html[data-theme="light"] .s-overview .quote-owner-add{background:#212728;color:white}
+html[data-theme="light"] .s-overview .calendar-panel{background:#f6f8f7;border-color:#e1e5e2;color:#273034}
+html[data-theme="light"] .s-overview .calendar-title h3,html[data-theme="light"] .s-overview .cal-day b{color:#283037}
+html[data-theme="light"] .s-overview .cal-available{background:#ebf2ea;border-color:#d5e4cf;color:#376347}
+html[data-theme="light"] .s-overview .cal-day{border-color:#dce3de}
+html[data-theme="light"] .s-overview .owner-alert{background:#f5f7f6;color:#1e252a;border-color:#dce1dc}
+html[data-theme="light"] .s-overview .owner-alert h3{color:#1f2a2c}
+html[data-theme="light"] .s-overview .owner-alert .labelrow span{color:#748087!important}
+html[data-theme="light"] .s-overview .owner-alert .labelrow strong{color:#283335}
+html[data-theme="light"] .s-overview .owner-alert-foot{color:#707a80;border-color:#d9dfda}
+html[data-theme="light"] .s-overview .owner-alert-eyebrow{color:#5a6d65}
+
 </style></head>
 <body>
-<header class="top"><div class="brand"><div class="monogram">S.</div><div><div class="bn">REFORMAS SOLUM <span style="font-weight:430;color:#8c999f">/ OPERACIONES</span></div><div class="bs">Simulación personalizada · Preparado por Heme Studios</div></div></div><div class="righttop"><span class="pill"><span class="dot"></span> DEMO INTERACTIVA</span><span class="topnote">Todos los datos y precios son ficticios</span></div></header>
-<main class="container">
-<div class="hero"><div><div class="kicker">Reformas Solum · Centro de operaciones</div><h1>Un sistema para gestionar cada proyecto.</h1><p class="sub">Desde la primera consulta hasta la visita técnica y la propuesta. Seis escenarios basados en los servicios de Solum: viviendas, chalets, locales, obra nueva y rehabilitaciones.</p></div><button id="reset" class="reset">↺ Reiniciar simulación</button></div>
-<div class="metrics" id="metrics"></div>
-<div class="grid">
-<section class="panel">
-<div class="panelhd"><div><div class="over">01 · ATENCIÓN AL CLIENTE</div><h2>Lo que ve el cliente</h2></div><span class="smallstatus" id="sourceStatus">3 canales de entrada</span></div>
-<div class="channels" id="channels"></div><div class="screenwrap"><div class="device" id="device"></div></div>
-<div class="casehead">Elige qué solicitud quieres simular:</div><div class="cases" id="cases"></div>
-</section>
-<section class="panel">
-<div class="panelhd"><div><div class="over">02 · CRM INTELIGENTE</div><h2>Lo que ve el dueño del negocio</h2></div><span class="smallstatus" id="crmStatus">Sin actividad</span></div>
-<div class="agents"><div class="agent" id="a0"><span class="ico">✉</span><strong>Agente de atención</strong><small id="s0">Esperando solicitud</small></div><div class="agent" id="a1"><span class="ico">▤</span><strong>Preparación de propuestas</strong><small id="s1">Sin presupuesto pendiente</small></div><div class="agent" id="a2"><span class="ico">◷</span><strong>Agente de seguimiento</strong><small id="s2">Esperando respuestas</small></div></div>
-<div class="pipe" id="pipeline"></div><div class="tabs" id="tabs"></div>
-<div class="detail" id="detail"></div><div class="actions" id="actions"></div>
-<div class="tariff"><div class="tariffhead"><span>Tabla interna ilustrativa · cálculo tras la visita</span><span class="muted">Valores editables · no son tarifas reales</span></div><div class="tariffgrid" id="tariffs"></div></div>
-</section>
+
+<header class="s-top">
+  <div class="s-logo"><span class="s-mark">S<span>·</span></span><div><strong>REFORMAS SOLUM</strong><small>Centro de operaciones</small></div></div>
+  <div class="s-top-right"><span class="s-demo-pill"><span class="s-live-dot"></span> Vista previa interactiva</span>
+    <div class="s-theme-switch" aria-label="Apariencia del sistema"><button type="button" data-theme-toggle="dark" class="s-theme-active">☾ Oscuro</button><button type="button" data-theme-toggle="light">☀ Claro</button></div>
+    <button id="reset" class="s-reset" type="button">↺ Reiniciar</button>
+  </div>
+</header>
+<div class="s-shell">
+  <aside class="s-rail" aria-label="Bandeja de clientes">
+    <div class="s-rail-intro"><span class="s-over">BANDEJA DE ENTRADA</span><h2>Conversaciones</h2><p>Elige un caso y observa cómo se atiende de principio a fin.</p></div>
+    <div class="s-rail-label">CANALES</div>
+    <div id="channels" class="channels"></div>
+    <div class="s-rail-label s-conv-label">EJEMPLOS DE CLIENTES <span>02</span></div>
+    <div id="cases" class="cases"></div>
+    <div class="s-rail-foot"><div class="s-rail-foot-icon">✦</div><div><strong>Atención organizada</strong><p>Las solicitudes, conversaciones y citas se registran en el sistema.</p></div></div>
+  </aside>
+  <main class="s-main">
+    <div class="s-welcome"><div><span class="s-over">CENTRO DE CONTROL / REFORMAS SOLUM</span><h1>Todo en su lugar.</h1><p>Clientes, visitas y propuestas. Una vista clara de todo lo que pasa en tu negocio.</p></div><span class="s-example-label">DATOS DE DEMOSTRACIÓN</span></div>
+    <div class="metrics" id="metrics"></div>
+    <div class="s-workspace">
+      <section class="s-conversation" aria-label="Conversación del cliente">
+        <div class="s-panel-top">
+          <div class="s-panel-icon">↗</div><div class="s-panel-title"><h2>Conversación</h2><p id="activeClientText">Selecciona un cliente para comenzar</p></div>
+          <span class="s-panel-badge" id="sourceStatus">Canal de entrada</span>
+        </div>
+        <div class="screenwrap"><div class="device" id="device"></div></div>
+        <div class="s-chat-note"><span class="s-dot"></span> Mensajes y horarios simulados. La vista se actualiza al elegir una cita.</div>
+      </section>
+      <section class="s-overview" aria-label="Ficha y próximas acciones">
+        <div class="s-panel-top">
+          <div class="s-panel-icon s-panel-icon-alt">▦</div><div class="s-panel-title"><h2>Cliente y proyecto</h2><p>Información y siguiente paso</p></div>
+          <span class="s-panel-badge" id="crmStatus">Sin actividad</span>
+        </div>
+        <div class="s-journey"><div class="s-over">PROGRESO DEL PROYECTO</div><div id="pipeline" class="pipe"></div></div>
+        <div id="tabs" class="tabs"></div>
+        <div class="detail" id="detail"></div>
+        <div class="actions" id="actions"></div>
+        <details class="s-extra" id="automationExtra">
+          <summary><span>✧ Automatizaciones</span><span class="s-extra-hint">Ver cómo trabaja el sistema</span></summary>
+          <div class="agents">
+            <div class="agent" id="a0"><span class="ico">✉</span><strong>Atención al cliente</strong><small id="s0">Esperando solicitud</small></div>
+            <div class="agent" id="a1"><span class="ico">▤</span><strong>Preparación de propuestas</strong><small id="s1">Sin presupuesto pendiente</small></div>
+            <div class="agent" id="a2"><span class="ico">◷</span><strong>Seguimiento</strong><small id="s2">Esperando respuestas</small></div>
+          </div>
+        </details>
+        <details class="s-extra" id="pricingExtra">
+          <summary><span>⚙ Tarifas de referencia</span><span class="s-extra-hint">Solo para los presupuestos de prueba</span></summary>
+          <div class="tariff"><div class="tariffhead"><span>Valores ilustrativos</span><span class="muted">No son tarifas reales</span></div><div class="tariffgrid" id="tariffs"></div></div>
+        </details>
+      </section>
+    </div>
+    <p class="s-legal">Vista previa de Heme Studios para Reformas Solum. Los clientes, mensajes, citas y presupuestos son simulados. No hay conexiones reales con WhatsApp, correo ni calendario. El propietario siempre valida el presupuesto antes del envío.</p>
+  </main>
 </div>
-<div class="foot">Simulación de Heme Studios. No está conectada al WhatsApp, correo, calendario ni al sistema de Reformas Solum. Las solicitudes, comunicaciones, importes y confirmaciones son ejemplos. Las visitas y avisos de la demo quedan guardados únicamente en este navegador. En reformas reales, la visita técnica y la validación profesional determinan el presupuesto definitivo.</div>
-</main><div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 <script>
 (function(){
 "use strict";
@@ -476,11 +687,37 @@ function restoreDemo(){
   state.visits=state.appointments.length;
  }catch(error){}
 }
-function repaint(){metrics();agents();pipeline();tabs();detail();actions();saveDemo()}
+function repaint(){
+ metrics();agents();pipeline();tabs();detail();actions();saveDemo();
+ var channel={"wa":"WhatsApp","em":"Correo electrónico","fm":"Formulario web"}[state.channel]||"Entrada";
+ if($("sourceStatus"))$("sourceStatus").textContent=channel;
+ if($("activeClientText"))$("activeClientText").textContent=state.active?state.active.name+" · "+state.active.type:"Selecciona una conversación de ejemplo";
+}
+function setupTheme(){
+ var buttons=document.querySelectorAll("[data-theme-toggle]");
+ function select(value){
+  var mode=value==="light"?"light":"dark";document.documentElement.setAttribute("data-theme",mode);
+  buttons.forEach(function(button){var active=button.getAttribute("data-theme-toggle")===mode;button.classList.toggle("s-theme-active",active);button.setAttribute("aria-pressed",active?"true":"false")});
+  try{localStorage.setItem("solum-demo-appearance",mode)}catch(err){}
+ }
+ var saved=null;try{saved=localStorage.getItem("solum-demo-appearance")}catch(err){}
+ select(saved==="light"?"light":"dark");
+ buttons.forEach(function(button){button.addEventListener("click",function(){select(button.getAttribute("data-theme-toggle"))})});
+}
+
 function toast(title,sub){$("toast").innerHTML="<b>"+safe(title)+"</b><small>"+safe(sub)+"</small>";$("toast").classList.remove("hidden");setTimeout(function(){$("toast").classList.add("hidden")},6000)}
-function metrics(){var m=[["Solicitudes recibidas",state.messages,"WhatsApp · web · correo"],["Conversaciones atendidas",state.answered,"Solicitudes procesadas"],["Propuestas enviadas",state.quotes,"Envíos simulados"],["Propuestas aceptadas",state.accepted,"Confirmaciones ficticias"],["Visitas agendadas",state.visits,"Citas de prueba"]];$("metrics").innerHTML=m.map(function(a){return '<div class="metric"><div class="label">'+a[0]+'</div><strong class="num'+(a[1]>0?" fresh":"")+'">'+a[1]+'</strong><div class="hint">'+a[2]+"</div></div>"}).join("")}
+function metrics(){
+ var m=[["Solicitudes recibidas",state.messages,"Por WhatsApp, web y correo"],["Visitas agendadas",state.visits,"Registradas en la agenda"],["Propuestas enviadas",state.quotes,"Revisadas por el dueño"],["Clientes aceptados",state.accepted,"Confirmaciones de prueba"]];
+ $("metrics").innerHTML=m.map(function(item){return '<div class="metric"><div class="label">'+item[0]+'</div><strong class="num'+(item[1]>0?" fresh":"")+'">'+item[1]+'</strong><div class="hint">'+item[2]+"</div></div>"}).join("")
+}
 function channels(){$("channels").innerHTML=[["wa","◉ WhatsApp"],["em","✉ Correo"],["fm","▤ Formulario web"]].map(function(a){return '<button data-ch="'+a[0]+'" class="'+(state.channel===a[0]?"active":"")+'">'+a[1]+"</button>"}).join("");Array.from($("channels").children).forEach(function(b){b.onclick=function(){if(state.busy)return;state.channel=b.dataset.ch;state.active=null;state.phase='idle';state.quote=null;state.quoteApproved=false;state.slot=null;state.calendarChecked=false;state.tab='ficha';channels();cases();device(true);repaint()}})}
-function cases(){$("cases").innerHTML=scenarios[state.channel].map(function(s){return '<button class="casebtn" data-id="'+s.id+'" '+(state.busy?"disabled":"")+'><b>'+safe(s.title)+'</b><span>'+safe(s.sub)+"</span></button>"}).join("");Array.from($("cases").children).forEach(function(b){b.onclick=function(){start(b.dataset.id)}})}
+function cases(){
+ $("cases").innerHTML=scenarios[state.channel].map(function(s){
+   var active=state.active&&state.active.id===s.id;
+   return '<button class="casebtn'+(active?" s-active-case":"")+'" data-id="'+s.id+'" '+(state.busy?"disabled":"")+'><b>'+safe(s.name)+'</b><span>'+safe(s.title)+' · '+safe(s.type)+'</span></button>'
+ }).join("");
+ Array.from($("cases").children).forEach(function(b){b.onclick=function(){start(b.dataset.id)}});
+}
 function device(initial){
   var s=state.active,c=state.channel,hasData=!!s&&!initial&&s.source===({wa:"WhatsApp",em:"Correo",fm:"Formulario web"}[c]);
   if(c==="wa"){
@@ -687,7 +924,7 @@ function sendQuote(){
 function follow(){if(state.phase!=="sent")return;append("Hola, ¿pudiste revisar la propuesta? Si tienes dudas o quieres ajustar algún detalle, estamos para ayudarte.","agent");log("Seguimiento comercial simulado",state.active.name+" · pregunta de seguimiento","◷");state.tab="activity";repaint()}
 function accept(){if(state.phase!=="sent")return;append("Hola, revisamos la propuesta y nos interesa avanzar. ¿Cómo seguimos?","client");append("¡Gracias! Ya notificamos al responsable para coordinar el siguiente paso y confirmar el alcance.","agent");state.accepted++;state.phase="accepted";state.tab="ficha";log("CLIENTE ACEPTÓ LA PROPUESTA",state.active.name+" · "+state.active.type+" · "+money(quoteTotals(state.quote).total),"★");repaint();toast("¡Nueva propuesta aceptada!","Cliente: "+state.active.name+" · Próxima acción: coordinar el inicio")}
 function reset(){state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null,notifications:[],calendarChecked:false,quoteApproved:false};Object.keys(rates).forEach(function(k){});channels();cases();device(true);repaint()}
-restoreDemo();$("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
+restoreDemo();setupTheme();$("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
 })();
 </script>
 
