@@ -225,6 +225,38 @@ html[data-theme="dark"] .primary:hover{background:white}
 html[data-theme="dark"] .secondary,html[data-theme="dark"] .timebtn{background:#24282d;color:white;border-color:#5d6772}
 html[data-theme="dark"] .muted{color:#b1bac4}
 html[data-theme="dark"] .foot{color:#969da5}
+
+/* Conversación realista + agenda en el chat + avisos sincronizados */
+.slot-chooser{margin:14px 4px 5px;background:#18242b;border:1px solid #47606b;padding:12px;border-radius:12px;box-shadow:0 8px 20px #0002}
+.slot-chooser-title{font-weight:800;font-size:11px;letter-spacing:.7px;color:#f7fafb;display:flex;justify-content:space-between;gap:7px}
+.slot-chooser-title span{font-weight:450;letter-spacing:0;color:#9fc0c9}
+.slot-chooser-sub{font-size:11px;color:#c5d2d8;margin:7px 0 9px}
+.slot-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.slot-choice{border:1px solid #608f89;border-radius:9px;background:#105c50;color:#fff;padding:10px 7px;font-size:11px;font-weight:750;transition:background .16s ease}
+.slot-choice:hover{background:#167765}.slot-choice:disabled{opacity:.5}
+.typing-left{background:#202c33;margin-left:0}
+.owner-alert{background:#1d2228;border:1px solid #566473;padding:15px;border-radius:12px;margin-bottom:12px;color:#f7f9fb}
+.owner-alert-eyebrow{color:#bccbd8;font-size:10px;font-weight:800;letter-spacing:.55px}
+.owner-alert h3{font-size:15px;margin:8px 0 13px;color:white}
+.owner-alert .labelrow{border-bottom:1px solid #333d47;padding:5px 0}
+.owner-alert .labelrow span{color:#aab8c4!important}.owner-alert .labelrow strong{color:white}
+.owner-alert-foot{margin:15px 0 0;color:#b1bcc6;font-size:11px;line-height:1.6;border-top:1px solid #39444e;padding-top:11px}
+.appointment-card h3{margin:0;font-size:14px}
+.ap-head{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.appointment-notice{margin-top:13px;padding:10px;background:#28323e;color:#f2f5f6;border-radius:8px;font-size:11px;line-height:1.55}
+.calendar-panel{background:#191d22;border:1px solid #394049;border-radius:11px;padding:13px;margin-bottom:13px}
+.calendar-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.calendar-title h3{margin:0;font-size:14px;color:white}
+.calendar-title small{font-size:10px;color:#afb8c3}
+.cal-day{border-top:1px solid #343c45;padding:10px 0 8px}
+.cal-day b{display:block;font-size:11px;color:#f2f5f8;margin-bottom:6px}
+.cal-day>div{display:flex;gap:6px;flex-wrap:wrap}
+.cal-available{padding:5px 7px;background:#293a3a;border:1px solid #476a62;border-radius:7px;color:#f3f8f6;font-size:10px}
+#device{max-height:620px;overflow:hidden}
+html[data-theme="dark"] .emailbody{min-height:282px}
+html[data-theme="dark"] .emailreply{max-height:218px;overflow:auto}
+@media(max-width:600px){.slot-choices{grid-template-columns:1fr 1fr}.slot-choice{padding:9px 4px;font-size:10px}}
+
 </style></head>
 <body>
 <header class="top"><div class="brand"><div class="monogram">S.</div><div><div class="bn">REFORMAS SOLUM <span style="font-weight:430;color:#8c999f">/ OPERACIONES</span></div><div class="bs">Simulación personalizada · Preparado por Heme Studios</div></div></div><div class="righttop"><span class="pill"><span class="dot"></span> DEMO INTERACTIVA</span><span class="topnote">Todos los datos y precios son ficticios</span></div></header>
@@ -256,8 +288,8 @@ var scenarios={
  "wa": [
   {
    "id": "w1",
-   "title": "Reforma integral",
-   "sub": "Cliente pregunta sin enviar medidas",
+   "title": "Pregunta sin datos",
+   "sub": "El cliente pregunta por precio; el agente investiga",
    "name": "Laura Moreno",
    "type": "Reforma integral de vivienda",
    "rate": "piso",
@@ -274,12 +306,13 @@ var scenarios={
     "Preparación y redistribución",
     "Instalaciones y trabajos técnicos",
     "Revestimientos y acabados"
-   ]
+   ],
+   "complete": false
   },
   {
    "id": "w2",
-   "title": "Rehabilitación interior",
-   "sub": "Cliente envía fotos de humedad",
+   "title": "Solicitud completa",
+   "sub": "El cliente envía medidas, zona y fotos",
    "name": "Carlos Vega",
    "type": "Rehabilitación de interiores",
    "rate": "interior",
@@ -287,23 +320,24 @@ var scenarios={
    "qty": 48,
    "location": "Las Rozas (Madrid)",
    "source": "WhatsApp",
-   "incoming": "Buenas, tenemos humedad y desperfectos en varias habitaciones. ¿Pueden venir a revisarlo? Tengo fotos.",
+   "incoming": "Hola, soy Carlos. Necesito rehabilitar dos habitaciones y un pasillo, unos 48 m², por problemas de humedad. La vivienda está en Las Rozas. Quisiera una visita para revisarlo. Adjunto 5 fotos.",
    "ask": "Hola, Carlos. Claro. ¿Cuántas habitaciones están afectadas y en qué zona está la vivienda? Si nos envías las fotos podemos preparar la visita.",
-   "answer": "Son dos habitaciones y un pasillo, unos 48 m² en Las Rozas. Te mando las fotos.",
+   "answer": "La zona afectada son dos habitaciones y el pasillo. Queremos reparar los desperfectos.",
    "photo": "5 fotos de paredes y techos",
    "closing": "Gracias. Registré las zonas afectadas y las imágenes para que el equipo técnico revise el origen del problema durante la visita. Podemos coordinarla sin compromiso.",
    "lines": [
     "Protección y preparación",
     "Reparación de zonas deterioradas",
     "Tratamientos y acabados"
-   ]
+   ],
+   "complete": true
   }
  ],
  "em": [
   {
    "id": "e1",
-   "title": "Construcción de obra nueva",
-   "sub": "Proyecto que requiere equipo técnico",
+   "title": "Consulta completa",
+   "sub": "Proyecto de obra nueva con planos",
    "name": "Marta Salas",
    "type": "Construcción de obra nueva",
    "rate": "obra",
@@ -312,7 +346,7 @@ var scenarios={
    "location": "Pozuelo de Alarcón (Madrid)",
    "source": "Correo",
    "subject": "Consulta sobre construcción de vivienda",
-   "incoming": "Buenos días, estamos estudiando construir una vivienda de unos 160 m² en Pozuelo. Tenemos una idea de distribución y nos gustaría saber cómo empezar. ¿Ofrecen asesoramiento técnico?",
+   "incoming": "Buenos días, soy Marta. Tenemos una parcela en Pozuelo y un plano preliminar para construir una vivienda de 160 m². Nos gustaría iniciar los trámites y recibir asesoramiento técnico. Adjuntamos el plano y queremos coordinar una reunión.",
    "ask": "Buenos días, Marta. Sí, trabajamos proyectos de obra nueva con asesoramiento técnico. ¿Disponen ya de parcela y planos? ¿En qué fase se encuentra el proyecto? Podemos preparar una primera reunión con el equipo.",
    "answer": "Tenemos la parcela y un plano inicial, pero aún no hemos iniciado los trámites. Adjunto el plano.",
    "photo": "Plano preliminar de la vivienda",
@@ -321,12 +355,13 @@ var scenarios={
     "Estudio y preparación de proyecto",
     "Estructura e instalaciones",
     "Envolvente y acabados"
-   ]
+   ],
+   "complete": true
   },
   {
    "id": "e2",
-   "title": "Reforma de local",
-   "sub": "Faltan planos y tipo de actividad",
+   "title": "Consulta sin datos",
+   "sub": "Falta el tipo de negocio y la superficie",
    "name": "Pablo Torres",
    "type": "Reforma de local comercial",
    "rate": "local",
@@ -344,14 +379,15 @@ var scenarios={
     "Adecuación y redistribución",
     "Instalaciones y acondicionamiento",
     "Acabados para apertura"
-   ]
+   ],
+   "complete": false
   }
  ],
  "fm": [
   {
    "id": "f1",
-   "title": "Reforma de chalet",
-   "sub": "Solicitud enviada por su formulario",
+   "title": "Formulario completo",
+   "sub": "Reforma de chalet con metraje y necesidades",
    "name": "Elena Ruiz",
    "type": "Reforma integral de chalet",
    "rate": "chalet",
@@ -360,7 +396,7 @@ var scenarios={
    "location": "Aravaca (Madrid)",
    "source": "Formulario web",
    "subject": "Consulta sobre reforma de chalet",
-   "incoming": "Quisiera reformar el interior de un chalet de unos 145 m², revisar cocina, baños y mejorar la distribución. Estamos en Aravaca.",
+   "incoming": "Quiero reformar el interior de un chalet de 145 m² en Aravaca: cocina, dos baños, redistribución de espacios y apertura al salón. Quisiéramos empezar en enero. Tenemos fotos disponibles.",
    "ask": "Hola, Elena. Gracias por escribirnos desde la web. Para organizar la visita, ¿les gustaría modificar tabiques y tienen una fecha aproximada de inicio? Si pueden enviarnos fotos, mejor.",
    "answer": "Sí, queremos abrir la cocina al salón. Nos gustaría empezar en enero. Adjunto fotos.",
    "photo": "6 fotos del chalet",
@@ -369,12 +405,13 @@ var scenarios={
     "Preparación y redistribución",
     "Instalaciones interiores",
     "Acabados y carpintería"
-   ]
+   ],
+   "complete": true
   },
   {
    "id": "f2",
-   "title": "Rehabilitación exterior",
-   "sub": "Consulta sobre fachada con humedades",
+   "title": "Formulario incompleto",
+   "sub": "El agente aclara los daños y pide imágenes",
    "name": "Jorge Serrano",
    "type": "Rehabilitación de fachada",
    "rate": "fachada",
@@ -392,19 +429,20 @@ var scenarios={
     "Preparación y protección",
     "Reparación de fisuras y zonas afectadas",
     "Acabados y comprobaciones"
-   ]
+   ],
+   "complete": false
   }
  ]
 };
 var $=function(id){return document.getElementById(id)};
-var state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null};
+var state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null,notifications:[],calendarChecked:false};
 function money(n){return Number(n).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}
 function safe(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function log(title,sub,ico){state.events.unshift({title:title,sub:sub,ico:ico||"✓",time:new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"})});state.events=state.events.slice(0,15)}
 function repaint(){metrics();agents();pipeline();tabs();detail();actions()}
 function toast(title,sub){$("toast").innerHTML="<b>"+safe(title)+"</b><small>"+safe(sub)+"</small>";$("toast").classList.remove("hidden");setTimeout(function(){$("toast").classList.add("hidden")},6000)}
 function metrics(){var m=[["Solicitudes recibidas",state.messages,"WhatsApp · web · correo"],["Conversaciones atendidas",state.answered,"Solicitudes procesadas"],["Propuestas enviadas",state.quotes,"Envíos simulados"],["Propuestas aceptadas",state.accepted,"Confirmaciones ficticias"],["Visitas agendadas",state.visits,"Citas de prueba"]];$("metrics").innerHTML=m.map(function(a){return '<div class="metric"><div class="label">'+a[0]+'</div><strong class="num'+(a[1]>0?" fresh":"")+'">'+a[1]+'</strong><div class="hint">'+a[2]+"</div></div>"}).join("")}
-function channels(){$("channels").innerHTML=[["wa","◉ WhatsApp"],["em","✉ Correo"],["fm","▤ Formulario web"]].map(function(a){return '<button data-ch="'+a[0]+'" class="'+(state.channel===a[0]?"active":"")+'">'+a[1]+"</button>"}).join("");Array.from($("channels").children).forEach(function(b){b.onclick=function(){if(state.busy)return;state.channel=b.dataset.ch;channels();cases();device(true)}})}
+function channels(){$("channels").innerHTML=[["wa","◉ WhatsApp"],["em","✉ Correo"],["fm","▤ Formulario web"]].map(function(a){return '<button data-ch="'+a[0]+'" class="'+(state.channel===a[0]?"active":"")+'">'+a[1]+"</button>"}).join("");Array.from($("channels").children).forEach(function(b){b.onclick=function(){if(state.busy)return;state.channel=b.dataset.ch;state.active=null;state.phase='idle';state.quote=null;state.slot=null;state.calendarChecked=false;state.tab='ficha';channels();cases();device(true);repaint()}})}
 function cases(){$("cases").innerHTML=scenarios[state.channel].map(function(s){return '<button class="casebtn" data-id="'+s.id+'" '+(state.busy?"disabled":"")+'><b>'+safe(s.title)+'</b><span>'+safe(s.sub)+"</span></button>"}).join("");Array.from($("cases").children).forEach(function(b){b.onclick=function(){start(b.dataset.id)}})}
 function device(initial){
   var s=state.active,c=state.channel,hasData=!!s&&!initial&&s.source===({wa:"WhatsApp",em:"Correo",fm:"Formulario web"}[c]);
@@ -425,24 +463,145 @@ function photo(text){var el=$("conversation");if(el&&state.channel==="wa"){el.in
 function typing(){var el=$("conversation");if(el&&state.channel==="wa"){el.insertAdjacentHTML("beforeend",'<div class="typing" id="dots"><i></i><i></i><i></i></div>');el.scrollTop=el.scrollHeight}}
 function clearTyping(){var d=$("dots");if(d)d.remove()}
 function delay(t){return new Promise(function(resolve){setTimeout(resolve,t)})}
-function agents(){var p=state.phase;var list=[["Esperando solicitud","Recopilando datos y fotos","Datos y necesidades registrados"],["Sin presupuesto pendiente","Propuesta en preparación","Propuesta preparada con tarifas de prueba"],["Esperando respuestas","Coordinando cita / seguimiento","Próxima acción registrada"]];for(var i=0;i<3;i++){var el=$("a"+i);el.classList.remove("working","done");var txt=list[i][0];if(state.active){if(i===0){txt=p==="intake"?"Conversando con el cliente":list[i][2];el.classList.add(p==="intake"?"working":"done")}if(i===1){txt=["quotePreparing"].includes(p)?list[i][1]:(["quoteReady","sent","accepted"].includes(p)?list[i][2]:"Esperando visita técnica");if(p==="quotePreparing")el.classList.add("working");if(["quoteReady","sent","accepted"].includes(p))el.classList.add("done")}if(i===2){txt=["readyForVisit","visitBooked","sent"].includes(p)?list[i][1]:p==="accepted"?"Cliente aceptó la propuesta":p==="intake"?"Esperando datos":"Pendiente de próxima acción";if(["readyForVisit","visitBooked","sent"].includes(p))el.classList.add("working");if(p==="accepted")el.classList.add("done")}}$("s"+i).textContent=txt}}
+/* Agenda de ejemplo: sólo días laborables futuros. Ningún servicio externo conectado. */
+function agendaSlots(){
+ var available=[],busy=[],now=new Date();
+ now.setHours(12,0,0,0);
+ for(var offset=1;offset<=14;offset++){
+  var d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+offset,12,0,0,0);
+  if(d.getDay()===0||d.getDay()===6)continue;
+  var dateKey=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  var dayName=new Intl.DateTimeFormat("es-ES",{weekday:"short",day:"numeric",month:"short"}).format(d).replace(/\./g,"");
+  for(var t of ["10:30","12:00","16:30"]){
+    var key=dateKey+"T"+t,slot={key:key,date:dateKey,time:t,label:dayName+" · "+t};
+    var reserved=state.appointments.some(function(a){return a.key===key});
+    var exampleOccupied=(offset%3===0&&t==="12:00");
+    if(reserved||exampleOccupied)busy.push(slot);
+    else available.push(slot);
+  }
+ }
+ return {available:available,busy:busy};
+}
+function clientTyping(){
+ if(state.channel!=="wa")return;
+ var el=$("conversation");if(!el)return;
+ el.insertAdjacentHTML("beforeend",'<div id="clientDots" class="typing typing-left" aria-label="El cliente está escribiendo"><i></i><i></i><i></i></div>');
+ el.scrollTop=el.scrollHeight;
+}
+function clearClientTyping(){var d=$("clientDots");if(d)d.remove()}
+function calendarChoices(){
+ if(state.phase!=="readyForVisit"||!state.active)return;
+ var el=$("conversation");if(!el)return;
+ var old=$("slot-chooser");if(old)old.remove();
+ var slots=agendaSlots().available.slice(0,6);
+ if(!slots.length){append("Por ahora no veo horarios libres en esta agenda de ejemplo. Nuestro equipo confirmaría otra opción.","agent");return}
+ var card=document.createElement("div");card.className="slot-chooser";card.id="slot-chooser";
+ card.innerHTML='<div class="slot-chooser-title">▦ HORARIOS DISPONIBLES <span>Agenda de prueba</span></div><div class="slot-chooser-sub">Selecciona una hora como si fueras el cliente:</div><div class="slot-choices">'+slots.map(function(sl){return '<button class="slot-choice" data-slotkey="'+safe(sl.key)+'">'+safe(sl.label)+'</button>'}).join("")+'</div>';
+ el.appendChild(card);
+ Array.from(card.querySelectorAll("[data-slotkey]")).forEach(function(b){b.onclick=function(){book(b.dataset.slotkey)}});
+ el.scrollTop=el.scrollHeight;
+}
+function notificationsView(){
+ if(!state.notifications.length)return '<div class="empty">No hay avisos de nuevas visitas todavía. Elige una hora en el chat para ver la notificación simulada al dueño.</div>';
+ return state.notifications.map(function(n){
+  return '<div class="owner-alert"><div class="owner-alert-eyebrow">✉ AVISO AL PROPIETARIO · SIMULACIÓN</div><h3>Visita técnica confirmada</h3><div class="labelrow"><span>Cliente</span><strong>'+safe(n.name)+'</strong></div><div class="labelrow"><span>Proyecto</span><strong>'+safe(n.type)+'</strong></div><div class="labelrow"><span>Fecha y hora</span><strong>'+safe(n.when)+'</strong></div><div class="labelrow"><span>Ubicación</span><strong>'+safe(n.location)+'</strong></div><div class="labelrow"><span>Documentación</span><strong>'+safe(n.photo)+'</strong></div><div class="labelrow"><span>Procedencia</span><strong>'+safe(n.source)+'</strong></div><p class="owner-alert-foot">El responsable tendría la ficha de la solicitud, la conversación y los adjuntos antes de la visita. Este aviso no se ha enviado a ninguna cuenta real.</p></div>'
+ }).join("");
+}
+
+function agents(){var p=state.phase;var list=[["Esperando solicitud","Recopilando datos y fotos","Datos y necesidades registrados"],["Sin presupuesto pendiente","Propuesta en preparación","Propuesta preparada con tarifas de prueba"],["Esperando respuestas","Coordinando cita / seguimiento","Próxima acción registrada"]];for(var i=0;i<3;i++){var el=$("a"+i);el.classList.remove("working","done");var txt=list[i][0];if(state.active){if(i===0){txt=p==="intake"?"Conversando con el cliente":list[i][2];el.classList.add(p==="intake"?"working":"done")}if(i===1){txt=["quotePreparing"].includes(p)?list[i][1]:(["quoteReady","sent","accepted"].includes(p)?list[i][2]:"Esperando visita técnica");if(p==="quotePreparing")el.classList.add("working");if(["quoteReady","sent","accepted"].includes(p))el.classList.add("done")}if(i===2){txt=["readyForVisit","visitBooked","sent"].includes(p)?list[i][1]:p==="accepted"?"Cliente aceptó la propuesta":p==="intake"?"Esperando datos":"Pendiente de próxima acción";if(["readyForVisit","sent"].includes(p))el.classList.add("working");if(p==="visitBooked")el.classList.add("done");if(p==="accepted")el.classList.add("done")}}$("s"+i).textContent=txt}}
+
 function pipeline(){var states=[["idle","Nueva solicitud"],["readyForVisit","Visita por coordinar"],["visitBooked","Visita agendada"],["quoteReady","Propuesta preparada"],["sent","Enviada"],["accepted","Aceptada"]];var index={idle:-1,intake:-1,readyForVisit:0,visitBooked:1,quotePreparing:2,quoteReady:2,sent:3,accepted:4}[state.phase];$("pipeline").innerHTML=states.slice(1).map(function(a,i){return '<span class="step '+(i===index?"active":i<index?"past":"")+'">'+(i<index?"✓ ":"")+a[1]+"</span>"}).join("");$("crmStatus").textContent=state.phase==="idle"?"Sin actividad":state.phase==="accepted"?"Proyecto confirmado · Demo":"Operación en curso"}
-function tabs(){$("tabs").innerHTML=[["ficha","Ficha"],["agenda","Visitas"],["quote","Presupuesto"],["activity","Actividad"]].map(function(x){return '<button class="'+(state.tab===x[0]?"active":"")+'" data-tab="'+x[0]+'">'+x[1]+"</button>"}).join("");Array.from($("tabs").children).forEach(function(b){b.onclick=function(){state.tab=b.dataset.tab;tabs();detail()}})}
+function tabs(){$("tabs").innerHTML=[["ficha","Ficha"],["agenda","Visitas"],["alerts","Avisos"+(state.notifications.length?" ("+state.notifications.length+")":"")],["quote","Presupuesto"],["activity","Actividad"]].map(function(x){return '<button class="'+(state.tab===x[0]?"active":"")+'" data-tab="'+x[0]+'">'+x[1]+"</button>"}).join("");Array.from($("tabs").children).forEach(function(b){b.onclick=function(){state.tab=b.dataset.tab;tabs();detail()}})}
+
 function detail(){var root=$("detail"),s=state.active;if(state.tab==="activity"){root.innerHTML=state.events.length?state.events.map(function(e){return '<div class="event"><span class="eventicon">'+safe(e.ico)+'</span><div class="eventtext"><b>'+safe(e.title)+'</b><p>'+safe(e.sub)+'</p></div><span class="muted">'+safe(e.time)+"</span></div>"}).join(""):'<div class="empty">Todavía no hay acciones. Inicia un escenario.</div>';return}
- if(state.tab==="agenda"){root.innerHTML=state.appointments.length?state.appointments.map(function(a){return '<div class="box"><div style="display:flex;justify-content:space-between;gap:12px"><h3>▦ '+safe(a.when)+'</h3><span class="badge">Visita confirmada · Simulación</span></div><div class="labelrow"><span>Cliente</span><strong>'+safe(a.name)+'</strong></div><div class="labelrow"><span>Proyecto</span><strong>'+safe(a.type)+'</strong></div><div class="labelrow"><span>Zona</span><strong>'+safe(a.location)+'</strong></div><div class="labelrow"><span>Documentación</span><strong>'+safe(a.photo)+'</strong></div><div style="margin-top:11px;padding:10px;border-radius:8px;background:#eef8f4;font-size:11px"><b>✉ Aviso al dueño (ejemplo):</b><br>Visita de medición confirmada. Datos, descripción, ubicación, fotos y conversación incluidos en la ficha.</div></div>'}).join(""):'<div class="empty">Aquí aparecerán las visitas confirmadas, con dirección, horario y necesidades de cada cliente. No hay calendario real conectado.</div>';return}
+ if(state.tab==="alerts"){root.innerHTML=notificationsView();return}
+ if(state.tab==="agenda"){
+  var visits=state.appointments.map(function(a){return '<div class="box appointment-card"><div class="ap-head"><h3>◷ '+safe(a.when)+'</h3><span class="badge">CONFIRMADA · DEMO</span></div><div class="labelrow"><span>Cliente</span><strong>'+safe(a.name)+'</strong></div><div class="labelrow"><span>Obra / proyecto</span><strong>'+safe(a.type)+'</strong></div><div class="labelrow"><span>Ubicación</span><strong>'+safe(a.location)+'</strong></div><div class="labelrow"><span>Fotos y planos</span><strong>'+safe(a.photo)+'</strong></div><div class="labelrow"><span>Canal</span><strong>'+safe(a.source)+'</strong></div><div class="appointment-notice">✓ Guardada en la agenda de demostración. Se generó un aviso para el dueño en la pestaña <b>Avisos</b>.</div></div>'}).join("");
+  var slots=agendaSlots(),dayMap={};
+  slots.available.slice(0,15).forEach(function(sl){(dayMap[sl.date]||(dayMap[sl.date]=[])).push(sl)});
+  var days=Object.keys(dayMap).slice(0,4).map(function(k){return '<div class="cal-day"><b>'+safe(dayMap[k][0].label.split(" · ")[0])+'</b><div>'+dayMap[k].map(function(sl){return '<span class="cal-available">'+safe(sl.time)+'</span>'}).join("")+'</div></div>'}).join("");
+  root.innerHTML='<div class="calendar-panel"><div class="calendar-title"><div><h3>▦ Agenda de visitas</h3><small>Disponibilidad de ejemplo · no conectada a un calendario real</small></div><span class="badge neu">SIMULACIÓN</span></div>'+days+'</div>'+(visits||'<div class="empty">Todavía no hay visitas reservadas. Elige una de las horas disponibles en el chat de la izquierda.</div>');
+  return
+ }
  if(state.tab==="quote"){if(!state.quote){root.innerHTML='<div class="empty">Primero se recopila la información y se programa la visita técnica. El presupuesto de ejemplo aparecerá después de simular la visita.</div>';return}var q=state.quote;root.innerHTML='<div class="quote"><div class="qhead"><b>REFORMAS SOLUM · PROPUESTA DE PRUEBA</b><span>SIMULACIÓN</span></div><div class="qbody"><div class="qname">'+safe(s.type)+'</div><div class="muted">'+safe(s.name)+" · "+safe(s.location)+'</div><div class="qnotice"><b>Importes ficticios.</b> Son un ejemplo del cálculo. No corresponden a las tarifas de Solum ni a un presupuesto definitivo.</div>'+q.items.map(function(x){return '<div class="qline"><span>'+safe(x[0])+'</span><strong>'+money(x[1])+"</strong></div>"}).join("")+'<div class="qline"><span>Subtotal</span><strong>'+money(q.sub)+'</strong></div><div class="qline"><span>IVA de ejemplo (21 %)</span><strong>'+money(q.tax)+'</strong></div></div><div class="qtotal"><span>Total ilustrativo</span><span>'+money(q.total)+'</span></div><div class="qfoot">Documento de demostración. Sin validez comercial. Sujeto a mediciones, valoración técnica, aprobación y condiciones reales.</div></div>';return}
  if(!s){root.innerHTML='<div class="empty"><b>El CRM está listo.</b><br>Inicia una de las seis solicitudes para ver cómo se crea la ficha del cliente, se registran las fotos y cambia el estado de cada oportunidad.</div>';return}
  root.innerHTML='<div class="box"><div style="display:flex;justify-content:space-between;align-items:center;gap:7px"><h3 style="margin:0">'+safe(s.name)+'</h3><span class="badge '+(state.phase==="readyForVisit"?"warn":"neu")+'">'+safe({intake:"Atendiendo solicitud",readyForVisit:"Visita pendiente",visitBooked:"Visita agendada",quotePreparing:"Calculando ejemplo",quoteReady:"Propuesta preparada",sent:"Propuesta enviada",accepted:"Propuesta aceptada"}[state.phase]||"Nueva solicitud")+'</span></div><div class="labelrow"><span>Proyecto</span><strong>'+safe(s.type)+'</strong></div><div class="labelrow"><span>Zona</span><strong>'+safe(s.location)+'</strong></div><div class="labelrow"><span>Alcance aproximado</span><strong>'+safe(s.qty)+" "+safe(s.unit)+'</strong></div><div class="labelrow"><span>Canal de entrada</span><strong>'+safe(s.source)+'</strong></div><div class="labelrow"><span>Documentación</span><strong>'+safe(s.photo)+'</strong></div></div><div class="box"><h3>Qué debe hacer ahora el sistema</h3><div style="font-size:12px;color:#51636b">'+({intake:"Recopilar la información del cliente.",readyForVisit:"Coordinar la visita técnica, sin enviar todavía un precio cerrado.",visitBooked:"Avisar al responsable y reunir fotos, medidas y necesidades antes de la visita.",quotePreparing:"Organizar las partidas de prueba después de una visita simulada.",quoteReady:"Revisar la propuesta antes de simular el envío.",sent:"Dar seguimiento a la propuesta y registrar la respuesta.",accepted:"Registrar la aceptación y avisar al responsable para planificar el trabajo."}[state.phase]||"Esperar la primera solicitud")+'</div></div>'; }
-function actions(){var a=$("actions"),p=state.phase;var c="";if(p==="idle")c='<span class="muted">Selecciona un escenario en el panel izquierdo. Cada botón muestra una situación distinta.</span>';if(p==="intake")c='<span class="muted">El agente está respondiendo. Las acciones aparecerán aquí al completar la conversación.</span>';if(p==="readyForVisit")c='<span class="muted">El cliente eligió coordinar visita. Simula una fecha:</span><button class="timebtn" data-slot="Jueves 19 · 10:30">Jue 19 · 10:30</button><button class="timebtn" data-slot="Viernes 20 · 17:00">Vie 20 · 17:00</button>';if(p==="visitBooked")c='<button class="primary" id="aftervisit">Simular visita realizada → Preparar propuesta</button>';if(p==="quotePreparing")c='<span class="muted">Preparando documento con tarifas ficticias...</span>';if(p==="quoteReady")c='<button class="primary" id="sendquote">Revisado · Simular envío de propuesta</button>';if(p==="sent")c='<button class="primary" id="accept">Simular respuesta: «Aceptamos la propuesta»</button><button class="secondary" id="follow">Simular seguimiento</button>';if(p==="accepted")c='<span class="badge">✓ Cliente confirmado en el CRM</span><button class="secondary" id="newcase">Probar otra solicitud</button>';$("actions").innerHTML=c;Array.from(a.querySelectorAll("[data-slot]")).forEach(function(b){b.onclick=function(){book(b.dataset.slot)}});if($("aftervisit"))$("aftervisit").onclick=makeQuote;if($("sendquote"))$("sendquote").onclick=sendQuote;if($("accept"))$("accept").onclick=accept;if($("follow"))$("follow").onclick=follow;if($("newcase"))$("newcase").onclick=function(){state.phase="idle";state.active=null;state.quote=null;state.slot=null;repaint();device(true)}}
+function actions(){var a=$("actions"),p=state.phase;var c="";if(p==="idle")c='<span class="muted">Selecciona un escenario en el panel izquierdo. Cada botón muestra una situación distinta.</span>';if(p==="intake")c='<span class="muted">El agente está respondiendo. Las acciones aparecerán aquí al completar la conversación.</span>';if(p==="readyForVisit")c='<span class="muted">✓ Agenda simulada consultada. Ahora el cliente puede elegir un día y una hora <b>desde el chat de la izquierda</b>.</span>';if(p==="visitBooked")c='<button class="primary" id="aftervisit">Simular visita realizada → Preparar propuesta</button>';if(p==="quotePreparing")c='<span class="muted">Preparando documento con tarifas ficticias...</span>';if(p==="quoteReady")c='<button class="primary" id="sendquote">Revisado · Simular envío de propuesta</button>';if(p==="sent")c='<button class="primary" id="accept">Simular respuesta: «Aceptamos la propuesta»</button><button class="secondary" id="follow">Simular seguimiento</button>';if(p==="accepted")c='<span class="badge">✓ Cliente confirmado en el CRM</span><button class="secondary" id="newcase">Probar otra solicitud</button>';$("actions").innerHTML=c;if($("aftervisit"))$("aftervisit").onclick=makeQuote;if($("sendquote"))$("sendquote").onclick=sendQuote;if($("accept"))$("accept").onclick=accept;if($("follow"))$("follow").onclick=follow;if($("newcase"))$("newcase").onclick=function(){state.phase="idle";state.active=null;state.quote=null;state.slot=null;state.calendarChecked=false;repaint();device(true)}}
 function tariff(){$("tariffs").innerHTML=categories.map(function(c){return '<div class="tariffcell"><label>'+safe(c[1])+' · '+safe(c[2])+'</label><input type="number" min="0" step="10" data-rate="'+c[0]+'" value="'+rates[c[0]]+'"></div>'}).join("");Array.from($("tariffs").querySelectorAll("input")).forEach(function(i){i.oninput=function(){rates[i.dataset.rate]=Math.max(0,Number(i.value)||0);if(state.quote){state.quote=calc();detail()}}})}
-async function start(id){if(state.busy)return;var s=scenarios[state.channel].filter(function(v){return v.id===id})[0];if(!s)return;state.busy=true;state.active=s;state.phase="intake";state.quote=null;state.slot=null;state.tab="ficha";state.messages++;log("Nueva solicitud recibida",s.type+" · "+s.source,"↓");device(false);cases();repaint();await delay(430);append(s.incoming,"client");await delay(800);typing();await delay(1250);clearTyping();append(s.ask,"agent");log("Agente respondió al cliente","Consulta inicial atendida · "+s.name,"✓");state.answered++;repaint();await delay(1350);append(s.answer,"client");await delay(550);photo(s.photo);log("Datos y documentos registrados",s.photo+" · "+s.location,"▧");await delay(720);typing();await delay(1250);clearTyping();append(s.closing,"agent");state.phase="readyForVisit";log("Preparación para la visita","Ficha completa · pendiente de elegir fecha","◷");state.busy=false;cases();repaint();toast("Solicitud atendida",s.name+" · Información lista para coordinar visita")}
-async function book(when){if(state.phase!=="readyForVisit")return;var s=state.active;state.slot=when;state.visits++;state.appointments.unshift({when:when,name:s.name,type:s.type,location:s.location,photo:s.photo});append("Perfecto, confirmo la visita: "+when+". Queda registrada la zona de "+s.location+".","agent");state.phase="visitBooked";log("Visita técnica agendada",when+" · "+s.location,"▦");state.tab="agenda";repaint();toast("Nueva visita confirmada",when+" · "+s.type+" · "+s.location)}
+async function start(id){
+ if(state.busy)return;
+ var s=scenarios[state.channel].filter(function(v){return v.id===id})[0];
+ if(!s)return;
+ state.busy=true;state.active=s;state.phase="intake";state.quote=null;state.slot=null;state.calendarChecked=false;
+ state.tab="ficha";state.messages++;
+ log("Nueva solicitud recibida",s.name+" · "+s.type+" · "+s.source,"↓");
+ device(false);cases();repaint();
+ await delay(350);clientTyping();await delay(620);clearClientTyping();append(s.incoming,"client");
+ if(s.complete){
+  await delay(500);photo(s.photo);
+  log("Solicitud completa recibida","Medidas, ubicación y documentación · "+s.name,"▧");
+  typing();await delay(850);clearTyping();
+  append("Hola, "+s.name.split(" ")[0]+". Gracias por enviarnos toda la información. Ya tenemos los datos de tu proyecto y las fotos. Para darte un presupuesto bien definido, nuestro equipo necesita revisar el espacio. ¿Te gustaría coordinar una visita sin compromiso?","agent");
+  state.answered++;log("Respuesta automática preparada","Información completa · se propone visita técnica","✓");
+  repaint();
+ }else{
+  await delay(680);typing();await delay(1000);clearTyping();append(s.ask,"agent");
+  state.answered++;log("Agente pidió información necesaria","Medidas, zona, detalles y fotos · "+s.name,"✓");repaint();
+  await delay(960);clientTyping();await delay(820);clearClientTyping();append(s.answer,"client");
+  await delay(530);photo(s.photo);log("Datos y documentación incorporados",s.photo+" · "+s.location,"▧");
+  await delay(600);typing();await delay(980);clearTyping();append(s.closing,"agent");
+  repaint();
+ }
+ await delay(1050);clientTyping();await delay(850);clearClientTyping();
+ append("Perfecto, me gustaría agendar una visita. ¿Qué días y horas tienen disponibles?","client");
+ log("Cliente solicita una visita",s.name+" · "+s.location,"◷");repaint();
+ await delay(450);typing();await delay(850);clearTyping();
+ append("Claro. Déjame revisar la agenda para ver qué horarios están libres.","agent");
+ await delay(850);
+ var slots=agendaSlots().available;
+ log("Agenda consultada · ejemplo",slots.length+" franjas libres encontradas en el calendario simulado","▦");
+ typing();await delay(870);clearTyping();
+ append("Estos son algunos horarios disponibles para la visita técnica sin compromiso. Elige el que mejor te venga:","agent");
+ state.phase="readyForVisit";state.calendarChecked=true;state.busy=false;
+ cases();repaint();calendarChoices();
+ toast("Horarios disponibles","El cliente puede seleccionar una cita directamente en el chat");
+}
+async function book(key){
+ if(state.phase!=="readyForVisit"||state.busy||!state.active)return;
+ var slot=agendaSlots().available.find(function(v){return v.key===key});
+ if(!slot){
+  toast("Ese horario ya no está disponible","Elige otro horario de la agenda de prueba");
+  calendarChoices();return;
+ }
+ state.busy=true;
+ var chooser=$("slot-chooser");if(chooser){chooser.querySelectorAll("button").forEach(function(b){b.disabled=true});chooser.remove()}
+ var s=state.active;
+ await delay(160);append("Me viene bien el "+slot.label+". ¿Me lo puedes reservar?","client");
+ await delay(490);typing();await delay(1050);clearTyping();
+ var conflicts=state.appointments.some(function(a){return a.key===key});
+ if(conflicts){
+   append("Ese horario acaba de ocuparse. Te muestro las otras opciones disponibles.","agent");
+   state.busy=false;calendarChoices();return;
+ }
+ var newVisit={key:key,when:slot.label,name:s.name,type:s.type,location:s.location,photo:s.photo,source:s.source};
+ state.slot=slot.key;
+ state.appointments.unshift(newVisit);
+ state.notifications.unshift({name:s.name,type:s.type,location:s.location,photo:s.photo,source:s.source,when:slot.label,key:key});
+ state.visits++;
+ append("¡Listo, "+s.name.split(" ")[0]+"! Tu visita quedó reservada para el "+slot.label+". Nuestro equipo revisará el proyecto contigo en "+s.location+". Te esperamos.","agent");
+ state.phase="visitBooked";
+ log("Franja horaria reservada",slot.label+" · "+s.name+" · sin duplicar horarios","▦");
+ log("Aviso al dueño preparado",s.type+" · "+s.location+" · "+slot.label,"✉");
+ state.tab="agenda";state.busy=false;cases();repaint();
+ toast("Nueva visita confirmada · Demo",s.name+" · "+slot.label+" · aviso visible en el CRM");
+}
+
 function calc(){var s=state.active;var total=Math.round((rates[s.rate]*s.qty)*100)/100;var weights=[.3,.45,.25];var items=s.lines.map(function(n,i){return [n,Math.round(total*weights[i]*100)/100]});var subtotal=items.reduce(function(a,b){return a+b[1]},0);var tax=Math.round(subtotal*.21*100)/100;return {items:items,sub:subtotal,tax:tax,total:subtotal+tax}}
 async function makeQuote(){if(state.phase!=="visitBooked")return;state.phase="quotePreparing";state.tab="activity";log("Visita de ejemplo finalizada","Revisión técnica simulada · no existe visita real","✓");repaint();await delay(1000);log("Agente organiza las partidas",state.active.type+" · tarifa de ejemplo","▤");repaint();await delay(950);state.quote=calc();state.phase="quoteReady";state.tab="quote";log("Propuesta de prueba preparada",money(state.quote.total)+" · pendiente de revisión","▤");repaint();toast("Presupuesto ilustrativo listo","Revisa las partidas y simula el envío")}
 function sendQuote(){if(state.phase!=="quoteReady")return;state.phase="sent";state.quotes++;state.tab="quote";append("Te compartimos la propuesta que preparamos tras la visita. Quedamos atentos a tus comentarios.","agent");log("Envío simulado al cliente",state.active.name+" · "+money(state.quote.total),"✉");repaint();toast("Propuesta enviada (simulación)","No se ha enviado ningún WhatsApp ni correo real")}
 function follow(){if(state.phase!=="sent")return;append("Hola, ¿pudiste revisar la propuesta? Si tienes dudas o quieres ajustar algún detalle, estamos para ayudarte.","agent");log("Seguimiento comercial simulado",state.active.name+" · pregunta de seguimiento","◷");state.tab="activity";repaint()}
 function accept(){if(state.phase!=="sent")return;append("Hola, revisamos la propuesta y nos interesa avanzar. ¿Cómo seguimos?","client");append("¡Gracias! Ya notificamos al responsable para coordinar el siguiente paso y confirmar el alcance.","agent");state.accepted++;state.phase="accepted";state.tab="ficha";log("CLIENTE ACEPTÓ LA PROPUESTA",state.active.name+" · "+state.active.type+" · "+money(state.quote.total),"★");repaint();toast("¡Nueva propuesta aceptada!","Cliente: "+state.active.name+" · Próxima acción: coordinar el inicio")}
-function reset(){state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null};Object.keys(rates).forEach(function(k){});channels();cases();device(true);repaint()}
+function reset(){state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null,notifications:[],calendarChecked:false};Object.keys(rates).forEach(function(k){});channels();cases();device(true);repaint()}
 $("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
 })();
 </script>
