@@ -1,302 +1,151 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ají Dulce. La Taguara · Tetuán, Madrid</title>
-<meta name="description" content="Ají Dulce. La Taguara es un restaurante de venezolana en Tetuán, Madrid.">
-<meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#B84A1A">
-<meta name="generator" content="Heme Studios · demo de restaurante (web heme)">
-<style>
-@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/dm-sans-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Newsreader';font-style:italic;font-weight:300 400;font-display:swap;src:url(fonts/newsreader-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Urbanist';font-style:normal;font-weight:200 600;font-display:swap;src:url(fonts/urbanist-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-/* Plantilla de demo de restaurante · Heme Studios · mobile-first */
-:root{--bg:#F5F1EA;--soft:#E8E0D4;--ink:#1F1A14;--ink-2:#5E584C;--line:rgba(31,26,20,.13);--acc:#6B5344;--acc2:#B0894F;--on:#fff;--disp:"Urbanist",system-ui,sans-serif;--body:"Urbanist",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif;color-scheme:light}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body.lock{overflow:hidden}
-.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--disp);font-weight:300;margin:0;line-height:1.04;text-wrap:balance}
-h2{font-size:clamp(32px,5.2vw,64px);letter-spacing:-.01em}
-h2 em,h1 em,.words em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acc)}
-.k{font-size:11.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
-p{margin:0}.lede{color:var(--ink-2);max-width:52ch;margin-top:18px;font-size:17px}
-img,video{display:block;width:100%;height:100%;object-fit:cover}
-figure{margin:0;overflow:hidden;background:var(--soft);position:relative}
-button{font:inherit;color:inherit;cursor:pointer}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
-section{padding-block:96px}@media(max-width:700px){section{padding-block:72px}}
-.rv{transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity 1.1s}.rv.pre{transform:translateY(34px);opacity:.001}
-.clip{clip-path:inset(0 0 0 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}.clip.pre{clip-path:inset(100% 0 0 0)}
-.clip img{transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}.clip.pre img{transform:scale(1.18)}
-
-/* placeholders neutros: nada de fotos inventadas */
-.ph{position:relative;display:grid;place-items:center;isolation:isolate;background:
-  radial-gradient(120% 90% at 10% 0%, color-mix(in srgb,var(--acc2) 42%, transparent), transparent 54%),
-  radial-gradient(90% 80% at 100% 100%, color-mix(in srgb,var(--acc) 38%, transparent), transparent 50%),
-  linear-gradient(155deg,var(--soft), color-mix(in srgb,var(--acc) 18%, var(--bg)) 55%, var(--soft));
-  min-height:100%}
-.ph::after{content:attr(data-ph);position:relative;z-index:1;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 55%, transparent);text-align:center;padding:12px}
-.ph.dark{background:
-  radial-gradient(90% 80% at 20% 20%, color-mix(in srgb,var(--acc2) 35%, transparent), transparent 50%),
-  linear-gradient(180deg,#1a1510, color-mix(in srgb,var(--acc) 45%, #0c0a08))}
-.ph.dark::after{color:rgba(255,255,255,.55)}
-
-/* intro (cortina) */
-.intro{position:fixed;inset:0;z-index:100;background:var(--acc);color:#fff;display:grid;place-items:center;transition:clip-path 1.15s cubic-bezier(.7,0,.2,1);clip-path:inset(0 0 0 0)}
-.intro.out{clip-path:inset(0 0 100% 0)}
-.intro .box{text-align:center;padding:24px;max-width:90vw}
-.intro .iname{font-family:var(--disp);font-weight:300;font-size:clamp(36px,8vw,88px);letter-spacing:.03em;line-height:1.05;animation:ifade 1s .25s both;text-wrap:balance}
-.intro .iline{display:block;height:1px;background:rgba(255,255,255,.8);width:min(320px,60vw);margin:22px auto 16px;transform:scaleX(0);animation:iline 1.1s .55s cubic-bezier(.7,0,.2,1) forwards}
-.intro .itag{font-size:12px;letter-spacing:.38em;text-transform:uppercase;opacity:0;animation:ifade 1s .9s both}
-@keyframes ifade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes iline{to{transform:scaleX(1)}}
-
-/* aviso visible de propuesta no oficial */
-.aviso{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:25;background:color-mix(in srgb,var(--ink) 78%, transparent);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-radius:99px;white-space:nowrap;max-width:calc(100vw - 24px);overflow:hidden;text-overflow:ellipsis;pointer-events:none}
-@media(max-width:700px){.aviso{letter-spacing:.08em;font-size:9.5px;padding:6px 10px}}
-
-/* header */
-.top{position:fixed;inset:0 0 auto;z-index:20;padding-block:calc(42px + env(safe-area-inset-top,0px)) 12px;color:#fff;transition:background .35s,box-shadow .35s,color .35s,transform .4s,padding .35s}
-.top.solid{background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);color:var(--ink);padding-block:calc(12px + env(safe-area-inset-top,0px)) 12px}
-.top.hide{transform:translateY(-100%)}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px}
-.mk{display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.18em;font-size:13px;text-transform:uppercase;text-decoration:none;color:inherit;min-width:0}
-.mk span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btn{background:var(--acc);color:var(--on);border:0;border-radius:99px;padding:11px 20px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:transform .25s,filter .25s;white-space:nowrap}
-.btn:hover{transform:translateY(-2px);filter:brightness(.92)}
-.btn.ghost{background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.4)}
-.top.solid .btn.ghost{background:var(--acc);border-color:transparent}
-
-/* hero */
-.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;padding:0;color:#fff;background:#111}
-.hero .media{position:absolute;inset:0;transform:scale(1.1);transition:transform 2.6s cubic-bezier(.2,.7,.2,1)}
-.ready .hero .media{transform:scale(1)}
-.hero .media img{animation:kb 18s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-2%,-1.5%,0)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 30%,rgba(0,0,0,.05) 52%,rgba(0,0,0,.78))}
-.hero .in{position:absolute;inset:auto 0 0;z-index:2;padding-bottom:max(56px,env(safe-area-inset-bottom,0px))}
-.hero h1{font-size:clamp(40px,10vw,132px);letter-spacing:-.02em;font-weight:300;max-width:18ch}
-.hero.long h1{font-size:clamp(32px,8.4vw,104px)}
-.hero h1 .ch{display:inline-block;opacity:0;transform:translateY(60%);transition:transform 1.1s cubic-bezier(.2,.8,.2,1),opacity 1.1s}
-.ready .hero h1 .ch{opacity:1;transform:none}
-.hero .tag{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,28px);margin-top:8px;opacity:0;transition:1.2s .7s}
-.hero .loc{display:flex;gap:10px;align-items:center;margin-top:18px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:1.2s .9s}
-.hero .loc i{width:9px;height:9px;border-radius:50%;background:var(--acc2);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc2) 35%,transparent);flex:none}
-.ready .hero .tag,.ready .hero .loc{opacity:1}
-.cue{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:max(56px,env(safe-area-inset-bottom,0px));z-index:2;font-size:11px;letter-spacing:.22em;text-transform:uppercase;writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;opacity:.85}
-.cue i{width:1px;height:46px;background:#fff;transform-origin:top;animation:cue 2s ease-in-out infinite}
-@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* bienvenida */
-.welcome{text-align:center;padding-bottom:48px}
-.words{font-family:var(--disp);font-weight:300;font-size:clamp(24px,3.5vw,44px);line-height:1.3;max-width:26ch;margin:24px auto 0}
-.words span{opacity:.13;transition:opacity .4s}.words span.on{opacity:1}
-.src{display:block;margin-top:18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.mq{overflow:hidden;border-block:1px solid var(--line);padding-block:18px;margin-top:56px;white-space:nowrap}
-.mq div{display:inline-flex;gap:46px;padding-right:46px;animation:mq 38s linear infinite}
-.mq span{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--ink);display:inline-flex;align-items:center;gap:46px}
-.mq span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc2)}
-@keyframes mq{to{transform:translateX(-100%)}}
-
-/* números / reseñas (solo valoración y recuento reales) */
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:30px;margin-top:10px}
-.nums b{display:block;font-family:var(--disp);font-weight:200;font-size:clamp(52px,7vw,92px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--acc)}
-.nums span{display:block;margin-top:8px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
-.nums small{display:block;margin-top:26px;color:var(--ink-2);font-size:12px;grid-column:1/-1}
-.reviews{padding-top:24px}
-
-/* especialidades / carta */
-.carta .g{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0;list-style:none}
-.chips li{border:1px solid var(--line);padding:10px 16px;border-radius:99px;font-size:14px;letter-spacing:.04em}
-.carta .mos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.carta .mos figure{aspect-ratio:4/5;border-radius:8px}
-.carta .mos figure:first-child{grid-row:1/3;aspect-ratio:auto;min-height:100%}
-@media(max-width:860px){.carta .g{grid-template-columns:1fr;gap:32px}.carta .mos{max-width:520px}}
-
-/* galería horizontal fija */
-.hscroll{position:relative;padding:0;height:330vh;background:var(--soft)}
-.hstick{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:26px}
-.hhead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-.hcount{font-size:13px;letter-spacing:.2em;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
-.track{display:flex;gap:18px;padding-left:max(20px,calc((100vw - 1200px)/2 + 20px));will-change:transform}
-.panel{flex:none;height:min(62svh,560px);aspect-ratio:4/5;border-radius:8px;position:relative}
-.panel.w{aspect-ratio:3/2}.panel.t{aspect-ratio:9/16}
-.panel figcaption{position:absolute;left:16px;bottom:14px;z-index:2;color:#fff;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;text-shadow:0 1px 10px rgba(0,0,0,.5)}
-.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.38),rgba(0,0,0,0) 42%);pointer-events:none}
-.panel img,.panel .ph{position:absolute;inset:0;width:100%;height:100%;transform:scale(1.14)}
-.hbar{height:2px;background:var(--line);border-radius:2px;overflow:hidden}.hbar i{display:block;height:100%;width:0;background:var(--acc)}
-@media(max-width:700px){.panel{height:min(56svh,500px)}.panel.w{aspect-ratio:4/5}}
-
-/* tarjetas apiladas */
-.stack{margin-top:50px}
-.card{position:sticky;top:calc(84px + var(--i)*20px);height:min(74svh,640px);border-radius:12px;overflow:hidden;margin-bottom:6vh;box-shadow:0 30px 60px -30px rgba(0,0,0,.45);transform-origin:center top}
-.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78),rgba(0,0,0,0) 58%)}
-.card .ph,.card img{position:absolute;inset:0;width:100%;height:100%}
-.card .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;color:#fff;padding:34px clamp(22px,4vw,48px)}
-.card .cap .k{color:#fff;opacity:.8}
-.card h3{font-size:clamp(30px,4.4vw,56px);margin-top:10px}
-
-/* visitar: dirección y mapa (horario solo si está verificado) */
-.visit{background:var(--soft)}
-.visit .g{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;margin-top:28px}
-.visit address{font-style:normal;font-size:clamp(22px,2.6vw,34px);line-height:1.3;font-family:var(--disp);font-weight:300;max-width:18ch}
-.visit a.map{display:inline-flex;margin-top:22px;text-decoration:none}
-.mapa-ph{aspect-ratio:5/4;border-radius:12px;overflow:hidden;min-height:240px;display:grid;place-items:center;text-align:center;padding:24px;color:var(--ink-2);border:1px solid var(--line);background:
-  linear-gradient(180deg,color-mix(in srgb,var(--acc) 10%,var(--bg)),var(--soft));text-decoration:none}
-.mapa-ph b{display:block;font-family:var(--disp);font-weight:400;font-size:22px;color:var(--ink);margin-bottom:8px}
-@media(max-width:860px){.visit .g{grid-template-columns:1fr}}
-
+<!doctype html><html lang="es" class="t-latino"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ají Dulce. La Taguara · Arepas, empanadas y cachapas en el Mercado de Maravillas</title><meta name="description" content="Arepas, empanadas y cachapas en el Mercado de Maravillas. Propuesta conceptual no oficial de Heme Studios."><meta name="robots" content="noindex,nofollow"><meta name="googlebot" content="noindex,nofollow"><meta name="theme-color" content="#FFF4D6"><link rel="icon" href="data:,"><link rel="preload" as="image" href="img/08.webp"><link rel="preload" as="font" type="font/woff2" href="fonts/bricolage.woff2" crossorigin><script>document.documentElement.classList.add('js')</script><style>@font-face{font-family:'Bricolage';font-style:normal;font-weight:500 800;font-display:swap;src:url(fonts/bricolage.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/dmsans.woff2) format('woff2')}:root{--bg:#FFF4D6;--ink:#1B1B3A;--acc:#D7263D;--acc2:#FFC233;--acc3:#1E4FA8;--dark:#1B1B3A;--on-acc:#ffffff;--on-acc2:#1B1B3A;--on-acc3:#ffffff;--on-ink:#FFF4D6}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}figure{margin:0}a{color:inherit}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+.aviso{position:fixed;top:0;left:0;right:0;z-index:60;height:28px;display:flex;align-items:center;justify-content:center;background:#0d0d0d;color:#fff;font:600 10.5px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:0 10px;white-space:nowrap;overflow:hidden}
+.top{position:fixed;top:28px;left:0;right:0;z-index:50;transition:background .4s,box-shadow .4s,color .4s,backdrop-filter .4s}
+.bar{display:flex;align-items:center;gap:26px;height:70px}
+.logo{font-family:var(--disp);font-size:24px;text-decoration:none;margin-right:auto;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.links{display:flex;gap:30px}
+.links a{text-decoration:none;font-weight:600;font-size:15px;position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.links a:hover::after{transform:scaleX(1)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:999px;background:var(--acc);color:var(--on-acc);text-decoration:none;font:700 15px/1 var(--body);border:0;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;white-space:nowrap}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.45)}
+.pill.alt{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.pill.sm{padding:11px 20px;font-size:14px}.pill.big{padding:17px 30px;font-size:16px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;color:inherit;cursor:pointer;place-content:center;gap:6px;padding:0}
+.burger i{display:block;width:22px;height:2px;background:currentColor;transition:transform .3s}
+.top.open .burger i:first-child{transform:translateY(4px) rotate(45deg)}.top.open .burger i:last-child{transform:translateY(-4px) rotate(-45deg)}
+@media(max-width:820px){
+ .bar{gap:10px;height:62px}.logo{font-size:20px}
+ .links{position:absolute;top:66px;left:12px;right:12px;flex-direction:column;gap:0;background:var(--bg);color:var(--ink);border-radius:18px;box-shadow:0 24px 50px -12px rgba(0,0,0,.35);padding:8px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.3s}
+ .top.open .links{opacity:1;visibility:visible;transform:none}
+ .links a{padding:14px 16px;font-size:17px}.links a::after{display:none}
+ .burger{display:grid}
+}
+section{padding:110px 0}@media(max-width:700px){section{padding:72px 0}}
+.sh{margin-bottom:44px}
+.k{font:700 12px/1.2 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+h2{font-size:clamp(36px,5.4vw,68px)}
+.lede{font-size:18px;max-width:56ch;margin-top:20px;opacity:.85}
+.chip{display:inline-block;margin-top:22px;padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px;background:color-mix(in srgb,currentColor 10%,transparent)}
+/* menú */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.cards{grid-template-columns:1fr}}
+.card{position:relative;overflow:hidden}
+.cm{overflow:hidden;aspect-ratio:4/3}.cm img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.card:hover .cm img{transform:scale(1.07)}
+.cm.noimg{background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--acc2) 70%,transparent),transparent 60%),var(--acc)}
+.cb{padding:20px 22px 24px}.cb h3{font-size:26px}.cb .n{display:block;font:700 12px/1 var(--body);letter-spacing:.2em;opacity:.6;margin-bottom:10px}
+.cb small{display:block;margin-top:10px;font-size:13px;opacity:.65}
+.note{margin-top:28px;font-size:14px;opacity:.7}
+/* nosotros */
+.ng{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+@media(max-width:860px){.ng{grid-template-columns:1fr;gap:36px}}
+.nf{overflow:hidden;aspect-ratio:4/5}.nf img{width:100%;height:100%;object-fit:cover}
+.stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:34px}
+.stats b{display:block;font-family:var(--disp);font-size:48px;line-height:1;color:var(--acc)}.stats b.sm{font-size:30px;line-height:1.6}
+.stats span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.src{margin-top:18px;font-size:12.5px;opacity:.6}
+/* galería */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.gi{overflow:hidden}.gi img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}.gi:hover img{transform:scale(1.06)}
+.grid .gi:nth-child(5n+1){grid-row:span 2}.grid .gi:nth-child(5n+3){grid-column:span 2}
+.grid.n1,.grid.n2{grid-template-columns:repeat(2,1fr);grid-auto-rows:320px}.grid.n1 .gi,.grid.n2 .gi{grid-row:auto;grid-column:auto}
+.grid.n3 .gi:nth-child(3){grid-column:span 2}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;gap:10px}.grid .gi:nth-child(5n+3){grid-column:span 2}}
 /* reserva */
-.book{position:relative;overflow:hidden;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--acc2) 16%,var(--bg)) 60%,color-mix(in srgb,var(--acc2) 32%,var(--bg)) 100%);padding-bottom:0}
-.book h2{max-width:16ch;margin:16px auto 0}.book .lede{margin:18px auto 0}
-.book .cta{margin-top:34px;font-size:14px;padding:18px 36px}
-.horizon{position:relative;height:220px;margin-top:56px}
-.horizon .orb{position:absolute;left:50%;top:10px;width:140px;height:140px;margin-left:-70px;border-radius:50%;background:var(--acc2);box-shadow:0 0 90px 24px color-mix(in srgb,var(--acc2) 40%,transparent)}
-.horizon .l1{position:absolute;left:0;right:0;bottom:0;height:120px;background:var(--acc);opacity:.85;clip-path:polygon(0 30%,20% 22%,40% 32%,60% 18%,80% 28%,100% 20%,100% 100%,0 100%)}
-.horizon .l2{position:absolute;left:0;right:0;bottom:0;height:84px;background:var(--ink);clip-path:polygon(0 35%,25% 26%,50% 38%,75% 24%,100% 34%,100% 100%,0 100%)}
-.ctc{background:var(--ink);color:#fff;padding-block:64px}
-.ctc .k{color:var(--acc2)}
-.ctc dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;margin:20px 0 0}
-.ctc dt{font-size:12.5px;opacity:.7;letter-spacing:.1em;text-transform:uppercase}.ctc dd{margin:6px 0 0;font-size:18px;word-break:break-word}
-.ctc a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-footer{background:var(--ink);color:rgba(255,255,255,.7);font-size:13px;padding-block:22px calc(110px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.16)}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.fab{position:fixed;z-index:30;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,170%);transition:transform .5s cubic-bezier(.2,.8,.2,1);padding:15px 30px;box-shadow:0 16px 34px -12px rgba(0,0,0,.5)}
-.fab.show{transform:translate(-50%,0)}
+.rbox{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:64px;align-items:center}
+@media(max-width:900px){.rbox{grid-template-columns:1fr;gap:32px;padding:40px 24px}}
+.rbox h2{font-size:clamp(40px,6vw,78px)}
+.tel{margin-top:22px;font-weight:600}.tel a{text-decoration:underline;text-underline-offset:4px}
+.rf{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rf label{display:flex;flex-direction:column;gap:6px}.rf label:first-child{grid-column:1/-1}
+.rf span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.rf input,.rf select{font:500 16px/1.2 var(--body);padding:15px 16px;border-radius:14px;border:1.5px solid color-mix(in srgb,currentColor 25%,transparent);background:rgba(255,255,255,.92);color:#1a1a1a;width:100%;min-width:0;appearance:none;-webkit-appearance:none}
+.rf input:focus,.rf select:focus{outline:3px solid var(--acc2);outline-offset:1px}
+.rf input.bad{border-color:#e03131;box-shadow:0 0 0 3px rgba(224,49,49,.25)}
+.rf button{grid-column:1/-1;margin-top:6px}
+.msg{grid-column:1/-1;font-weight:600;min-height:1.2em}.demo{grid-column:1/-1;font-size:12.5px;opacity:.65}
+@media(max-width:420px){.rf{grid-template-columns:1fr}}
+/* ubicación */
+.ug{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:stretch}
+@media(max-width:900px){.ug{grid-template-columns:1fr}}
+.uc{padding:36px}.uc h3{font-size:28px;margin-bottom:22px}
+.uc ul{list-style:none;margin:0;padding:0}.uc li{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:13px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)}
+.uc li span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.6;padding-top:3px}.uc li b{font-weight:500}
+@media(max-width:480px){.uc{padding:26px 20px}.uc li{grid-template-columns:1fr;gap:2px}}
+.map{min-height:420px;overflow:hidden;background:color-mix(in srgb,currentColor 8%,transparent)}.map iframe{display:block;width:100%;height:100%;min-height:420px;border:0}
+/* footer */
+.ft{padding:56px 0 64px;font-size:14px}.ft .fl{font-family:var(--disp);font-size:30px;margin-bottom:8px}.ft .avs{margin-top:18px;opacity:.7;font-size:12.5px;max-width:80ch}
+/* animaciones */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.mq{animation:none!important}}
+/* cintas */
+.cintas{position:relative;height:190px;overflow:hidden}
+.cinta{position:absolute;left:-5%;width:110%;padding:16px 0;overflow:hidden;white-space:nowrap;font-family:var(--disp);font-size:30px;text-transform:uppercase;line-height:1}
+.cinta.c1{top:42px;transform:rotate(-3.5deg);background:var(--acc);color:var(--on-acc);z-index:2}
+.cinta.c2{top:80px;transform:rotate(3deg);background:var(--ink);color:var(--bg)}
+.mq{display:inline-flex;animation:mq 38s linear infinite}.mq.rev{animation-direction:reverse}
+.mq span{padding:0 22px}.mq span::after{content:"✦";margin-left:44px;opacity:.8}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(max-width:700px){.cintas{height:140px}.cinta{font-size:20px;padding:12px 0}.cinta.c1{top:30px}.cinta.c2{top:62px}}
+.card.np .cb{min-height:220px;display:flex;flex-direction:column;justify-content:flex-end}
+.card.np .cb h3{font-size:34px}
+.t-tasca .card.np{grid-template-columns:1fr}.t-tasca .card.np .cb{min-height:0}
+.t-especias .card.np .cb,.t-italiano .card.np .cb{min-height:180px}
+@media(max-width:600px){.card.np .cb{min-height:130px}}
+:root{--disp:'Bricolage',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+.t-latino h1,.t-latino h2,.t-latino h3,.t-latino .logo{font-weight:800;text-transform:uppercase;letter-spacing:-.02em}
+.t-latino .top{background:var(--bg);border-bottom:2px solid var(--ink)}
+.t-latino .logo{color:var(--acc)}
+.t-latino .hero{padding:150px 0 70px;position:relative;overflow:hidden}
+.t-latino .hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:var(--acc2);opacity:.35;right:-160px;top:40px;filter:blur(2px)}
+.t-latino .hg{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
+.t-latino .tagline{display:inline-block;background:var(--acc2);color:var(--on-acc2);font-weight:700;padding:9px 16px;border-radius:12px;transform:rotate(-2deg);font-size:15px}
+.t-latino .hero h1{font-size:clamp(58px,9.5vw,138px);line-height:.88;color:var(--acc);margin:26px 0 18px;word-break:break-word}
+.t-latino .full{font-weight:600;opacity:.8}
+.t-latino .hf{position:relative;border-radius:36px;box-shadow:14px 14px 0 var(--acc3);aspect-ratio:4/5;max-height:640px}
+.t-latino .hf img{width:100%;height:100%;object-fit:cover;border-radius:36px}
+.t-latino .sticker{position:absolute;left:-26px;bottom:34px;width:118px;height:118px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-content:center;text-align:center;font-weight:700;font-size:13px;transform:rotate(-10deg);box-shadow:0 12px 30px -10px rgba(0,0,0,.4);animation:wob 5s ease-in-out infinite}
+.t-latino .sticker b{font-family:var(--disp);font-size:38px;line-height:1}
+@keyframes wob{50%{transform:rotate(6deg) scale(1.04)}}
+@media(max-width:860px){.t-latino .hero{padding:120px 0 40px}.t-latino .hg{grid-template-columns:1fr;gap:40px}.t-latino .hf{aspect-ratio:1/1;margin-right:14px}.t-latino .sticker{left:auto;right:-8px;bottom:-20px;width:96px;height:96px}.t-latino .sticker b{font-size:30px}}
+.t-latino .card{border-radius:28px;padding:12px;background:var(--acc);color:var(--on-acc);transition:transform .35s}
+.t-latino .card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.t-latino .card.c1{background:var(--acc2);color:var(--on-acc2)}.t-latino .card.c2{background:var(--acc3);color:var(--on-acc3)}.t-latino .card.c3{background:var(--ink);color:var(--bg)}
+.t-latino .cm{border-radius:20px}.t-latino .cb{padding:18px 10px 10px}.t-latino .cb h3{font-size:30px}
+.t-latino .nf{border-radius:200px 200px 32px 32px}
+.t-latino .gi{border-radius:24px}
+.t-latino .rbox{background:var(--acc);color:var(--on-acc);border-radius:44px;position:relative;overflow:hidden}
+.t-latino .rbox .k{color:inherit;opacity:.8}.t-latino .rbox .pill{background:var(--acc2);color:var(--on-acc2)}
+.t-latino .uc{background:#fff;border:2px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--acc2)}
+.t-latino .map{border-radius:28px;border:2px solid var(--ink)}
+.t-latino .ft{background:var(--ink);color:var(--bg)}.t-latino .ft .fl{text-transform:uppercase;font-weight:800;color:var(--acc2)}
 
-/* hoja de reserva: arma el mensaje, no envía */
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .3s}.scrim.on{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:50%;bottom:0;z-index:41;width:min(540px,100%);max-height:92svh;transform:translate(-50%,105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);background:#fff;color:#1b1b1b;border-radius:24px 24px 0 0;display:flex;flex-direction:column}
-.sheet.on{transform:translate(-50%,0)}
-.grab{width:44px;height:5px;border-radius:9px;background:#ddd;margin:10px auto 0}
-.sh-head{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 8px}
-.steps{display:flex;gap:6px}.steps i{width:26px;height:3px;border-radius:3px;background:#e3e3e3;transition:background .3s}.steps i.on{background:var(--acc)}
-.x{border:0;background:#f2f2f2;width:34px;height:34px;border-radius:50%;font-size:18px;flex:none}
-.sh-body{overflow-y:auto;padding:4px 20px 18px;flex:1}
-.sh-body h3{font-size:22px;margin:6px 0 16px;font-weight:500}
-.sh-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid #eee}
-.info{font-size:13.5px;color:#666;min-width:0}
-.next{background:var(--acc);color:#fff;border:0;border-radius:14px;padding:14px 22px;font-weight:600;font-size:14px;white-space:nowrap}.next:disabled{opacity:.4;cursor:not-allowed}
-.back{background:none;border:0;color:#666;font-size:14px}
-.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.cal-nav b{text-transform:capitalize;font-weight:600}
-.cal-nav button{border:1px solid #e5e5e5;background:#fff;width:34px;height:34px;border-radius:50%}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-variant-numeric:tabular-nums}
-.dow{font-size:11px;color:#888;text-align:center;padding:6px 0}
-.cal button{aspect-ratio:1;border:0;background:none;border-radius:10px;font-size:14px}.cal button:disabled{opacity:.25;cursor:default}
-.cal button.on{background:var(--acc);color:#fff}
-.hint{font-size:13px;color:#777;margin-top:12px}
-.field{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #eee}.field small{display:block;color:#888;font-size:13px}
-.stepper{display:flex;align-items:center;gap:14px}.stepper button{width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;font-size:18px}.stepper button:disabled{opacity:.3}
-.input{width:100%;border:1px solid #ddd;border-radius:12px;padding:13px 14px;font:inherit;font-size:16px;margin-top:10px}
-.sum{background:#f6f6f6;border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:14px}.sum div{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
-.done{text-align:center;padding:16px 0 6px}
-.done .ok{width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--acc);display:grid;place-items:center;font-size:34px;color:#fff;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
-@keyframes pop{from{transform:scale(.3);opacity:0}}
-.done p{color:#666;margin-top:12px}
-.msg{margin-top:16px;background:#E7F6EF;border-radius:14px;padding:12px 14px;text-align:left;font-size:13.5px;white-space:pre-line}
-.msg.mail{background:#EEF2F8}.msg.ig{background:#F6EEF8}
-.msg b{display:block;font-size:12px;color:#1C8A5A;margin-bottom:4px}.msg.mail b{color:#34508a}.msg.ig b{color:#6b2a7a}
-.demo{font-size:11px;letter-spacing:.1em;color:#888;text-align:center;margin-top:16px;text-transform:uppercase}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv.pre{transform:none;opacity:1}.clip.pre{clip-path:none}.intro{display:none}.hero h1 .ch{opacity:1;transform:none}.aviso{display:none}}
-
-:root{--bg:#F6F0E6;--soft:#EAD9C0;--ink:#23180F;--ink-2:#6A5340;--line:color-mix(in srgb,#23180F 13%,transparent);--acc:#B84A1A;--acc2:#C9A227;--disp:"Urbanist",system-ui,sans-serif;--body:"Urbanist",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif}
-</style>
-</head>
-<body class="lock">
-<div class="intro" id="intro" role="presentation"><div class="box"><div class="iname">Ají Dulce. La Taguara</div><span class="iline"></span><div class="itag">Madrid · Tetuán</div></div></div>
-<div class="aviso">Propuesta conceptual no oficial · Heme Studios</div><header class="top" id="top"><div class="wrap"><a class="mk" href="#inicio"><span>Ají Dulce</span></a><button class="btn ghost" type="button" data-open>Reservar</button></div></header>
-<section class="hero" id="inicio"><div class="media"><img src="img/01.webp" alt="Ají Dulce. La Taguara"></div><div class="in wrap"><h1>Ají Dulce. La Taguara</h1><p class="tag">Venezolana (arepas, empanadas, cachapas)</p><p class="loc"><i></i>Tetuán (Mercado de Maravillas) · Madrid</p></div><div class="cue"><i></i>Desliza</div></section>
-<section class="welcome"><div class="wrap"><p class="k rv">El restaurante</p><p class="words" id="words">Ají Dulce. La Taguara es un restaurante de venezolana en Tetuán, Madrid.</p><span class="src">Tetuán · Madrid</span></div><div class="mq" aria-label="Venezolana, Tetuán, Madrid, Restaurante"><div><span>Venezolana</span><span>Tetuán</span><span>Madrid</span><span>Restaurante</span></div><div aria-hidden="true"><span>Venezolana</span><span>Tetuán</span><span>Madrid</span><span>Restaurante</span></div></div></section>
-<section class="reviews" id="valoracion"><div class="wrap"><p class="k rv">Google</p><h2 class="rv">Lo que dicen <em>de ellos</em></h2><div class="nums" style="margin-top:36px"><div class="rv"><b data-count="4.9">4.9</b><span>Valoración media</span></div><div class="rv"><b data-count="343">343</b><span>Reseñas</span></div><small>Datos de Google, comprobados el 15/11/2026. No reproducimos reseñas individuales.</small></div></div></section>
-<section class="carta" id="cocina"><div class="wrap g"><div><p class="k rv">Cocina</p><h2 class="rv">Cocina <em>venezolana</em></h2><p class="lede rv">Cocina Venezolana (arepas, empanadas, cachapas).</p><ul class="chips"><li>Arepas</li><li>Empanadas</li><li>Cachapas</li></ul><p class="lede rv" style="font-size:15px">La carta y los precios no están publicados aquí: no los hemos verificado.</p></div><div class="mos"><figure class="clip"><img src="img/02.webp" alt="Foto del local" loading="lazy"></figure><figure class="clip"><img src="img/03.webp" alt="Foto del local" loading="lazy"></figure></div></div></div></section>
-<section class="hscroll" id="hs"><div class="hstick"><div class="wrap hhead"><div><p class="k">El local</p><h2>Una mirada <em>al espacio</em></h2></div><span class="hcount" id="hc">01 / 08</span></div><div class="track" id="track"><figure class="panel "><img src="img/01.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel w"><img src="img/02.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel t"><img src="img/03.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel "><img src="img/04.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel w"><img src="img/05.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel "><img src="img/06.webp" alt="Instagram @ajidulcelataguara" loading="lazy"><figcaption>Instagram @ajidulcelataguara</figcaption></figure><figure class="panel t"><img src="img/07.webp" alt="Google Maps (ficha pública)" loading="lazy"><figcaption>Google Maps (ficha pública)</figcaption></figure><figure class="panel w"><img src="img/08.webp" alt="Google Maps (ficha pública)" loading="lazy"><figcaption>Google Maps (ficha pública)</figcaption></figure></div><div class="wrap"><div class="hbar"><i id="hb"></i></div></div></div></section>
-<section id="espacio"><div class="wrap"><p class="k rv">El espacio</p><h2 class="rv">Tres miradas</h2><div class="stack"><article class="card" style="--i:0"><img src="img/01.webp" alt="" loading="lazy"><div class="cap"><p class="k">Ají Dulce</p><h3>El local</h3></div></article><article class="card" style="--i:1"><img src="img/02.webp" alt="" loading="lazy"><div class="cap"><p class="k">Ají Dulce</p><h3>La mesa</h3></div></article><article class="card" style="--i:2"><img src="img/03.webp" alt="" loading="lazy"><div class="cap"><p class="k">Ají Dulce</p><h3>El barrio</h3></div></article></div></div></section>
-<section class="visit" id="visitar"><div class="wrap"><p class="k rv">Dónde estamos</p><h2 class="rv">Ven a <em>Tetuán</em></h2><div class="g"><div><address class="rv">C. de Bravo Murillo, 122, locales 339-340, 28020 Madrid</address><a class="btn map rv" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante%20Aji%20Dulce.%20La%20Taguara%2C%20Mercado%20de%20las%20Maravillas%2C%20C.%20de%20Bravo%20Murillo%2C%20122%2C%20Locales%20339%20y%20340%2C%20Tetu%C3%A1n%2028020%2C%20ES" rel="noopener noreferrer" target="_blank">Ver la dirección en el mapa</a></div><a class="mapa-ph" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante%20Aji%20Dulce.%20La%20Taguara%2C%20Mercado%20de%20las%20Maravillas%2C%20C.%20de%20Bravo%20Murillo%2C%20122%2C%20Locales%20339%20y%20340%2C%20Tetu%C3%A1n%2028020%2C%20ES" rel="noopener noreferrer" target="_blank"><div><b>Mapa</b>Abrir la ficha de Ají Dulce en Google Maps</div></a></div></div></section>
-<section class="book" id="reserva"><div class="wrap"><p class="k rv">Reserva</p><h2 class="rv">¿Te vemos <em>en la mesa</em>?</h2><p class="lede rv">Prepara una solicitud de mesa. En esta demo el mensaje se escribe, pero no se envía.</p><button class="btn cta rv" type="button" data-open>Reservar mesa</button></div><div class="horizon" aria-hidden="true"><div class="orb" id="orb"></div><div class="l1"></div><div class="l2"></div></div></section>
-<section class="ctc"><div class="wrap"><p class="k">Contacto publicado</p><dl><div><dt>Dirección</dt><dd>C. de Bravo Murillo, 122, locales 339-340, 28020 Madrid</dd></div><div><dt>Teléfono</dt><dd>+34 683 28 29 07</dd></div><div><dt>Correo</dt><dd>ajidulcelataguara@gmail.com</dd></div><div><dt>Instagram</dt><dd>@ajidulcelataguara</dd></div></dl></div></section>
-<footer><div class="wrap"><span>Ají Dulce. La Taguara · Tetuán (Mercado de Maravillas) · Madrid</span><span>Propuesta conceptual no oficial · Heme Studios</span></div></footer>
-<button class="btn fab" id="fab" type="button" data-open>Reservar</button><div class="scrim" id="scrim"></div><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Solicitud de reserva"><div class="grab"></div><div class="sh-head"><div class="steps" id="steps"></div><button class="x" id="close" type="button" aria-label="Cerrar">×</button></div><div class="sh-body" id="body"></div><div class="sh-foot"><button class="back" id="back" type="button" hidden>Atrás</button><span class="info" id="info"></span><button class="next" id="next" type="button">Continuar</button></div></div>
-<script>const D={"slug": "ajidulce", "nombre": "Ají Dulce. La Taguara", "nombre_corto": "Ají Dulce", "modo": "ig", "contacto": "@ajidulcelataguara"};
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
-function ready(){document.body.classList.remove('lock');document.body.classList.add('ready')}
-function openIntro(){const i=$('#intro');if(!i)return ready();i.classList.add('out');ready();setTimeout(()=>i.remove(),1250)}
-let seen=false;try{seen=!!sessionStorage.getItem('hm-'+D.slug)||/[?&]nointro/.test(location.search)}catch(e){}
-if(reduce||seen){const i=$('#intro');if(i)i.remove();ready()}else{setTimeout(openIntro,2300);$('#intro').onclick=openIntro;try{sessionStorage.setItem('hm-'+D.slug,'1')}catch(e){}}
-const h1=$('.hero h1');if(h1){const t=h1.textContent;h1.textContent='';let k=0;t.split(/(\s+)/).forEach(w=>{if(/^\s+$/.test(w)){h1.append(' ');return}const s=document.createElement('span');s.style.display='inline-block';s.style.whiteSpace='nowrap';[...w].forEach(c=>{const ch=document.createElement('span');ch.className='ch';ch.textContent=c;ch.style.transitionDelay=(.35+k++*.035)+'s';s.append(ch)});h1.append(s)})}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');if(e.target.dataset.count)count(e.target);io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
-$$('.rv,.clip').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight*.9){el.classList.add('pre');io.observe(el)}});
-function count(el){const end=parseFloat(el.dataset.count),dec=(String(el.dataset.count).split('.')[1]||'').length,suf=el.dataset.suf||'',t0=performance.now(),dur=1600;
- const f=n=>{const core=dec?n.toFixed(dec):Math.round(n).toLocaleString('es-ES');return (dec?core.replace('.',','):core)+suf};
- if(reduce){el.textContent=f(end);return}(function tick(t){const p=clamp((t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=f(end*e);if(p<1)requestAnimationFrame(tick)})(t0)}
-$$('[data-count]').forEach(el=>{el.textContent='0'+(el.dataset.suf||'');io.observe(el)});
-const W=$('#words');let words=[];
-if(W){(function split(node){[...node.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t))f.append(t);else{const s=document.createElement('span');s.textContent=t;f.append(s)}});n.replaceWith(f)}else split(n)})})(W);words=[...W.querySelectorAll('span')]}
-const hs=$('#hs'),track=$('#track'),panels=track?[...track.children]:[],cards=$$('.card');
-let sheetOpen=false;
-function onScroll(){
- const vh=innerHeight,y=scrollY;
- const top=$('#top');if(top){top.classList.toggle('solid',y>vh*.8)}
- if(W){const r=W.getBoundingClientRect(),p=clamp((vh*.85-r.top)/(r.height+vh*.35)),n=Math.round(p*words.length);words.forEach((s,i)=>s.classList.toggle('on',i<n))}
- if(hs&&track){const r=hs.getBoundingClientRect(),p=clamp(-r.top/(r.height-vh)),max=track.scrollWidth-innerWidth+40;
-  track.style.transform=`translate3d(${-p*Math.max(0,max)}px,0,0)`;
-  const hb=$('#hb'),hc=$('#hc');
-  if(hb)hb.style.width=p*100+'%';
-  if(hc)hc.textContent=String(Math.min(panels.length,1+Math.floor(p*panels.length*.999))).padStart(2,'0')+' / '+String(panels.length).padStart(2,'0');
-  panels.forEach(pn=>{const q=pn.getBoundingClientRect(),c=(q.left+q.width/2)/innerWidth-.5;const inner=pn.querySelector('img,.ph');if(inner)inner.style.transform=`scale(1.14) translateX(${(-c*7).toFixed(2)}%)`})}
- cards.forEach((c,i)=>{const nx=cards[i+1];if(!nx){c.style.transform='';c.style.filter='';return}const r=nx.getBoundingClientRect(),t=clamp(1-(r.top-90)/(vh*.8));c.style.transform=`scale(${1-t*.06})`;c.style.filter=`brightness(${1-t*.3})`});
- const orb=$('#orb');if(orb){const r=orb.parentElement.getBoundingClientRect(),t=clamp((vh-r.top)/(vh*.9));orb.style.transform=`translateY(${t*90}px)`}
- const fab=$('#fab');if(fab)fab.classList.toggle('show',y>vh*.85&&!sheetOpen);
-}
-addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
-
-/* Reserva: construye el mensaje, no lo envía */
-const S={date:null,people:2,time:'',name:'',phone:'',step:1};
-const ST=['fecha','comensales','hora','datos','listo'];
-const today=new Date();today.setHours(0,0,0,0);let month=new Date(today.getFullYear(),today.getMonth(),1);
-const ds=d=>d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
-function openSheet(){if(ST[S.step-1]==='listo')S.step=1;sheetOpen=true;render();$('#scrim').classList.add('on');$('#sheet').classList.add('on');const fab=$('#fab');if(fab)fab.classList.remove('show')}
-function close(){sheetOpen=false;$('#scrim').classList.remove('on');$('#sheet').classList.remove('on');onScroll()}
-$$('[data-open]').forEach(b=>b.onclick=openSheet);
-const scrim=$('#scrim'),cls=$('#close');if(scrim)scrim.onclick=close;if(cls)cls.onclick=close;addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-$('#back').onclick=()=>{S.step--;render()};$('#next').onclick=()=>{if(ST[S.step-1]==='listo'){close();S.step=1;return}S.step++;render()};
-function destLabel(){
-  if(D.modo==='ig')return 'Instagram → '+D.contacto;
-  if(D.modo==='wa')return 'WhatsApp → '+D.contacto;
-  if(D.modo==='mail')return 'Correo → '+D.contacto;
-  return D.contacto||'Contacto del local';
-}
-function message(){
-  const fn=S.name.trim();
-  const hora=S.time.trim()?`, a las ${S.time.trim()}`:'';
-  return `Hola, ${D.nombre}. Soy ${fn}. Quisiera reservar mesa el ${ds(S.date)} para ${S.people} persona${S.people>1?'s':''}${hora}. Mi contacto: ${S.phone}.`;
-}
-function render(){
-  const b=$('#body'),st=ST[S.step-1],nS=ST.length-1;$('#steps').innerHTML=Array.from({length:nS},(_,k)=>`<i class="${k<Math.min(S.step,nS)?'on':''}"></i>`).join('');
-  $('#back').hidden=S.step===1||st==='listo';$('#next').disabled=false;$('#next').textContent='Continuar';
-  if(st==='fecha'){const y=month.getFullYear(),m=month.getMonth(),first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate();
-    let h=`<h3>¿Qué día quieres mesa?</h3><div class="cal-nav"><button type="button" id="pm" aria-label="Mes anterior">‹</button><b>${month.toLocaleDateString('es-ES',{month:'long',year:'numeric'})}</b><button type="button" id="nm" aria-label="Mes siguiente">›</button></div><div class="cal">`;
-    ['L','M','X','J','V','S','D'].forEach(d=>h+=`<div class="dow">${d}</div>`);for(let i=0;i<first;i++)h+='<span></span>';
-    for(let d=1;d<=days;d++){const dt=new Date(y,m,d);h+=`<button type="button" class="${S.date&&+dt===+S.date?'on':''}" ${dt<today?'disabled':''} data-d="${+dt}">${d}</button>`}
-    b.innerHTML=h+`</div><p class="hint">${S.date?ds(S.date):'Elige un día. El horario se confirma con el restaurante.'}</p>`;
-    $('#pm').disabled=+month<=+new Date(today.getFullYear(),today.getMonth(),1);$('#pm').onclick=()=>{month=new Date(y,m-1,1);render()};$('#nm').onclick=()=>{month=new Date(y,m+1,1);render()};
-    b.querySelectorAll('[data-d]').forEach(x=>x.onclick=()=>{S.date=new Date(+x.dataset.d);render()});$('#next').disabled=!S.date}
-  if(st==='comensales'){b.innerHTML=`<h3>¿Cuántos sois?</h3><div class="field"><div><b>Personas</b><small>Mesa para el grupo</small></div><div class="stepper"><button type="button" data-v="-1" aria-label="Menos">−</button><b>${S.people}</b><button type="button" data-v="1" aria-label="Más">+</button></div></div>`;
-    b.querySelectorAll('[data-v]').forEach(x=>{const nv=S.people+(+x.dataset.v);x.disabled=nv<1||nv>20;x.onclick=()=>{S.people=nv;render()}})}
-  if(st==='hora'){b.innerHTML=`<h3>¿A qué hora?</h3><input class="input" id="hora" type="text" inputmode="numeric" placeholder="Por ejemplo, 14:00" value="${S.time.replace(/"/g,'&quot;')}"><p class="hint">Escribe la hora que prefieres. No publicamos un horario si no está verificado.</p>`;
-    const v=()=>{$('#next').disabled=!S.time.trim()};$('#hora').oninput=e=>{S.time=e.target.value;v()};v()}
-  if(st==='datos'){b.innerHTML=`<h3>Tus datos</h3><div class="sum"><div><span>Día</span><span>${ds(S.date)}</span></div><div><span>Personas</span><span>${S.people}</span></div><div><span>Hora</span><span>${S.time.trim()}</span></div></div><input class="input" id="nmi" placeholder="Nombre y apellido" autocomplete="name"><input class="input" id="phi" placeholder="${D.modo==='wa'?'Tu WhatsApp':'Tu teléfono o correo'}" autocomplete="${D.modo==='wa'?'tel':'tel'}"><p class="hint">En esta demo el mensaje se prepara, pero no se envía.</p>`;
-    $('#nmi').value=S.name;$('#phi').value=S.phone;const v=()=>{$('#next').disabled=!(S.name.trim().length>2&&S.phone.trim().length>=7)};
-    $('#nmi').oninput=e=>{S.name=e.target.value;v()};$('#phi').oninput=e=>{S.phone=e.target.value;v()};v();$('#next').textContent='Preparar solicitud'}
-  if(st==='listo'){const fn=S.name.trim().split(' ')[0]||'Hola';const klass=D.modo==='wa'?'':(D.modo==='mail'?'mail':(D.modo==='ig'?'ig':''));
-    b.innerHTML=`<div class="done"><div class="ok">✓</div><h3 style="margin-top:18px">Solicitud lista</h3><p>${fn}, así le llegaría tu reserva a ${D.nombre_corto}:</p><div class="msg ${klass}"><b>${destLabel()}</b>${message()}</div></div><p class="demo">Demo · no se envió ningún mensaje</p>`;$('#next').textContent='Listo'}
-  $('#info').textContent=S.date?`${ds(S.date)} · ${S.people} pax`:'';
-}
-</script>
-</body>
-</html>
+.t-latino .hero h1{font-size:min(138px,9.5vw,calc(560px / (var(--n,6) * 0.7)));word-break:normal;overflow-wrap:normal}
+@media(max-width:860px){.t-latino .hero h1{font-size:min(138px,calc((100vw - 48px) / (var(--n,6) * 0.7)))}}
+</style></head><body><div class="aviso" role="note">Propuesta conceptual no oficial · Heme Studios</div><header class="top" id="top"><div class="wrap bar"><a class="logo" href="#inicio">Ají Dulce</a><nav class="links" id="nav" aria-label="Secciones"><a href="#menu">Menú</a><a href="#nosotros">Nosotros</a><a href="#ubicacion">Ubicación</a></nav><a class="pill sm" href="#reserva">Reserva</a><button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><i></i><i></i></button></div></header><main><section class="hero" id="inicio"><div class="wrap hg"><div class="ht"><p class="tagline rv">Arepas, empanadas y cachapas en el Mercado de Maravillas</p><h1 class="rv" style="--n:5">Ají Dulce</h1><p class="full rv">Ají Dulce. La Taguara · Tetuán, Madrid</p><div class="rv"><div class="ctas"><a class="pill" href="#reserva">Reservar mesa</a><a class="pill alt" href="#menu">Ver menú</a></div></div></div><figure class="hf rv"><img class="" src="img/08.webp" width="1050" height="1400" alt="Ají Dulce. La Taguara" decoding="async"><span class="sticker"><b>4,9</b>★ Google</span></figure></div></section><div class="cintas" aria-hidden="true"><div class="cinta c1"><div class="mq"><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span></div></div><div class="cinta c2"><div class="mq rev"><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span><span>Arepas</span><span>Empanadas</span><span>Cachapas</span><span>Tetuán</span><span>Madrid</span></div></div></div><section class="menu" id="menu"><div class="wrap"><div class="sh"><p class="k rv">Menú</p><h2 class="rv">Nuestra cocina</h2></div><div class="cards"><article class="card c0 np rv" style="--d:0ms"><div class="cb"><span class="n">01</span><h3>Arepas</h3></div></article><article class="card c1 np rv" style="--d:90ms"><div class="cb"><span class="n">02</span><h3>Empanadas</h3></div></article><article class="card c2 np rv" style="--d:180ms"><div class="cb"><span class="n">03</span><h3>Cachapas</h3></div></article><article class="card c3 np rv" style="--d:270ms"><div class="cb"><span class="n">04</span><h3>Entrantes</h3><small>Carta por confirmar</small></div></article></div><p class="note rv">La carta completa y los precios se añadirán con el restaurante.</p></div></section><section class="nos" id="nosotros"><div class="wrap ng"><figure class="nf rv"><img class="" src="img/07.webp" width="1400" height="1043" alt="Ají Dulce. La Taguara" loading="lazy" decoding="async"></figure><div class="nt"><p class="k rv">Nosotros</p><h2 class="rv">Sobre Ají Dulce</h2><p class="lede rv">Ají Dulce. La Taguara: arepas, empanadas y cachapas en el Mercado de Maravillas. Tiene una valoración de 4,9 en Google con 343 reseñas. Reserva tu mesa en un minuto desde esta página.</p><div class="stats rv"><div><b>4,9</b><span>Valoración en Google</span></div><div><b>343</b><span>Reseñas en Google</span></div><div><b class="sm">Tetuán</b><span>Madrid</span></div></div><p class="src rv">Datos de Google comprobados el 15/11/2026.</p></div></div></section><section class="gal" id="galeria"><div class="wrap"><div class="sh"><p class="k rv">Galería</p><h2 class="rv">Así es Ají Dulce</h2></div><div class="grid n8"><figure class="gi rv" style="--d:0ms"><img class="" src="img/01.webp" width="1080" height="1080" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:70ms"><img class="" src="img/02.webp" width="720" height="1280" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:140ms"><img class="" src="img/03.webp" width="1080" height="1350" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:210ms"><img class="" src="img/04.webp" width="787" height="1400" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:0ms"><img class="" src="img/05.webp" width="1080" height="1350" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:70ms"><img class="" src="img/06.webp" width="787" height="1400" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:140ms"><img class="" src="img/07.webp" width="1400" height="1043" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure><figure class="gi rv" style="--d:210ms"><img class="" src="img/08.webp" width="1050" height="1400" alt="Foto de Ají Dulce" loading="lazy" decoding="async"></figure></div></div></section><section class="res" id="reserva"><div class="wrap"><div class="rbox rv"><div class="rt"><p class="k">Reserva</p><h2>Tu mesa te espera</h2><p class="lede">Elige día, hora y cuántas personas vienen. Al enviar se abre WhatsApp con tu reserva lista para mandar al restaurante.</p><p class="tel">¿Prefieres llamar? <a href="tel:+34683282907">+34 683 28 29 07</a></p></div><form class="rf" id="rf" data-num="34683282907" data-wa="1" data-nombre="Ají Dulce. La Taguara" novalidate><label><span>Nombre</span><input name="nombre" autocomplete="name" required placeholder="Tu nombre"></label><label><span>Fecha</span><input type="date" name="fecha" required></label><label><span>Hora</span><input type="time" name="hora" step="900" required value="21:00"></label><label><span>Personas</span><select name="personas"><option value="1">1 persona</option><option value="2" selected>2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8 personas</option><option value="9">9 personas</option><option value="10">10 personas</option><option value="más de 10">Más de 10</option></select></label><button class="pill big" type="submit">Enviar por WhatsApp</button><p class="msg" id="msg" role="status" aria-live="polite"></p><p class="demo">Demo de Heme Studios: no se guarda ningún dato.</p></form></div></div></section><section class="ub" id="ubicacion"><div class="wrap"><div class="sh"><p class="k rv">Ubicación</p><h2 class="rv">Ven a vernos</h2></div><div class="ug"><div class="uc rv"><h3>Ají Dulce. La Taguara</h3><ul><li><span>Dirección</span><b>C. de Bravo Murillo, 122, locales 339-340, 28020 Madrid</b></li><li><span>Barrio</span><b>Tetuán (Mercado de Maravillas)</b></li><li><span>Horario</span><b>Pendiente de confirmar con el restaurante</b></li><li><span>Teléfono</span><b><a href="tel:+34683282907">+34 683 28 29 07</a></b></li><li><span>Email</span><b><a href="mailto:ajidulcelataguara@gmail.com">ajidulcelataguara@gmail.com</a></b></li><li><span>Instagram</span><b><a href="https://www.instagram.com/ajidulcelataguara/" target="_blank" rel="noopener">@ajidulcelataguara</a></b></li></ul><div class="ctas"><a class="pill" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante%20Aji%20Dulce.%20La%20Taguara%2C%20Mercado%20de%20las%20Maravillas%2C%20C.%20de%20Bravo%20Murillo%2C%20122%2C%20Locales%20339%20y%20340%2C%20Tetu%C3%A1n%2028020%2C%20ES" target="_blank" rel="noopener">Cómo llegar</a><a class="pill alt" href="tel:+34683282907">Llamar</a></div></div><div class="map rv"><iframe title="Mapa de Ají Dulce. La Taguara" src="https://www.google.com/maps?q=C.%20de%20Bravo%20Murillo%2C%20122%2C%2028020%20Madrid%2C%20Espa%C3%B1a&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div></div></section></main><footer class="ft"><div class="wrap"><p class="fl">Ají Dulce</p><p>C. de Bravo Murillo, 122, locales 339-340, 28020 Madrid</p><p class="avs">Propuesta conceptual no oficial · Heme Studios. Esta página es una demo y no es la web oficial de Ají Dulce. La Taguara. Fotos: Google Maps (ficha pública), Instagram @ajidulcelataguara.</p></div></footer><script>(function(){var d=document,top=d.getElementById('top'),b=d.querySelector('.burger'),light=d.querySelector('[data-light]');
+function onS(){var y=window.scrollY||0;top.classList.toggle('scrolled',y>30);if(light){d.body.classList.toggle('light',light.getBoundingClientRect().top<innerHeight*.6)}}
+addEventListener('scroll',onS,{passive:true});onS();
+b.addEventListener('click',function(){var o=top.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+d.querySelectorAll('.links a').forEach(function(a){a.addEventListener('click',function(){top.classList.remove('open');b.setAttribute('aria-expanded','false')})});
+var els=d.querySelectorAll('.rv');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});els.forEach(function(el){io.observe(el)})}else{els.forEach(function(el){el.classList.add('in')})}
+var f=d.getElementById('rf');if(!f)return;var m=d.getElementById('msg'),fe=f.fecha,t=new Date();
+fe.min=new Date(t.getTime()-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+f.addEventListener('submit',function(ev){ev.preventDefault();var ok=true;
+[f.nombre,f.fecha,f.hora].forEach(function(i){var bad=!i.value.trim();i.classList.toggle('bad',bad);if(bad)ok=false});
+if(!ok){m.textContent='Completa nombre, fecha y hora.';return}
+var p=f.fecha.value.split('-'),fecha=p[2]+'/'+p[1]+'/'+p[0],num=f.dataset.num;
+var txt='Hola, quiero reservar una mesa en '+f.dataset.nombre+'. Nombre: '+f.nombre.value.trim()+'. Fecha: '+fecha+'. Hora: '+f.hora.value+'. Personas: '+f.personas.value+'.';
+if(!num){m.textContent='Reserva de prueba: '+fecha+' a las '+f.hora.value+'.';return}
+if(f.dataset.wa==='1'){m.textContent='Abriendo WhatsApp con tu reserva…';window.open('https://wa.me/'+num+'?text='+encodeURIComponent(txt),'_blank','noopener')}
+else{m.textContent='Reserva para el '+fecha+' a las '+f.hora.value+' ('+f.personas.value+'). Llamando al restaurante…';location.href='tel:+'+num}
+});})();
+</script></body></html>
