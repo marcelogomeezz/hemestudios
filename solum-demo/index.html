@@ -448,6 +448,18 @@ html[data-theme="light"] .s-overview .owner-alert .labelrow strong{color:#283335
 html[data-theme="light"] .s-overview .owner-alert-foot{color:#707a80;border-color:#d9dfda}
 html[data-theme="light"] .s-overview .owner-alert-eyebrow{color:#5a6d65}
 
+
+/* Client cards with clearer hierarchy */
+.s-rail .casebtn{display:flex;align-items:center;gap:11px;min-height:100px}
+.s-case-avatar{display:grid!important;place-items:center;width:37px;height:37px;flex:0 0 37px;border-radius:12px;background:#3a4341;color:#dff5c2!important;font-weight:800;font-size:12px!important;margin:0!important;border:1px solid #596260}
+.s-case-copy{display:block!important;flex:1;min-width:0;margin:0!important}
+.s-case-copy b{font-size:12px;white-space:normal}
+.s-case-copy>span{display:block!important;font-size:11px;margin:4px 0 0;line-height:1.35}
+.s-case-copy small{display:block;margin-top:5px;font-size:10px;color:#858f99;line-height:1.45}
+.s-case-arrow{font-size:17px!important;margin:0!important;align-self:flex-start;color:#969fa7}
+html[data-theme="light"] .s-case-copy small{color:#aeb4bb}
+@media(max-width:730px){.s-rail .casebtn{min-height:90px;gap:7px}.s-case-avatar{width:30px;height:30px;flex-basis:30px;font-size:11px!important}.s-case-arrow{display:none!important}.s-case-copy small{display:none}}
+
 </style></head>
 <body>
 
@@ -714,7 +726,7 @@ function channels(){$("channels").innerHTML=[["wa","◉ WhatsApp"],["em","✉ Co
 function cases(){
  $("cases").innerHTML=scenarios[state.channel].map(function(s){
    var active=state.active&&state.active.id===s.id;
-   return '<button class="casebtn'+(active?" s-active-case":"")+'" data-id="'+s.id+'" '+(state.busy?"disabled":"")+'><b>'+safe(s.name)+'</b><span>'+safe(s.title)+' · '+safe(s.type)+'</span></button>'
+   return '<button class="casebtn'+(active?" s-active-case":"")+'" data-id="'+s.id+'" '+(state.busy?"disabled":"")+'><span class="s-case-avatar">'+safe(s.name.split(" ").map(function(v){return v.slice(0,1)}).slice(0,2).join(""))+'</span><span class="s-case-copy"><b>'+safe(s.name)+'</b><span>'+safe(s.title)+'</span><small>'+safe(s.type)+'</small></span><span class="s-case-arrow">↗</span></button>'
  }).join("");
  Array.from($("cases").children).forEach(function(b){b.onclick=function(){start(b.dataset.id)}});
 }
