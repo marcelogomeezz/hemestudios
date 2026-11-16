@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es"><head>
+<html lang="es" data-theme="dark"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Reformas Solum | Simulación del sistema · Heme Studios</title>
@@ -20,9 +20,111 @@
 .pipe{display:flex;gap:6px;padding:12px 17px;border-bottom:1px solid #e9edef;flex-wrap:wrap}.step{font-size:10px;font-weight:700;color:#8e9ca2;padding:5px 7px;background:#f2f5f6;border-radius:5px}.step.past{background:#e4f4ea;color:#196f55}.step.active{background:#204956;color:#fff}
 .tabs{border-top:0}.detail{min-height:260px;padding:16px 18px}.empty{padding:26px 10px;text-align:center;color:#89959b;font-size:12px;line-height:1.7}.box{padding:12px 13px;background:#f7f9fa;border:1px solid #e5eaec;border-radius:10px;margin-bottom:10px}.box h3{margin:0 0 8px;font-size:13px}.labelrow{display:flex;justify-content:space-between;gap:12px;margin:7px 0;font-size:12px}.labelrow span:first-child{color:#74828b}.labelrow strong{text-align:right}.badge{font-size:10px;font-weight:750;padding:4px 7px;border-radius:15px;background:#e5f5ec;color:#177351}.badge.warn{color:#875c16;background:#fff4da}.badge.neu{color:#416477;background:#eaf2f6}.event{display:flex;gap:9px;border-bottom:1px solid #edf0f1;padding:9px 0}.event:last-child{border:0}.eventicon{width:25px;height:25px;border-radius:7px;background:#e9f2f5;display:grid;place-items:center;flex-shrink:0}.eventtext{font-size:11.5px;flex:1}.eventtext b{font-size:12px}.eventtext p{margin:3px 0;color:#8a979c}.muted{font-size:11px;color:var(--mut)}.quote{border:1px solid #dae3e6;background:#fff;border-radius:10px;overflow:hidden}.qhead{padding:11px 14px;border-bottom:2px solid #244353;background:#f6f8f9;display:flex;justify-content:space-between;align-items:center;font-size:11px}.qbody{padding:13px}.qname{font-weight:750;font-size:16px;margin-bottom:5px}.qline{display:flex;justify-content:space-between;gap:9px;font-size:12px;padding:6px 0;border-bottom:1px solid #edf0f2}.qline span:first-child{color:#4f626b}.qtotal{display:flex;justify-content:space-between;font-size:18px;font-weight:780;background:#eef5f5;padding:12px 14px}.qfoot{padding:9px 12px;font-size:10px;color:#7f8d95;background:#fbfcfc}.qnotice{font-size:11px;background:#fff7e6;border:1px solid #f2e4bf;border-radius:7px;padding:9px;color:#856222;margin:9px 0}.tariff{padding:13px 16px;border-top:1px solid #e7ebed;background:#fbfcfc}.tariffhead{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:750;margin-bottom:9px}.tariffgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tariffcell{border:1px solid #e1e7e9;background:white;border-radius:8px;padding:7px}.tariffcell label{display:block;color:#78868f;font-size:10px}.tariffcell input{border:0;width:100%;font-size:13px;font-weight:700;color:#223740;outline:0;background:transparent}.actions{padding:12px 16px 14px;display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid #e7eced;min-height:66px}.primary{border:0;border-radius:9px;background:#175f61;color:#fff;font-weight:700;padding:10px 13px}.primary:hover{background:#12494c}.secondary{border:1px solid #d4dfe2;border-radius:9px;background:#fff;color:#2e5662;font-weight:650;padding:9px 13px}.timebtn{background:#fff;color:#185e58;border:1px solid #8bc5b9;border-radius:9px;padding:10px 13px;font-weight:700}.foot{text-align:center;color:#89959e;font-size:11px;margin:25px 0;line-height:1.8}.toast{position:fixed;right:20px;bottom:20px;max-width:360px;background:#153c39;color:#fff;padding:15px 19px;border-radius:12px;box-shadow:0 13px 40px #142c2950;z-index:20;animation:fade .35s ease}.toast b{display:block;margin-bottom:3px}.toast small{font-size:11px;color:#c7e9e1}.toast.hidden{display:none}@keyframes fade{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
 @media(max-width:1050px){.grid{grid-template-columns:1fr}.agents{grid-template-columns:repeat(3,1fr)}.screenwrap{min-height:0}.hero{align-items:start}.metrics{gap:7px}}@media(max-width:600px){.top{height:auto;padding:12px 14px}.topnote{display:none}.hero{display:block}.reset{margin-top:12px}.metrics{grid-template-columns:repeat(2,1fr)}.metrics .metric:last-child{grid-column:span 2}.metric .num{font-size:22px}.container{padding-top:19px}.agents{gap:5px;padding:10px}.agent{padding:7px}.agent strong{font-size:10px}.agent small{font-size:9px}.rowfields{gap:5px}.tariffgrid{grid-template-columns:repeat(2,1fr)}.panelhd{padding:12px}.detail{padding:12px}.toast{left:12px;right:12px;bottom:12px;max-width:none}}
+
+/* Personalización visual: Light / Dark */
+html{color-scheme:light}
+.theme-switch{display:inline-flex;align-items:center;gap:3px;padding:4px;border-radius:11px;border:1px solid #dbe3e6;background:#eff3f5}
+.theme-choice{border:0;border-radius:8px;padding:6px 11px;font-size:11px;font-weight:750;color:#60727c;background:transparent;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
+.theme-choice.selected{background:#fff;color:#1c3744;box-shadow:0 1px 5px #18263121}
+.theme-choice:hover:not(.selected){color:#15495b}
+html[data-theme="dark"]{color-scheme:dark;--bg:#091118;--ink:#e9f3f6;--mut:#9aadb8;--line:#2b3b45;--blue:#83b8d6;--teal:#68c5ad;--soft:#18392f;--white:#111e27;--shadow:0 14px 42px rgba(0,0,0,.14)}
+html[data-theme="dark"] body{background:#091118;color:var(--ink)}
+html[data-theme="dark"] .top{background:#111e27;border-color:#2b3b45}
+html[data-theme="dark"] .monogram{background:#2d6e72}
+html[data-theme="dark"] .bn span{color:#96aeb9!important}
+html[data-theme="dark"] .pill{background:#15372e;color:#9be5bd;border-color:#2f5b48}
+html[data-theme="dark"] .dot{background:#68cf91}
+html[data-theme="dark"] .theme-switch{background:#0c161e;border-color:#3a5059}
+html[data-theme="dark"] .theme-choice{color:#a8bbc4}
+html[data-theme="dark"] .theme-choice.selected{background:#294651;color:#eef9fa;box-shadow:0 1px 6px #0005}
+html[data-theme="dark"] .theme-choice:hover:not(.selected){color:#e7fbfa}
+html[data-theme="dark"] .reset{background:#14232c;color:#c9dee4;border-color:#334651}
+html[data-theme="dark"] .metric,
+html[data-theme="dark"] .panel{background:#111e27;border-color:#2b3b45}
+html[data-theme="dark"] .metric .hint{color:#849aa5}
+html[data-theme="dark"] .panelhd,
+html[data-theme="dark"] .agents,
+html[data-theme="dark"] .pipe,
+html[data-theme="dark"] .tabs,
+html[data-theme="dark"] .tariff,
+html[data-theme="dark"] .actions{border-color:#2b3b45}
+html[data-theme="dark"] .smallstatus{color:#9eb8c3;border-color:#3d5661}
+html[data-theme="dark"] .channels,
+html[data-theme="dark"] .tabs,
+html[data-theme="dark"] .cases{background:#111e27;border-color:#2b3b45}
+html[data-theme="dark"] .channels button,
+html[data-theme="dark"] .tabs button{background:#1c2d37;color:#a7bdc7}
+html[data-theme="dark"] .channels button.active,
+html[data-theme="dark"] .tabs button.active{background:#326e76;color:#fff}
+html[data-theme="dark"] .screenwrap{background:#0d1820}
+html[data-theme="dark"] .device{background:#15232c;border-color:#32454f;box-shadow:0 10px 32px #0005}
+html[data-theme="dark"] .wahead{background:#174a42}
+html[data-theme="dark"] .round{background:#276757}
+html[data-theme="dark"] .chat{background:#111d21;background-image:radial-gradient(#2d3b3e 1px,transparent 1px)}
+html[data-theme="dark"] .bubble.in,
+html[data-theme="dark"] .typing,
+html[data-theme="dark"] .photo{background:#24333b;color:#e6f0f2;border-color:#32444c}
+html[data-theme="dark"] .bubble.out{background:#155243;color:#edf8f4}
+html[data-theme="dark"] .tick{color:#a4c3bf}
+html[data-theme="dark"] .typing i{background:#91adb5}
+html[data-theme="dark"] .emailhead,
+html[data-theme="dark"] .formhead{background:#172630;border-color:#31444d}
+html[data-theme="dark"] .emailbody,
+html[data-theme="dark"] .formfields{background:#14232c;color:#d8e9ed}
+html[data-theme="dark"] .emailbody>div{border-color:#304550!important}
+html[data-theme="dark"] .emailreply{background:#173b36;color:#b4ebdb;border-color:#386657}
+html[data-theme="dark"] .fakeinput{background:#1b2e37;color:#d7e8ed;border-color:#37505a}
+html[data-theme="dark"] .formhead p{color:#a0b5c0}
+html[data-theme="dark"] .sendform{background:#296e76}
+html[data-theme="dark"] .casehead{color:#a0b5c0}
+html[data-theme="dark"] .casebtn{background:#16252e;border-color:#354750;color:#ecf7f8}
+html[data-theme="dark"] .casebtn:hover{background:#1a3738;border-color:#5fb8a0}
+html[data-theme="dark"] .casebtn span{color:#a6b8c2}
+html[data-theme="dark"] .agent{background:#162630;border-color:#334753}
+html[data-theme="dark"] .agent .ico{background:#293c48}
+html[data-theme="dark"] .agent small{color:#9db2bb}
+html[data-theme="dark"] .agent.working{background:#153b33;border-color:#477e6b}
+html[data-theme="dark"] .agent.working .ico{background:#285f50}
+html[data-theme="dark"] .agent.done{border-color:#426956}
+html[data-theme="dark"] .agent.done .ico{background:#285947}
+html[data-theme="dark"] .step{background:#20323c;color:#9fb7c3}
+html[data-theme="dark"] .step.past{background:#1b4739;color:#a6ebcf}
+html[data-theme="dark"] .step.active{background:#317a76;color:#fff}
+html[data-theme="dark"] .empty{color:#93a8b2}
+html[data-theme="dark"] .detail{color:#e3eff2}
+html[data-theme="dark"] .box{background:#182933;border-color:#334751}
+html[data-theme="dark"] .box .labelrow span:first-child{color:#a5b6c0}
+html[data-theme="dark"] .box .labelrow strong{color:#f0f8fa}
+html[data-theme="dark"] .box [style*="color:#51636b"]{color:#d2e3e8!important}
+html[data-theme="dark"] .box [style*="background:#eef8f4"]{background:#1c483d!important;color:#caeede}
+html[data-theme="dark"] .badge{background:#1b4336;color:#a9e5c5}
+html[data-theme="dark"] .badge.warn{background:#443b22;color:#f2d58c}
+html[data-theme="dark"] .badge.neu{background:#254453;color:#b7dcf2}
+html[data-theme="dark"] .event{border-color:#2d414b}
+html[data-theme="dark"] .eventicon{background:#233b47}
+html[data-theme="dark"] .eventtext p{color:#a0b3bc}
+html[data-theme="dark"] .quote{background:#14252e;border-color:#36515a}
+html[data-theme="dark"] .qhead{background:#1c333d;border-color:#68b2aa}
+html[data-theme="dark"] .qbody{background:#14252e}
+html[data-theme="dark"] .qline{border-color:#2d4650}
+html[data-theme="dark"] .qline span:first-child{color:#d0e0e5}
+html[data-theme="dark"] .qtotal{background:#1b4843}
+html[data-theme="dark"] .qfoot{background:#182b34;color:#a6bdc5}
+html[data-theme="dark"] .qnotice{background:#3d3526;border-color:#736344;color:#f1dca3}
+html[data-theme="dark"] .tariff{background:#121f28}
+html[data-theme="dark"] .tariffcell{background:#1b2c36;border-color:#314652}
+html[data-theme="dark"] .tariffcell label{color:#a9bec8}
+html[data-theme="dark"] .tariffcell input{color:#f0f8fb;background:transparent}
+html[data-theme="dark"] .secondary,
+html[data-theme="dark"] .timebtn{background:#1c333b;color:#c0e8e1;border-color:#376d67}
+html[data-theme="dark"] .primary{background:#27816f}
+html[data-theme="dark"] .primary:hover{background:#31927e}
+html[data-theme="dark"] .foot{color:#9aadb7}
+@media(max-width:600px){.theme-switch{order:1}.righttop{gap:7px}.theme-choice{padding:6px 9px}.pill{font-size:10px}}
+
 </style></head>
 <body>
-<header class="top"><div class="brand"><div class="monogram">S.</div><div><div class="bn">REFORMAS SOLUM <span style="font-weight:430;color:#8c999f">/ OPERACIONES</span></div><div class="bs">Simulación personalizada · Preparado por Heme Studios</div></div></div><div class="righttop"><span class="pill"><span class="dot"></span> DEMO INTERACTIVA</span><span class="topnote">Todos los datos y precios son ficticios</span></div></header>
+<header class="top"><div class="brand"><div class="monogram">S.</div><div><div class="bn">REFORMAS SOLUM <span style="font-weight:430;color:#8c999f">/ OPERACIONES</span></div><div class="bs">Simulación personalizada · Preparado por Heme Studios</div></div></div><div class="righttop"><div class="theme-switch" role="group" aria-label="Apariencia de la demo"><button type="button" class="theme-choice" data-theme-choice="light" aria-pressed="false">☀ Light</button><button type="button" class="theme-choice selected" data-theme-choice="dark" aria-pressed="true">☾ Dark</button></div><span class="pill"><span class="dot"></span> DEMO INTERACTIVA</span><span class="topnote">Todos los datos y precios son ficticios</span></div></header>
 <main class="container">
 <div class="hero"><div><div class="kicker">Del primer contacto a la visita</div><h1>Así trabajaría tu equipo de IA.</h1><p class="sub">Solicitudes que llegan por WhatsApp, correo y web. El sistema responde, recopila información, coordina la visita y prepara propuestas para revisión. Prueba cada escenario.</p></div><button id="reset" class="reset">↺ Reiniciar simulación</button></div>
 <div class="metrics" id="metrics"></div>
@@ -107,6 +209,27 @@ function follow(){if(state.phase!=="sent")return;append("Hola, ¿pudiste revisar
 function accept(){if(state.phase!=="sent")return;append("Hola, revisamos la propuesta y nos interesa avanzar. ¿Cómo seguimos?","client");append("¡Gracias! Ya notificamos al responsable para coordinar el siguiente paso y confirmar el alcance.","agent");state.accepted++;state.phase="accepted";state.tab="ficha";log("CLIENTE ACEPTÓ LA PROPUESTA",state.active.name+" · "+state.active.type+" · "+money(state.quote.total),"★");repaint();toast("¡Nueva propuesta aceptada!","Cliente: "+state.active.name+" · Próxima acción: coordinar el inicio")}
 function reset(){state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null};Object.keys(rates).forEach(function(k){});channels();cases();device(true);repaint()}
 $("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
+})();
+</script>
+
+<script>
+(function(){
+var root=document.documentElement;
+var buttons=Array.prototype.slice.call(document.querySelectorAll("[data-theme-choice]"));
+function applyTheme(mode){
+  var value=mode==="light"?"light":"dark";
+  root.setAttribute("data-theme",value);
+  buttons.forEach(function(button){
+    var selected=button.getAttribute("data-theme-choice")===value;
+    button.classList.toggle("selected",selected);
+    button.setAttribute("aria-pressed",selected?"true":"false");
+  });
+  try{window.localStorage.setItem("solum-demo-theme",value)}catch(error){}
+}
+var saved=null;
+try{saved=window.localStorage.getItem("solum-demo-theme")}catch(error){}
+applyTheme(saved==="light"?"light":"dark");
+buttons.forEach(function(button){button.addEventListener("click",function(){applyTheme(button.getAttribute("data-theme-choice"))})});
 })();
 </script>
 </body></html>
