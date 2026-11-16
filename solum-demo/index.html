@@ -277,7 +277,7 @@ html[data-theme="dark"] .emailreply{max-height:218px;overflow:auto}
 <div class="tariff"><div class="tariffhead"><span>Tabla interna ilustrativa · cálculo tras la visita</span><span class="muted">Valores editables · no son tarifas reales</span></div><div class="tariffgrid" id="tariffs"></div></div>
 </section>
 </div>
-<div class="foot">Simulación de Heme Studios. No está conectada al WhatsApp, correo, calendario ni al sistema de Reformas Solum. Las solicitudes, comunicaciones, importes y confirmaciones son ejemplos. En reformas reales, la visita técnica y la validación profesional determinan el presupuesto definitivo.</div>
+<div class="foot">Simulación de Heme Studios. No está conectada al WhatsApp, correo, calendario ni al sistema de Reformas Solum. Las solicitudes, comunicaciones, importes y confirmaciones son ejemplos. Las visitas y avisos de la demo quedan guardados únicamente en este navegador. En reformas reales, la visita técnica y la validación profesional determinan el presupuesto definitivo.</div>
 </main><div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 <script>
 (function(){
@@ -439,7 +439,28 @@ var state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],e
 function money(n){return Number(n).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}
 function safe(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function log(title,sub,ico){state.events.unshift({title:title,sub:sub,ico:ico||"✓",time:new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"})});state.events=state.events.slice(0,15)}
-function repaint(){metrics();agents();pipeline();tabs();detail();actions()}
+var DEMO_STORE_KEY="solum-demo-local-events-v3";
+function saveDemo(){
+ try{
+  var v={appointments:state.appointments,notifications:state.notifications,events:state.events,
+   messages:state.messages,answered:state.answered,quotes:state.quotes,accepted:state.accepted,visits:state.visits};
+  localStorage.setItem(DEMO_STORE_KEY,JSON.stringify(v));
+ }catch(error){}
+}
+function restoreDemo(){
+ try{
+  var raw=localStorage.getItem(DEMO_STORE_KEY);if(!raw)return;
+  var v=JSON.parse(raw);
+  for(var key of ["appointments","notifications","events"]){
+   if(Array.isArray(v[key]))state[key]=v[key].slice(0,50);
+  }
+  for(var name of ["messages","answered","quotes","accepted","visits"]){
+   if(Number.isInteger(v[name])&&v[name]>=0&&v[name]<10000)state[name]=v[name];
+  }
+  state.visits=state.appointments.length;
+ }catch(error){}
+}
+function repaint(){metrics();agents();pipeline();tabs();detail();actions();saveDemo()}
 function toast(title,sub){$("toast").innerHTML="<b>"+safe(title)+"</b><small>"+safe(sub)+"</small>";$("toast").classList.remove("hidden");setTimeout(function(){$("toast").classList.add("hidden")},6000)}
 function metrics(){var m=[["Solicitudes recibidas",state.messages,"WhatsApp · web · correo"],["Conversaciones atendidas",state.answered,"Solicitudes procesadas"],["Propuestas enviadas",state.quotes,"Envíos simulados"],["Propuestas aceptadas",state.accepted,"Confirmaciones ficticias"],["Visitas agendadas",state.visits,"Citas de prueba"]];$("metrics").innerHTML=m.map(function(a){return '<div class="metric"><div class="label">'+a[0]+'</div><strong class="num'+(a[1]>0?" fresh":"")+'">'+a[1]+'</strong><div class="hint">'+a[2]+"</div></div>"}).join("")}
 function channels(){$("channels").innerHTML=[["wa","◉ WhatsApp"],["em","✉ Correo"],["fm","▤ Formulario web"]].map(function(a){return '<button data-ch="'+a[0]+'" class="'+(state.channel===a[0]?"active":"")+'">'+a[1]+"</button>"}).join("");Array.from($("channels").children).forEach(function(b){b.onclick=function(){if(state.busy)return;state.channel=b.dataset.ch;state.active=null;state.phase='idle';state.quote=null;state.slot=null;state.calendarChecked=false;state.tab='ficha';channels();cases();device(true);repaint()}})}
@@ -602,7 +623,7 @@ function sendQuote(){if(state.phase!=="quoteReady")return;state.phase="sent";sta
 function follow(){if(state.phase!=="sent")return;append("Hola, ¿pudiste revisar la propuesta? Si tienes dudas o quieres ajustar algún detalle, estamos para ayudarte.","agent");log("Seguimiento comercial simulado",state.active.name+" · pregunta de seguimiento","◷");state.tab="activity";repaint()}
 function accept(){if(state.phase!=="sent")return;append("Hola, revisamos la propuesta y nos interesa avanzar. ¿Cómo seguimos?","client");append("¡Gracias! Ya notificamos al responsable para coordinar el siguiente paso y confirmar el alcance.","agent");state.accepted++;state.phase="accepted";state.tab="ficha";log("CLIENTE ACEPTÓ LA PROPUESTA",state.active.name+" · "+state.active.type+" · "+money(state.quote.total),"★");repaint();toast("¡Nueva propuesta aceptada!","Cliente: "+state.active.name+" · Próxima acción: coordinar el inicio")}
 function reset(){state={channel:"wa",tab:"ficha",active:null,phase:"idle",busy:false,all:[],events:[],appointments:[],messages:0,answered:0,quotes:0,accepted:0,visits:0,quote:null,slot:null,notifications:[],calendarChecked:false};Object.keys(rates).forEach(function(k){});channels();cases();device(true);repaint()}
-$("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
+restoreDemo();$("reset").onclick=reset;channels();cases();device(true);tariff();repaint();
 })();
 </script>
 
