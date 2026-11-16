@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Armarios Alcalá — Sistema</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#f6f7f8;--w:#fff;--tx:#17181b;--dim:#6b6f76;--mut:#94999f;--ln:#e5e7ea;--ln2:#f0f1f3;--ok:#0b8457;--okb:#eaf7f1;--az:#5b8fc7}
+body{background:var(--bg);color:var(--tx);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.top{background:var(--w);border-bottom:1px solid var(--ln);padding:12px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lg{width:31px;height:31px;border-radius:8px;background:var(--tx);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.tn{font-size:15px;font-weight:650;letter-spacing:-.2px;line-height:1.2}
+.ts{font-size:11px;color:var(--mut)}
+.by{margin-left:auto;font-size:11px;color:var(--mut);text-align:right;line-height:1.45}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px 22px 70px;max-width:1460px;margin:0 auto;align-items:start}
+@media(max-width:1000px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--w);border:1px solid var(--ln);border-radius:13px;margin-bottom:16px;overflow:hidden}
+.ch{padding:12px 15px;border-bottom:1px solid var(--ln2);display:flex;align-items:center;gap:10px}
+.ch h2{font-size:13.5px;font-weight:620}
+.ch .sb{font-size:11.5px;color:var(--mut);margin-left:auto}
+.cb{padding:14px 15px}
+.chn{display:flex;gap:6px;padding:11px 15px;border-bottom:1px solid var(--ln2);background:#fcfcfd}
+.cn{flex:1;text-align:center;background:var(--w);border:1px solid var(--ln);padding:7px 5px;border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;color:var(--dim)}
+.cn.on{background:var(--tx);color:#fff;border-color:var(--tx);font-weight:600}
+.scn{min-height:376px;max-height:452px;overflow-y:auto}
+/* WhatsApp */
+.wa-h{background:#008069;color:#fff;padding:9px 13px;display:flex;align-items:center;gap:10px}
+.wa-h .av{width:33px;height:33px;border-radius:50%;background:#54736c;display:grid;place-items:center;font-size:12px;font-weight:700}
+.wa-h .nn{font-size:14px;font-weight:600;line-height:1.25}
+.wa-h .ss{font-size:11px;opacity:.8}
+.wa-b{background:#efeae2;background-image:radial-gradient(#e2dcd2 1px,transparent 1px);background-size:17px 17px;padding:13px;min-height:300px}
+.wb{max-width:82%;padding:7px 9px 5px;border-radius:8px;font-size:13.5px;line-height:1.45;margin-bottom:7px;white-space:pre-wrap;word-wrap:break-word;box-shadow:0 1px .5px rgba(0,0,0,.13);position:relative}
+.wb.i{background:#fff;border-top-left-radius:2px}
+.wb.o{background:#d9fdd3;margin-left:auto;border-top-right-radius:2px}
+.wb .mt{font-size:10.5px;color:#667781;text-align:right;margin-top:1px}
+.wb.o .mt::after{content:' ✓✓';color:#53bdeb}
+.wa-ty{display:inline-flex;gap:3px;padding:10px 12px;background:#fff;border-radius:8px;border-top-left-radius:2px;margin-bottom:7px;box-shadow:0 1px .5px rgba(0,0,0,.13)}
+.wa-ty i{width:6px;height:6px;border-radius:50%;background:#9aa0a6;animation:bl 1.2s infinite}
+.wa-ty i:nth-child(2){animation-delay:.2s}.wa-ty i:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.wimg{max-width:70%;margin-bottom:7px;background:#fff;padding:3px;border-radius:8px;border-top-left-radius:2px;box-shadow:0 1px .5px rgba(0,0,0,.13)}
+.wimg .ii{height:116px;border-radius:6px;background:repeating-linear-gradient(45deg,#dfe3e6,#dfe3e6 9px,#d6dbdf 9px,#d6dbdf 18px);display:grid;place-items:center;font-size:11.5px;color:#7c848c}
+.wimg .cc{font-size:10.5px;color:#667781;text-align:right;padding:3px 4px 1px}
+/* Correo */
+.em-h{padding:13px 15px;border-bottom:1px solid var(--ln2);background:#fcfcfd}
+.em-s{font-size:15px;font-weight:620;margin-bottom:7px}
+.em-f{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--dim)}
+.em-f .av{width:28px;height:28px;border-radius:50%;background:#dfe3e8;display:grid;place-items:center;font-size:11px;font-weight:650;color:#5a6069}
+.em-f b{color:var(--tx);font-weight:600}
+.em-b{padding:15px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;color:#2c2e33}
+.em-r{border-top:1px solid var(--ln2);background:#fafbfc}
+.em-rh{padding:9px 15px;font-size:11.5px;color:var(--ok);font-weight:600;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--ln2)}
+.em-ty{padding:14px 15px;display:flex;gap:4px;align-items:center;font-size:12.5px;color:var(--mut)}
+.em-ty i{width:5px;height:5px;border-radius:50%;background:var(--mut);animation:bl 1.2s infinite}
+.em-ty i:nth-child(2){animation-delay:.2s}.em-ty i:nth-child(3){animation-delay:.4s}
+/* Formulario */
+.fm-w{padding:16px;background:var(--w)}
+.fm-t{font-size:18px;font-weight:600;margin-bottom:5px}
+.fm-t b{font-weight:800}
+.fm-p{font-size:12.5px;color:var(--dim);line-height:1.6;margin-bottom:14px}
+.fm-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fm-i{border:none;border-bottom:1px solid #c9ced3;padding:5px 1px;font:inherit;font-size:13.5px;background:none;color:var(--tx);width:100%}
+.fm-i::placeholder{color:#9aa0a6}
+.fm-ta{border:1px solid #c9ced3;border-radius:3px;padding:9px;font:inherit;font-size:13.5px;width:100%;min-height:78px;resize:none;background:none;color:var(--tx)}
+.fm-ck{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--dim);margin:13px 0}
+.fm-ck .bx{width:14px;height:14px;border:1px solid #9aa0a6;border-radius:2px;display:grid;place-items:center;font-size:10px;color:var(--az)}
+.fm-ck a{color:var(--az);font-weight:600}
+.fm-sb{border:1px solid #c9ced3;background:none;color:var(--az);padding:11px 30px;font:inherit;font-size:13.5px;letter-spacing:1.5px;cursor:pointer}
+.fm-ok{padding:26px 16px;text-align:center}
+.fm-ok .ic{width:42px;height:42px;border-radius:50%;background:var(--okb);color:var(--ok);display:grid;place-items:center;font-size:19px;margin:0 auto 10px}
+.fm-ok .t1{font-size:15px;font-weight:620}
+.fm-ok .t2{font-size:12.5px;color:var(--dim);margin-top:4px}
+/* común */
+.qd{background:var(--w);border:1px solid var(--ln);border-radius:9px;max-width:92%;margin:0 0 7px auto;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.09)}
+.qd.full{max-width:100%;margin:13px 0 0}
+.qd .qh{padding:9px 12px;background:#fafbfc;border-bottom:2px solid var(--tx);display:flex;justify-content:space-between;align-items:baseline}
+.qd .qh b{font-size:10px;letter-spacing:.5px}
+.qd .qh span{font-size:10px;color:var(--mut)}
+.qd .qb{padding:9px 12px;font-size:12px}
+.li{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid #f4f5f7}
+.li:last-of-type{border:none}
+.li .dd{color:#43474e;flex:1}
+.li .pp{font-variant-numeric:tabular-nums;white-space:nowrap}
+.li.s{border-top:1px solid var(--ln);margin-top:4px;padding-top:5px;color:var(--mut)}
+.qd .qt{display:flex;justify-content:space-between;padding:9px 12px;border-top:1px solid var(--ln);font-weight:700;font-size:13.5px;background:#fafbfc}
+.qd .qf{padding:7px 12px;font-size:10px;color:var(--mut);border-top:1px solid var(--ln2);line-height:1.6}
+.slots{display:flex;gap:7px;margin:0 0 7px auto;max-width:84%;flex-wrap:wrap;justify-content:flex-end}
+.slots.l{margin:11px 0 0;justify-content:flex-start;max-width:100%}
+.slot{background:var(--w);border:1px solid var(--tx);color:var(--tx);padding:7px 12px;border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;font-weight:550}
+.slot:hover{background:var(--tx);color:#fff}
+.bar{padding:11px 15px;border-top:1px solid var(--ln2);background:var(--w)}
+.esc{display:flex;gap:7px;flex-wrap:wrap}
+.esc button{flex:1;min-width:150px;background:var(--w);border:1px solid var(--ln);padding:9px 11px;border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;color:#43474e;text-align:left;line-height:1.4}
+.esc button:hover{border-color:#b9bdc3;background:#fafbfc}
+.esc button b{display:block;font-size:11px;color:var(--mut);font-weight:600;margin-top:2px}
+.esc button:disabled{opacity:.45;cursor:default}
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+@media(max-width:540px){.kg{grid-template-columns:1fr 1fr}}
+.k{background:var(--w);border:1px solid var(--ln);border-radius:10px;padding:10px 11px}
+.k .l{font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.55px;font-weight:650;margin-bottom:2px;line-height:1.3}
+.k .v{font-size:21px;font-weight:700;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.k .v.up{color:var(--ok)}
+.tabs{display:flex;gap:2px;background:#f0f1f3;padding:3px;border-radius:9px;margin-bottom:14px}
+.tb{flex:1;border:none;background:none;padding:7px 8px;border-radius:7px;font:inherit;font-size:12.5px;color:var(--dim);cursor:pointer}
+.tb.on{background:var(--w);color:var(--tx);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.07)}
+.brief{background:var(--w);border:1px solid var(--ln);border-radius:12px;padding:15px;font-size:14px;line-height:1.7}
+.brief .hd{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.brief .av{width:23px;height:23px;border-radius:7px;background:var(--tx);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:700}
+.brief .nm{font-size:12px;font-weight:650}
+.brief .dt{font-size:11px;color:var(--mut);margin-left:auto}
+.brief p{margin-bottom:8px}.brief p:last-child{margin:0}
+.brief .ask{margin-top:12px;padding-top:11px;border-top:1px solid var(--ln2);display:flex;gap:7px;flex-wrap:wrap}
+.brief .ask button{background:var(--w);border:1px solid var(--ln);padding:6px 11px;border-radius:8px;font:inherit;font-size:12px;cursor:pointer;color:#43474e}
+.nada{padding:26px 14px;text-align:center;color:var(--mut);font-size:13px;line-height:1.65}
+.cita{background:var(--w);border:1px solid var(--ln);border-radius:11px;padding:13px 14px;margin-bottom:9px;animation:fin .4s ease}
+.cita.nu{border-color:#bfe6d4;background:var(--okb)}
+@keyframes fin{from{opacity:0;transform:translateY(-5px)}to{opacity:1}}
+.cita .cw{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.cita .cd{font-size:13.5px;font-weight:650}
+.cita .ci{font-size:13.5px;font-weight:650;font-variant-numeric:tabular-nums}
+.cita .cs{font-size:12px;color:var(--dim);margin-top:3px;line-height:1.55}
+.cita .cm{margin-top:9px;padding-top:9px;border-top:1px solid var(--ln2);font-size:11.5px;color:var(--mut)}
+.cita .cm b{color:#43474e;font-weight:600}
+.ev{padding:10px 14px;border-bottom:1px solid var(--ln2);display:flex;gap:10px;align-items:flex-start;font-size:13px;animation:fin .35s ease}
+.ev:last-child{border:none}
+.ev .ic{width:21px;height:21px;border-radius:6px;flex:0 0 auto;display:grid;place-items:center;font-size:10px;background:#f0f1f3;color:var(--dim);margin-top:1px}
+.ev .ic.g{background:var(--okb);color:var(--ok)}
+.ev .tt{flex:1;min-width:0}
+.ev .tt b{font-weight:600}
+.ev .tt div{font-size:11.5px;color:var(--mut);margin-top:1px}
+.ev .hr{font-size:10.5px;color:var(--mut);white-space:nowrap}
+.mail{background:#fbfbfc;border:1px solid var(--ln);border-radius:11px;overflow:hidden;margin-top:12px}
+.mail .mh{padding:10px 13px;border-bottom:1px solid var(--ln2);font-size:11.5px;color:var(--dim);background:var(--w)}
+.mail .mh b{color:var(--tx);font-weight:600}
+.mail .mb{padding:12px 13px;font-size:12.5px;line-height:1.65;color:#43474e}
+.mail .mb b{color:var(--tx)}
+.tr{display:flex;align-items:center;gap:9px;padding:5.5px 0;border-bottom:1px solid var(--ln2);font-size:13px}
+.tr:last-child{border:none}
+.tr label{flex:1;color:var(--dim)}
+.tr input{width:76px;background:#fafbfc;border:1px solid var(--ln);border-radius:7px;padding:5px 8px;text-align:right;font:inherit;font-size:13px;font-variant-numeric:tabular-nums;color:var(--tx)}
+.tr input:focus{outline:none;border-color:var(--tx);background:var(--w)}
+.tr u{font-size:10.5px;color:var(--mut);width:34px;text-decoration:none}
+.lin{display:flex;gap:2px;background:#f0f1f3;padding:3px;border-radius:8px;margin-bottom:11px}
+.lin button{flex:1;border:none;background:none;padding:6px 4px;border-radius:6px;font:inherit;font-size:12px;color:var(--dim);cursor:pointer}
+.lin button.on{background:var(--w);color:var(--tx);font-weight:600}
+.nt{font-size:11.5px;color:var(--mut);margin-top:10px;line-height:1.6}
+.nt b{color:var(--tx);font-weight:600}
+.rst{background:none;border:none;font:inherit;font-size:11.5px;color:var(--dim);text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0}
+.ftr{text-align:center;padding:0 22px 34px;font-size:11px;color:var(--mut)}
+</style></head><body>
+<div class="top"><div class="lg">AA</div>
+ <div><div class="tn">Armarios Alcalá</div><div class="ts">Armarios · Puertas · Carpintería a medida · Baños</div></div>
+ <div class="by">Simulación del funcionamiento propuesto<br>Heme Studios</div></div>
+<div class="wrap">
+ <div>
+  <div class="card">
+   <div class="chn" id="chn"></div>
+   <div class="scn" id="scn"></div>
+   <div class="bar"><div class="esc" id="esc"></div></div>
+  </div>
+  <div class="card"><div class="ch"><h2>Tarifario</h2><span class="sb">cámbialo y se recalcula</span></div>
+   <div class="cb"><div class="lin" id="lin"></div><div id="tf"></div>
+    <p class="nt"><b>Estos no son tus precios.</b> Son de referencia, para que veas el mecanismo. Cámbialos y lanza otra solicitud: sale recalculado.</p></div></div>
+ </div>
+ <div>
+  <div class="kg" id="kg"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="pane"></div>
+ </div>
+</div>
+<div class="ftr">Clientes, importes y fechas ficticios. Simulación del funcionamiento propuesto. · <button class="rst" id="rst">Empezar de nuevo</button></div>
+<script>
+const E=n=>n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const E0=n=>Math.round(n).toLocaleString('es-ES')+' €';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T={arm_bla:195,arm_rob:228,arm_lac:320,arm_cor:45,arm_caj:95,arm_mon:65,pue_mel:185,pue_lac:290,pue_cor:120,pue_ins:75,car_mel:240,car_lac:380,car_mon:65,ban_mue:420,ban_enc:180,ban_esp:95,ban_ins:140};
+const LIN=[{k:'arm',n:'Armarios',t:[['arm_bla','Melamina blanca','€/m²'],['arm_rob','Melamina roble','€/m²'],['arm_lac','Lacado mate','€/m²'],['arm_cor','Supl. correderas','€/m²'],['arm_caj','Módulo cajones','€/ud'],['arm_mon','Montaje','€/m']]},
+ {k:'pue',n:'Puertas',t:[['pue_mel','Puerta block melamina','€/ud'],['pue_lac','Puerta block lacada','€/ud'],['pue_cor','Supl. corredera','€/ud'],['pue_ins','Instalación','€/ud']]},
+ {k:'car',n:'Carpintería',t:[['car_mel','Mueble a medida melamina','€/m²'],['car_lac','Mueble a medida lacado','€/m²'],['car_mon','Montaje','€/m']]},
+ {k:'ban',n:'Baños',t:[['ban_mue','Mueble de baño suspendido','€/m'],['ban_enc','Encimera','€/m'],['ban_esp','Espejo','€/ud'],['ban_ins','Instalación','€/ud']]}];
+const CH=[{k:'wa',n:'WhatsApp'},{k:'em',n:'Correo'},{k:'fm',n:'Formulario web'}];
+const NOM={arm:'Armario empotrado',pue:'Puertas de paso',car:'Mueble a medida',ban:'Mueble de baño'};
+let canal='wa',linAct='arm',tab='hoy',busy=false;
+let K={sol:0,pre:0,cit:0,esp:0},citas=[],acts=[],hoy={sol:0,pre:0,imp:0,canales:{}};
+const $=i=>document.getElementById(i);
+const now=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const sc=()=>{const e=$('scn');e.scrollTop=e.scrollHeight};
+
+function quote(L){const s=L.reduce((a,b)=>a+b.v,0);return{L,sub:s,iva:s*.21,tot:s*1.21}}
+function qArm(an,al,mat,corr,caj){const m2=an*al,L=[];
+ const pr=mat==='lac'?T.arm_lac:(mat==='rob'?T.arm_rob:T.arm_bla);
+ const ml={bla:'Melamina blanca',rob:'Melamina roble',lac:'Lacado mate'}[mat];
+ L.push({d:ml+' — '+String(an).replace('.',',')+' m × '+String(al).replace('.',',')+' m ('+m2.toFixed(2)+' m²)',v:m2*pr});
+ if(corr)L.push({d:'Puertas correderas — herrajes',v:m2*T.arm_cor});
+ if(caj)L.push({d:'Módulo de cajones × '+caj,v:caj*T.arm_caj});
+ L.push({d:'Montaje e instalación — '+String(an).replace('.',',')+' m lineales',v:an*T.arm_mon});
+ return quote(L)}
+function qPue(ud,mat){const L=[{d:'Puerta block '+(mat==='lac'?'lacada':'melamina')+' × '+ud,v:ud*(mat==='lac'?T.pue_lac:T.pue_mel)},{d:'Instalación × '+ud,v:ud*T.pue_ins}];return quote(L)}
+function qBan(an){return quote([{d:'Mueble de baño suspendido — '+String(an).replace('.',',')+' m',v:an*T.ban_mue},{d:'Encimera — '+String(an).replace('.',',')+' m',v:an*T.ban_enc},{d:'Espejo',v:T.ban_esp},{d:'Instalación',v:T.ban_ins}])}
+function qCar(an,al,mat){const m2=an*al;return quote([{d:'Mueble a medida '+(mat==='lac'?'lacado':'melamina')+' — '+String(an).replace('.',',')+' m × '+String(al).replace('.',',')+' m ('+m2.toFixed(2)+' m²)',v:m2*(mat==='lac'?T.car_lac:T.car_mel)},{d:'Montaje — '+String(an).replace('.',',')+' m lineales',v:an*T.car_mon}])}
+function qhtml(q,full){let h='<div class="qd'+(full?' full':'')+'"><div class="qh"><b>PRESUPUESTO · ARMARIOS ALCALÁ</b><span>Nº '+(2400+Math.floor(Math.random()*90))+'</span></div><div class="qb">';
+ q.L.forEach(l=>h+='<div class="li"><span class="dd">'+esc(l.d)+'</span><span class="pp">'+E(l.v)+'</span></div>');
+ h+='<div class="li s"><span class="dd">Subtotal</span><span class="pp">'+E(q.sub)+'</span></div><div class="li s"><span class="dd">IVA 21%</span><span class="pp">'+E(q.iva)+'</span></div></div>';
+ h+='<div class="qt"><span>TOTAL</span><span>'+E(q.tot)+'</span></div><div class="qf">Validez 30 días · 50% a la confirmación · Fabricación 3 semanas · Incluye medición, transporte y montaje</div></div>';
+ return h}
+function act(ic,t,s,g){acts.unshift({ic,t,s,g,h:now()});if(acts.length>9)acts.pop();if(tab==='act')pane()}
+function kpi(){const d=[['Solicitudes',K.sol],['Presupuestos',K.pre],['Citas',K.cit],['Sin contestar',K.esp]];
+ $('kg').innerHTML='';d.forEach(x=>{const e=document.createElement('div');e.className='k';
+  e.innerHTML='<div class="l"></div><div class="v'+(x[1]>0?' up':'')+'"></div>';
+  e.querySelector('.l').textContent=x[0];e.querySelector('.v').textContent=x[1];$('kg').appendChild(e)})}
+function add(h){const d=document.createElement('div');d.innerHTML=h;while(d.firstChild)$('wab').appendChild(d.firstChild);sc()}
+function wbub(t,o){add('<div class="wb '+(o?'o':'i')+'">'+esc(t)+'<div class="mt">'+now()+'</div></div>')}
+function wty(on){const e=$('scn').querySelector('.wa-ty');if(e)e.remove();
+ if(on){add('<div class="wa-ty"><i></i><i></i><i></i></div>')}}
+
+function shell(){
+ if(canal==='wa')$('scn').innerHTML='<div class="wa-h"><div class="av">AA</div><div><div class="nn">Armarios Alcalá</div><div class="ss" id="wst">en línea</div></div></div><div class="wa-b" id="wab"></div>';
+ else if(canal==='em')$('scn').innerHTML='<div id="emw"><div class="nada">Lanza una solicitud abajo y mira cómo entra el correo y cómo lo contesta el agente.</div></div>';
+ else $('scn').innerHTML='<div id="fmw"></div>',formVacio();
+}
+function formVacio(){
+ $('fmw').innerHTML='<div class="fm-w"><div class="fm-t">Contacta con <b>nosotros</b></div>'+
+ '<p class="fm-p">Si deseas ponerte en contacto con nosotros puedes utilizar el siguiente formulario. Si quieres que te preparemos un presupuesto, cuanta más información nos facilites más precisa podrá ser nuestra propuesta.</p>'+
+ '<div class="fm-g"><input class="fm-i" id="f1" placeholder="Nombre" readonly><input class="fm-i" id="f2" placeholder="Teléfono" readonly>'+
+ '<input class="fm-i" id="f3" placeholder="Email" readonly><input class="fm-i" id="f4" placeholder="Ciudad" readonly></div>'+
+ '<textarea class="fm-ta" id="f5" placeholder="Consultas y comentarios" readonly></textarea>'+
+ '<div class="fm-ck"><span class="bx" id="fck"></span>He leído y acepto la <a>Política de Privacidad</a></div>'+
+ '<button class="fm-sb" id="fsb">ENVIAR</button></div>'}
+async function escribir(el,txt,sp){for(let i=0;i<=txt.length;i+=2){el.value=txt.slice(0,i);await wait(sp||11)}el.value=txt}
+
+const ESC={
+ wa:[{t:'Solicitud completa',s:'llega con medidas y acabado',f:waCompleta},{t:'Solicitud sin datos',s:'el agente los consigue',f:waIncompleta}],
+ em:[{t:'Correo con todo',s:'mueble de baño',f:emCompleto},{t:'Correo incompleto',s:'el agente responde pidiendo datos',f:emIncompleto}],
+ fm:[{t:'Formulario completo',s:'5 puertas de paso',f:fmCompleto},{t:'Formulario a medias',s:'sin medidas ni foto',f:fmIncompleto}]};
+
+async function pre(q,tipo,cb){
+ K.pre++;K.esp++;hoy.pre++;hoy.imp+=q.tot;kpi();
+ act('📄','Presupuesto enviado al cliente',E(q.tot)+' · '+tipo,true);refresh()}
+function slotsHTML(cls){return '<div class="slots'+(cls||'')+'" id="sl"><button class="slot" data-d="jueves a las 10:30">jueves 10:30</button><button class="slot" data-d="viernes a las 17:00">viernes 17:00</button></div>'}
+function bindSlots(q,tipo){[...$('scn').querySelectorAll('.slot')].forEach(b=>b.onclick=()=>agendar(b.dataset.d,q,tipo))}
+async function agendar(cuando,q,tipo){
+ const s=$('scn').querySelector('#sl');if(s)s.remove();
+ if(canal==='wa'){wbub('El '+cuando+' me va bien',false);wty(true);await wait(800);wty(false);wbub('Apuntado, '+cuando+'. Te llega un recordatorio el día antes. Nos vemos.',true)}
+ else{const d=document.createElement('div');d.className='em-rh';d.style.borderTop='1px solid var(--ln2)';d.innerHTML='✓ El cliente escogió '+esc(cuando)+' · visita confirmada';$('scn').querySelector('#emw,#fmw').appendChild(d);sc()}
+ K.cit++;K.esp=Math.max(0,K.esp-1);kpi();
+ citas.unshift({cuando,imp:q.tot,tipo,det:q.L.map(l=>l.d),canal:CH.find(c=>c.k===canal).n,foto:true});
+ act('📅','Visita de medición agendada',cuando+' · '+E(q.tot),true);
+ tab='citas';tabs();pane();busy=false;escenarios()}
+function entra(){K.sol++;hoy.sol++;hoy.canales[canal]=(hoy.canales[canal]||0)+1;kpi();
+ act('↓','Solicitud recibida',CH.find(c=>c.k===canal).n,false);refresh()}
+
+async function waCompleta(){shell();entra();
+ await wait(400);wbub('Hola, buenas. Quería un armario empotrado de 240 x 260, blanco mate, puertas correderas. Es en Alcalá.',false);
+ $('wst').textContent='escribiendo…';await wait(900);wty(true);await wait(1300);wty(false);
+ wbub('Buenas, gracias por escribir. Con esas medidas ya puedo calcularlo.\n\nAntes de pasarte el precio, ¿me mandas una foto del hueco? Así me aseguro de que no hay sorpresas el día del montaje.',true);
+ $('wst').textContent='en línea';await wait(1100);
+ add('<div class="wimg"><div class="ii">foto del hueco</div><div class="cc">'+now()+'</div></div>');
+ act('📷','Foto del espacio recibida','adjunta a la solicitud',true);refresh();
+ $('wst').textContent='escribiendo…';wty(true);await wait(1500);wty(false);$('wst').textContent='en línea';
+ const q=qArm(2.4,2.6,'bla',true,0);
+ wbub('Perfecto, con la foto y las medidas ya lo tengo. Te paso el presupuesto:',true);await wait(500);
+ add(qhtml(q));pre(q,NOM.arm);
+ await wait(600);wbub('Ahí lo tienes, con el montaje incluido. Si te encaja paso a tomar medidas y lo dejamos cerrado. Tengo estos huecos:',true);
+ add(slotsHTML());bindSlots(q,NOM.arm);busy=false;escenarios()}
+
+async function waIncompleta(){shell();entra();
+ await wait(400);wbub('Buenas, cuánto cuesta un armario',false);
+ $('wst').textContent='escribiendo…';await wait(800);wty(true);await wait(1200);wty(false);
+ wbub('Buenas, gracias por escribir. Depende de la medida y el acabado, así que te pregunto tres cosas rápidas y te paso el precio exacto:\n\n1. ¿Cuánto mide el hueco de ancho y de alto?\n2. ¿Lo quieres en melamina blanca, roble o lacado?\n3. ¿Puertas correderas o abatibles?',true);
+ $('wst').textContent='en línea';act('✉','El agente pidió los datos que faltaban','medida · acabado · tipo de puerta',false);refresh();
+ await wait(1600);wbub('Pues 3 metros de ancho por 2,40 de alto. En roble y correderas',false);
+ $('wst').textContent='escribiendo…';await wait(700);wty(true);await wait(1100);wty(false);
+ wbub('Genial. Última cosa y te lo paso: mándame una foto del hueco, que con eso ajusto el precio y evitamos sorpresas en el montaje.',true);
+ $('wst').textContent='en línea';await wait(1400);
+ add('<div class="wimg"><div class="ii">foto del hueco</div><div class="cc">'+now()+'</div></div>');
+ act('📷','Foto del espacio recibida','adjunta a la solicitud',true);refresh();
+ $('wst').textContent='escribiendo…';wty(true);await wait(1500);wty(false);$('wst').textContent='en línea';
+ const q=qArm(3,2.4,'rob',true,0);
+ wbub('Listo, aquí lo tienes:',true);await wait(400);add(qhtml(q));pre(q,NOM.arm);
+ await wait(600);wbub('Precio cerrado con montaje incluido. ¿Paso a tomar medidas?',true);
+ add(slotsHTML());bindSlots(q,NOM.arm);busy=false;escenarios()}
+
+async function emCompleto(){shell();entra();
+ const w=$('emw');
+ w.innerHTML='<div class="em-h"><div class="em-s">Solicitud de presupuesto — mueble de baño</div><div class="em-f"><div class="av">LT</div><div>De <b>Laura Torres</b> · laura.t@gmail.com<br>Para hola@armariosalcala.com · '+now()+'</div></div></div>'+
+ '<div class="em-b">Buenos días,\n\nSolicito presupuesto para un mueble de baño suspendido de 1,20 m con encimera y espejo, para una reforma en Alcalá de Henares.\n\nAdjunto foto del baño actual.\n\nGracias,\nLaura</div>';
+ await wait(900);
+ const r=document.createElement('div');r.className='em-r';
+ r.innerHTML='<div class="em-rh">✓ El agente leyó el correo y está respondiendo</div><div class="em-ty" id="emt">redactando respuesta <i></i><i></i><i></i></div>';
+ w.appendChild(r);sc();
+ act('📷','Foto adjunta recibida','del correo',true);refresh();
+ await wait(1800);
+ const q=qBan(1.2);
+ r.innerHTML='<div class="em-rh">✓ Respuesta enviada a laura.t@gmail.com · '+now()+'</div><div class="em-b">Buenos días Laura,\n\nGracias por escribirnos. Con la medida de 1,20 m y la foto que nos adjuntas, le paso el presupuesto:</div>'+qhtml(q,true)+
+ '<div class="em-b" style="padding-top:0">El precio incluye la instalación. Si le encaja, pasamos a tomar medidas antes de fabricar. Estos son los huecos que tenemos:</div>'+slotsHTML(' l').replace('class="slots l"','class="slots l" style="padding:0 15px 15px"');
+ sc();pre(q,NOM.ban);bindSlots(q,NOM.ban);busy=false;escenarios()}
+
+async function emIncompleto(){shell();entra();
+ const w=$('emw');
+ w.innerHTML='<div class="em-h"><div class="em-s">Consulta</div><div class="em-f"><div class="av">JM</div><div>De <b>Javier Molina</b> · jmolina@gmail.com<br>Para hola@armariosalcala.com · '+now()+'</div></div></div>'+
+ '<div class="em-b">Hola,\n\nQuería saber precios de armarios a medida.\n\nUn saludo.</div>';
+ await wait(900);
+ const r=document.createElement('div');r.className='em-r';
+ r.innerHTML='<div class="em-rh">✓ El agente leyó el correo y está respondiendo</div><div class="em-ty">redactando respuesta <i></i><i></i><i></i></div>';
+ w.appendChild(r);sc();await wait(1800);
+ r.innerHTML='<div class="em-rh">✓ Respuesta enviada a jmolina@gmail.com · '+now()+'</div><div class="em-b">Hola Javier,\n\nGracias por escribirnos. El precio depende de la medida y el acabado, así que para darle un número exacto y no una horquilla necesito tres datos:\n\n· Ancho y alto del hueco\n· Acabado: melamina blanca, roble o lacado\n· Puertas correderas o abatibles\n\nY si puede, una foto del hueco. Con eso le mando el presupuesto cerrado hoy mismo.\n\nUn saludo,\nArmarios Alcalá</div>';
+ act('✉','El agente respondió pidiendo datos','medida · acabado · tipo de puerta · foto',false);refresh();sc();
+ await wait(1700);
+ const r2=document.createElement('div');r2.className='em-r';
+ r2.innerHTML='<div class="em-rh" style="color:var(--dim)">↓ Javier respondió · '+now()+'</div><div class="em-b">3,20 x 2,40, lacado blanco y correderas. Adjunto la foto.</div>';
+ w.appendChild(r2);sc();act('📷','Foto del espacio recibida','adjunta a la respuesta',true);refresh();
+ await wait(1200);
+ const r3=document.createElement('div');r3.className='em-r';
+ r3.innerHTML='<div class="em-rh">✓ Presupuesto enviado · '+now()+'</div>';
+ w.appendChild(r3);sc();await wait(1200);
+ const q=qArm(3.2,2.4,'lac',true,0);
+ r3.innerHTML='<div class="em-rh">✓ Presupuesto enviado a jmolina@gmail.com · '+now()+'</div>'+qhtml(q,true)+
+ '<div class="em-b">Precio cerrado con montaje incluido. ¿Pasamos a tomar medidas?</div>'+slotsHTML(' l').replace('class="slots l"','class="slots l" style="padding:0 15px 15px"');
+ sc();pre(q,NOM.arm);bindSlots(q,NOM.arm);busy=false;escenarios()}
+
+async function fmCompleto(){shell();entra();
+ await escribir($('f1'),'Carlos Martín');await escribir($('f2'),'645 11 22 33');
+ await escribir($('f3'),'carlosm@gmail.com');await escribir($('f4'),'Alcalá de Henares');
+ await escribir($('f5'),'Necesito cambiar 5 puertas de paso por puertas lacadas en blanco. La casa está en Alcalá.',9);
+ await wait(300);$('fck').textContent='✓';await wait(400);
+ $('fsb').style.background='#5b8fc7';$('fsb').style.color='#fff';await wait(500);
+ $('fmw').innerHTML='<div class="fm-ok"><div class="ic">✓</div><div class="t1">Solicitud recibida</div><div class="t2">Carlos Martín · 5 puertas de paso lacadas</div></div>';
+ await wait(800);
+ const r=document.createElement('div');r.className='em-r';r.style.borderTop='1px solid var(--ln2)';
+ r.innerHTML='<div class="em-rh">✓ El agente recogió el formulario y está respondiendo por WhatsApp</div><div class="em-ty">redactando <i></i><i></i><i></i></div>';
+ $('fmw').appendChild(r);sc();await wait(1700);
+ const q=qPue(5,'lac');
+ r.innerHTML='<div class="em-rh">✓ Respuesta enviada a 645 11 22 33 · '+now()+'</div><div class="em-b">Hola Carlos, recibimos tu solicitud desde la web. Para 5 puertas de paso lacadas en blanco, este es el precio:</div>'+qhtml(q,true)+
+ '<div class="em-b" style="padding-top:0">Incluye la instalación de las cinco. Si te encaja, paso a medir los huecos:</div>'+slotsHTML(' l').replace('class="slots l"','class="slots l" style="padding:0 15px 15px"');
+ sc();pre(q,NOM.pue);bindSlots(q,NOM.pue);busy=false;escenarios()}
+
+async function fmIncompleto(){shell();entra();
+ await escribir($('f1'),'Marta Gil');await escribir($('f2'),'622 44 55 66');
+ await escribir($('f3'),'marta.gil@gmail.com');await escribir($('f4'),'Torrejón');
+ await escribir($('f5'),'Quiero un mueble a medida para el salón. ¿Me pasáis precio?',9);
+ await wait(300);$('fck').textContent='✓';await wait(400);
+ $('fsb').style.background='#5b8fc7';$('fsb').style.color='#fff';await wait(500);
+ $('fmw').innerHTML='<div class="fm-ok"><div class="ic">✓</div><div class="t1">Solicitud recibida</div><div class="t2">Marta Gil · mueble a medida de salón · sin medidas</div></div>';
+ await wait(800);
+ const r=document.createElement('div');r.className='em-r';r.style.borderTop='1px solid var(--ln2)';
+ r.innerHTML='<div class="em-rh">✓ Faltan datos — el agente escribe por WhatsApp</div><div class="em-ty">redactando <i></i><i></i><i></i></div>';
+ $('fmw').appendChild(r);sc();await wait(1700);
+ r.innerHTML='<div class="em-rh">✓ Mensaje enviado a 622 44 55 66 · '+now()+'</div><div class="em-b">Hola Marta, recibimos tu solicitud desde la web. Para el mueble de salón necesito dos cosas y te paso el precio hoy:\n\n· El ancho y el alto de la pared donde iría\n· Si lo quieres en melamina o lacado\n\nY una foto de la pared, que con eso ajusto bien el presupuesto.</div>';
+ act('✉','El agente pidió lo que faltaba','medidas · acabado · foto de la pared',false);refresh();sc();
+ await wait(1800);
+ const r2=document.createElement('div');r2.className='em-r';
+ r2.innerHTML='<div class="em-rh" style="color:var(--dim)">↓ Marta respondió por WhatsApp · '+now()+'</div><div class="em-b">3,50 x 2,20, lacado. Te mando foto.</div>';
+ $('fmw').appendChild(r2);sc();act('📷','Foto de la pared recibida','por WhatsApp',true);refresh();
+ await wait(1300);
+ const r3=document.createElement('div');r3.className='em-r';r3.innerHTML='<div class="em-rh">✓ Presupuesto enviado · '+now()+'</div>';
+ $('fmw').appendChild(r3);sc();await wait(1100);
+ const q=qCar(3.5,2.2,'lac');
+ r3.innerHTML='<div class="em-rh">✓ Presupuesto enviado a 622 44 55 66 · '+now()+'</div>'+qhtml(q,true)+
+ '<div class="em-b">Con montaje incluido. ¿Paso a tomar medidas?</div>'+slotsHTML(' l').replace('class="slots l"','class="slots l" style="padding:0 15px 15px"');
+ sc();pre(q,NOM.car);bindSlots(q,NOM.car);busy=false;escenarios()}
+
+function brief(){
+ if(!hoy.sol)return '<div class="nada">Todavía no ha entrado nada hoy.<br>Lanza una solicitud a la izquierda y mira cómo se llena esto.</div>';
+ const cs=Object.entries(hoy.canales).map(([k,v])=>v+' por '+CH.find(c=>c.k===k).n).join(', ');
+ let h='<div class="brief"><div class="hd"><div class="av">AA</div><div class="nm">Parte del día</div><div class="dt">'+now()+'</div></div>';
+ h+='<p>Buenas, Emilio. Hoy '+(hoy.sol>1?'han entrado':'ha entrado')+' <b>'+hoy.sol+' solicitud'+(hoy.sol>1?'es':'')+'</b>'+(cs?' ('+cs+')':'')+'.</p>';
+ if(hoy.pre)h+='<p>Mandé <b>'+hoy.pre+' presupuesto'+(hoy.pre>1?'s':'')+'</b> por un total de <b>'+E0(hoy.imp)+'</b>.</p>';
+ else h+='<p>Todavía no he podido mandar ningún presupuesto: estoy esperando datos del cliente.</p>';
+ if(citas.length){const c=citas[0];h+='<p>Tienes <b>'+citas.length+' visita'+(citas.length>1?'s':'')+' confirmada'+(citas.length>1?'s':'')+'</b>. La próxima, '+esc(c.cuando)+': '+esc(c.tipo.toLowerCase())+' por '+E0(c.imp)+'.</p>'}
+ if(K.esp)h+='<p>Hay <b>'+K.esp+' cliente'+(K.esp>1?'s':'')+'</b> que recibió presupuesto y no ha contestado. ¿Le escribo?</p>';
+ h+='<div class="ask"><button>¿Qué tengo mañana?</button><button>Escribe a los que no contestaron</button><button>¿Cuánto llevo presupuestado?</button></div></div>';
+ return h}
+function paneCitas(){
+ if(!citas.length)return '<div class="nada">Sin visitas todavía.<br>Cuando un cliente acepte un presupuesto, la cita aparece aquí y te llega por correo.</div>';
+ let h='';
+ citas.forEach((c,i)=>{h+='<div class="cita'+(i===0?' nu':'')+'"><div class="cw"><span class="cd">'+esc(c.cuando.charAt(0).toUpperCase()+c.cuando.slice(1))+'</span><span class="ci">'+E0(c.imp)+'</span></div>';
+  h+='<div class="cs">'+esc(c.tipo)+' · Alcalá de Henares · entró por '+esc(c.canal)+'</div>';
+  h+='<div class="cm"><b>Lo que se presupuestó:</b><br>'+c.det.map(esc).join('<br>')+'<br><b>Foto del espacio:</b> adjunta</div></div>'});
+ const c=citas[0];
+ h+='<div class="mail"><div class="mh">Correo que te llega: <b>Nueva visita confirmada — '+esc(c.tipo)+'</b></div>';
+ h+='<div class="mb"><b>'+esc(c.cuando.charAt(0).toUpperCase()+c.cuando.slice(1))+'</b> · Alcalá de Henares<br><br><b>Presupuesto aceptado:</b> '+E(c.imp)+'<br>'+c.det.map(esc).join('<br>')+'<br><br>Entró por '+esc(c.canal)+'. Foto del espacio adjunta. Conversación completa en el enlace.</div></div>';
+ return h}
+function paneAct(){
+ if(!acts.length)return '<div class="nada">Sin actividad todavía.</div>';
+ let h='<div class="card" style="margin:0">';
+ acts.forEach(x=>{h+='<div class="ev"><div class="ic '+(x.g?'g':'')+'">'+esc(x.ic)+'</div><div class="tt"><b>'+esc(x.t)+'</b><div>'+esc(x.s)+'</div></div><span class="hr">'+x.h+'</span></div>'});
+ return h+'</div>'}
+function pane(){$('pane').innerHTML=tab==='hoy'?brief():(tab==='citas'?paneCitas():paneAct())}
+function refresh(){pane()}
+function tabs(){const t=[['hoy','Lo de hoy'],['citas','Citas'+(citas.length?' ('+citas.length+')':'')],['act','Actividad']];
+ $('tabs').innerHTML='';t.forEach(x=>{const b=document.createElement('button');b.className='tb'+(x[0]===tab?' on':'');b.textContent=x[1];
+  b.onclick=()=>{tab=x[0];tabs();pane()};$('tabs').appendChild(b)})}
+function escenarios(){const e=$('esc');e.innerHTML='';
+ ESC[canal].forEach(x=>{const b=document.createElement('button');b.innerHTML='<span></span><b></b>';
+  b.querySelector('span').textContent=x.t;b.querySelector('b').textContent=x.s;b.disabled=busy;
+  b.onclick=()=>{if(busy)return;busy=true;escenarios();x.f()};e.appendChild(b)})}
+function setCanal(k){canal=k;busy=false;
+ [...$('chn').children].forEach(b=>b.className='cn'+(b.dataset.k===k?' on':''));
+ shell();escenarios();
+ if(k==='wa')$('scn').querySelector('#wab').innerHTML='<div class="nada" style="color:#7c848c">Lanza una solicitud abajo y mira la conversación.</div>'}
+function tarif(){const l=LIN.find(x=>x.k===linAct);$('tf').innerHTML='';
+ l.t.forEach(t=>{const r=document.createElement('div');r.className='tr';
+  r.innerHTML='<label></label><input type="number" step="1"><u></u>';
+  r.querySelector('label').textContent=t[1];const i=r.querySelector('input');i.value=T[t[0]];r.querySelector('u').textContent=t[2];
+  i.oninput=()=>{T[t[0]]=parseFloat(i.value)||0};$('tf').appendChild(r)});
+ [...$('lin').children].forEach(b=>b.className=b.dataset.k===linAct?'on':'')}
+LIN.forEach(l=>{const b=document.createElement('button');b.dataset.k=l.k;b.textContent=l.n;b.onclick=()=>{linAct=l.k;tarif()};$('lin').appendChild(b)});
+CH.forEach(c=>{const b=document.createElement('button');b.className='cn';b.dataset.k=c.k;b.textContent=c.n;b.onclick=()=>setCanal(c.k);$('chn').appendChild(b)});
+$('rst').onclick=()=>{K={sol:0,pre:0,cit:0,esp:0};citas=[];acts=[];hoy={sol:0,pre:0,imp:0,canales:{}};tab='hoy';busy=false;kpi();tabs();pane();setCanal(canal)};
+kpi();tabs();pane();tarif();setCanal('wa');
+</script></body></html>
